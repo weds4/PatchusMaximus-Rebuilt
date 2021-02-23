@@ -582,5 +582,5 @@ function ArmorPatcher (patchFile, settings, helpers, locals) {
     }//end of records
   }
   return [loadAndProcessArmors, loadAndProcessClothes, recordsPatcher]
-}
+};
 module.exports = {ArmorPatcher};
