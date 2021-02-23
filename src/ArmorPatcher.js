@@ -441,8 +441,9 @@ function doQualityLeather(PerMaPatch, locals, rec, armorMaterial, leatherArmorCO
     doDaedricReplicas(PermaPatch, locals, rec, armorMaterial);
   };
 };
-function ArmorPatcher (patchFile, settings, helpers, locals) {
-  let loadAndProcessArmors = {
+
+function loadAndPatch_Armors(patchFile, settings, helpers, locals) {
+  return {
     load: {//armors not clothes
       signature: `ARMO`,
       filter: record => {//Called for each loaded record. Return false to skip patching a record
@@ -466,8 +467,10 @@ function ArmorPatcher (patchFile, settings, helpers, locals) {
       };        
     }
   };
+};
 
-  let loadAndProcessClothes = {
+function loadAndPatch_Clothes(patchFile, settings, helpers, locals){
+  return {
     load: {//add ClothingRich keyword to ClothingBody clothes valued higher than the threshold
       signature: `ARMO`,
       filter: record => {//Called for each loaded record. Return false to skip patching a record
@@ -486,8 +489,10 @@ function ArmorPatcher (patchFile, settings, helpers, locals) {
       };
     }
   };
-  
-  let recordsPatcher = {
+};
+
+function records_AllARMO(){
+  return {
     records: (filesToPatch, helpers, settings, locals) => {
       //patch things that need to be used, but not themselves changed in the patch
       if (locals.UseWarrior) {
@@ -579,8 +584,8 @@ function ArmorPatcher (patchFile, settings, helpers, locals) {
       };
 
       return [];
-    }//end of records
-  }
-  return [loadAndProcessArmors, loadAndProcessClothes, recordsPatcher]
+    }
+  };
 };
-module.exports = {ArmorPatcher};
+
+module.exports = {/*ArmorPatcher*/ loadAndPatch_Armors, loadAndPatch_Clothes, records_AllARMO};
