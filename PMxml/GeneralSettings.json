@@ -1,0 +1,10 @@
+{
+  "ns2:generalSettings": {
+    "@xmlns:ns2": "PatchusMaximus.generalSettingsXML",
+    "outputLanguage": "ENGLISH",
+    "useMage": "true",
+    "useThief": "true",
+    "useWarrior": "true",
+    "removeUnspecificStartingSpells": "true"
+  }
+}

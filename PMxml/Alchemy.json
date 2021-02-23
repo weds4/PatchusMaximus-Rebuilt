@@ -1,0 +1,1733 @@
+{
+  "ns2:alchemy": {
+    "@xmlns:ns2": "PatchusMaximus.alchemyXML",
+    "alchemy_effects": {
+      "alchemy_effect": [
+        {
+          "identifier": "Flare Undead",
+          "baseMagnitude": "0",
+          "baseDuration": "4",
+          "baseCost": "50",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Corrode Armor",
+          "baseMagnitude": "0",
+          "baseDuration": "4",
+          "baseCost": "50",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Arcane Detachment",
+          "baseMagnitude": "800",
+          "baseDuration": "1",
+          "baseCost": "0.1",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Exhaust",
+          "baseMagnitude": "800",
+          "baseDuration": "1",
+          "baseCost": "0.1",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Paralysis",
+          "baseMagnitude": "0",
+          "baseDuration": "1",
+          "baseCost": "400",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Waterbreathing",
+          "baseMagnitude": "0",
+          "baseDuration": "5",
+          "baseCost": "37",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Fear",
+          "baseMagnitude": "1.645",
+          "baseDuration": "30",
+          "baseCost": "0.8",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Frenzy",
+          "baseMagnitude": "1.316",
+          "baseDuration": "10",
+          "baseCost": "4.5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Invisibility",
+          "baseMagnitude": "0",
+          "baseDuration": "5",
+          "baseCost": "60",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Cure Disease",
+          "baseMagnitude": "5",
+          "baseDuration": "0",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Cure Poison",
+          "baseMagnitude": "100",
+          "baseDuration": "0",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Regenerate Health",
+          "baseMagnitude": "13.16",
+          "baseDuration": "60",
+          "baseCost": "0.18",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Regenerate",
+          "baseMagnitude": "8.772",
+          "baseDuration": "60",
+          "baseCost": "0.2",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Resist Fire",
+          "baseMagnitude": "4.386",
+          "baseDuration": "60",
+          "baseCost": "0.5",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Resist Frost",
+          "baseMagnitude": "4.386",
+          "baseDuration": "60",
+          "baseCost": "0.4",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Resist Shock",
+          "baseMagnitude": "4.386",
+          "baseDuration": "60",
+          "baseCost": "0.6",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Resist Magic",
+          "baseMagnitude": "2.193",
+          "baseDuration": "60",
+          "baseCost": "1.2",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Resist Poison",
+          "baseMagnitude": "4.386",
+          "baseDuration": "60",
+          "baseCost": "0.3",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Restore Health",
+          "baseMagnitude": "1.9",
+          "baseDuration": "8",
+          "baseCost": "6.6",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Restore",
+          "baseMagnitude": "2.36",
+          "baseDuration": "8",
+          "baseCost": "4.6",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "baseMagnitude": "4.386",
+          "baseDuration": "60",
+          "baseCost": "0.5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Armor",
+          "baseMagnitude": "2.193",
+          "baseDuration": "60",
+          "baseCost": "1",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Double Skill",
+          "baseMagnitude": "2.193",
+          "baseDuration": "60",
+          "baseCost": "1",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Barter",
+          "baseMagnitude": "2.193",
+          "baseDuration": "300",
+          "baseCost": "0.14",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Persuasion",
+          "baseMagnitude": "2.193",
+          "baseDuration": "300",
+          "baseCost": "0.14",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Dexterity",
+          "baseMagnitude": "4.386",
+          "baseDuration": "300",
+          "baseCost": "0.08",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Carry Weight",
+          "baseMagnitude": "8.772",
+          "baseDuration": "300",
+          "baseCost": "0.03",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Health",
+          "baseMagnitude": "8.772",
+          "baseDuration": "60",
+          "baseCost": "0.22",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Fortify Magicka Stamina",
+          "baseMagnitude": "13.158",
+          "baseDuration": "60",
+          "baseCost": "0.13",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Damage Health",
+          "baseMagnitude": "1.755",
+          "baseDuration": "5",
+          "baseCost": "5",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Lingering Damage Health",
+          "baseMagnitude": "0.585",
+          "baseDuration": "30",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Ravage Health",
+          "baseMagnitude": "0.2",
+          "baseDuration": "8",
+          "baseCost": "100",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Damage Magicka",
+          "baseMagnitude": "2.632",
+          "baseDuration": "5",
+          "baseCost": "5",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Lingering Damage Magicka",
+          "baseMagnitude": "0.878",
+          "baseDuration": "30",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Ravage Magicka",
+          "baseMagnitude": "1",
+          "baseDuration": "10",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Damage Magicka Regen",
+          "baseMagnitude": "300",
+          "baseDuration": "2",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Damage Stamina",
+          "baseMagnitude": "2.632",
+          "baseDuration": "5",
+          "baseCost": "5",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Lingering Damage Stamina",
+          "baseMagnitude": "0.878",
+          "baseDuration": "30",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Ravage Stamina",
+          "baseMagnitude": "1",
+          "baseDuration": "10",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Damage Stamina Regen",
+          "baseMagnitude": "300",
+          "baseDuration": "2",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Slow",
+          "baseMagnitude": "50",
+          "baseDuration": "3",
+          "baseCost": "5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        },
+        {
+          "identifier": "Weakness to Fire",
+          "baseMagnitude": "4.386",
+          "baseDuration": "30",
+          "baseCost": "0.6",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Weakness to Frost",
+          "baseMagnitude": "4.386",
+          "baseDuration": "30",
+          "baseCost": "0.6",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Weakness to Shock",
+          "baseMagnitude": "4.386",
+          "baseDuration": "30",
+          "baseCost": "0.7",
+          "allowIngredientVariation": "true",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Weakness to Magic",
+          "baseMagnitude": "2.193",
+          "baseDuration": "30",
+          "baseCost": "2",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "true"
+        },
+        {
+          "identifier": "Weakness to Poison",
+          "baseMagnitude": "2.193",
+          "baseDuration": "30",
+          "baseCost": "0.5",
+          "allowIngredientVariation": "false",
+          "allowPotionMultiplier": "false"
+        }
+      ]
+    },
+    "alchemy_effect_bindings": {
+      "binding": [
+        {
+          "identifier": "Flare Undead",
+          "substring": "Flare Undead"
+        },
+        {
+          "identifier": "Corrode Armor",
+          "substring": "Corrode Armor"
+        },
+        {
+          "identifier": "Arcane Detachment",
+          "substring": "Arcane Detachment"
+        },
+        {
+          "identifier": "Exhaust",
+          "substring": "Exhaust"
+        },
+        {
+          "identifier": "Paralysis",
+          "substring": "Paralysis"
+        },
+        {
+          "identifier": "Waterbreathing",
+          "substring": "Waterbreathing"
+        },
+        {
+          "identifier": "Fear",
+          "substring": "Fear"
+        },
+        {
+          "identifier": "Frenzy",
+          "substring": "Frenzy"
+        },
+        {
+          "identifier": "Invisibility",
+          "substring": "Invisibility"
+        },
+        {
+          "identifier": "Cure Disease",
+          "substring": "Cure Disease"
+        },
+        {
+          "identifier": "Cure Poison",
+          "substring": "Cure Poison"
+        },
+        {
+          "identifier": "Regenerate Health",
+          "substring": "Regenerate Health"
+        },
+        {
+          "identifier": "Regenerate",
+          "substring": "Regenerate Magicka"
+        },
+        {
+          "identifier": "Regenerate",
+          "substring": "Regenerate Stamina"
+        },
+        {
+          "identifier": "Resist Fire",
+          "substring": "Resist Fire"
+        },
+        {
+          "identifier": "Resist Frost",
+          "substring": "Resist Frost"
+        },
+        {
+          "identifier": "Resist Shock",
+          "substring": "Resist Shock"
+        },
+        {
+          "identifier": "Resist Magic",
+          "substring": "Resist Magic"
+        },
+        {
+          "identifier": "Resist Poison",
+          "substring": "Resist Poison"
+        },
+        {
+          "identifier": "Restore Health",
+          "substring": "Restore Health"
+        },
+        {
+          "identifier": "Restore",
+          "substring": "Restore Magicka"
+        },
+        {
+          "identifier": "Restore",
+          "substring": "Restore Stamina"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Alteration"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Conjuration"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Destruction"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Illusion"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Restoration"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Marksman"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Block"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Brawler"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify One-handed"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Two-handed"
+        },
+        {
+          "identifier": "Fortify Single Skill",
+          "substring": "Fortify Sneak"
+        },
+        {
+          "identifier": "Fortify Armor",
+          "substring": "Fortify Light Armor"
+        },
+        {
+          "identifier": "Fortify Armor",
+          "substring": "Fortify Heavy Armor"
+        },
+        {
+          "identifier": "Fortify Double Skill",
+          "substring": "Weaponmaster"
+        },
+        {
+          "identifier": "Fortify Double Skill",
+          "substring": "Guardian"
+        },
+        {
+          "identifier": "Fortify Barter",
+          "substring": "Fortify Barter"
+        },
+        {
+          "identifier": "Dexterity",
+          "substring": "Dexterity"
+        },
+        {
+          "identifier": "Fortify Carry Weight",
+          "substring": "Fortify Carry Weight"
+        },
+        {
+          "identifier": "Fortify Health",
+          "substring": "Fortify Health"
+        },
+        {
+          "identifier": "Fortify Magicka Stamina",
+          "substring": "Fortify Magicka"
+        },
+        {
+          "identifier": "Fortify Magicka Stamina",
+          "substring": "Fortify Stamina"
+        },
+        {
+          "identifier": "Fortify Persuasion",
+          "substring": "Fortify Persuasion"
+        },
+        {
+          "identifier": "Damage Health",
+          "substring": "Damage Health"
+        },
+        {
+          "identifier": "Lingering Damage Health",
+          "substring": "Lingering Damage Health"
+        },
+        {
+          "identifier": "Ravage Health",
+          "substring": "Ravage Health"
+        },
+        {
+          "identifier": "Damage Magicka",
+          "substring": "Damage Magicka"
+        },
+        {
+          "identifier": "Lingering Damage Magicka",
+          "substring": "Lingering Damage Magicka"
+        },
+        {
+          "identifier": "Ravage Magicka",
+          "substring": "Ravage Magicka"
+        },
+        {
+          "identifier": "Damage Magicka Regen",
+          "substring": "Damage Magicka Regen"
+        },
+        {
+          "identifier": "Damage Stamina",
+          "substring": "Damage Stamina"
+        },
+        {
+          "identifier": "Lingering Damage Stamina",
+          "substring": "Lingering Damage Stamina"
+        },
+        {
+          "identifier": "Ravage Stamina",
+          "substring": "Ravage Stamina"
+        },
+        {
+          "identifier": "Damage Stamina Regen",
+          "substring": "Damage Stamina Regen"
+        },
+        {
+          "identifier": "Slow",
+          "substring": "Slow"
+        },
+        {
+          "identifier": "Weakness to Fire",
+          "substring": "Weakness to Fire"
+        },
+        {
+          "identifier": "Weakness to Frost",
+          "substring": "Weakness to Frost"
+        },
+        {
+          "identifier": "Weakness to Shock",
+          "substring": "Weakness to Shock"
+        },
+        {
+          "identifier": "Weakness to Magic",
+          "substring": "Weakness to Magic"
+        },
+        {
+          "identifier": "Weakness to Poison",
+          "substring": "Weakness to Poison"
+        }
+      ]
+    },
+    "ingredient_variations": {
+      "ingredient_variation": [
+        {
+          "identifier": "Fish Tier 1",
+          "multiplierMagnitude": "1.2",
+          "multiplierDuration": "1"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "multiplierMagnitude": "1.3",
+          "multiplierDuration": "1"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "multiplierMagnitude": "1.5",
+          "multiplierDuration": "1"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "multiplierMagnitude": "1.75",
+          "multiplierDuration": "1"
+        }
+      ]
+    },
+    "ingredient_variation_bindings": {
+      "binding": [
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Abecean Longfin"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Histcarp"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Silverside Perch"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Cyrodilic Spadetail"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "River Betty"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Chaurus Hunter Antennae"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Hagraven Claw"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Hagraven Feathers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Ice Wraith Teeth"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Large Antlers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Sabre Cat Tooth"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Slaughterfish Scales"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Spriggan Sap"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Taproot"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Bear Claws"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Boar Tusk"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Bone Meal"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Dwarven Oil"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Ectoplasm"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Eye of Sabre Cat"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Falmer Ear"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Glow Dust"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Mudcrab Chitin"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Skeever Tail"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Small Antlers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Wisp Wrappings"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Canis Root"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Swamp Fungal Pod"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Deathbell"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Giant Lichen"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Frost Mirriam"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Charred Skeever Hide"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Nirnroot"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Poison Bloom"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Garlic"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Nightshade"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Frost Salts"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Moon Sugar"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Troll Fat"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Briar Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Crimson Nirnroot"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Daedra Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Fire Salts"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Giant's Toe"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Human Flesh"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Human Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Vampire Dust"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Void Salts"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Bear"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Bristleback"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Fox"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Hare"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Mammoth"
+        },
+        {
+          "identifier": "Fish Tier 1",
+          "substring": "Eye of Wolf"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Bear Tooth"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Bonesap"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Bull Horn"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Canine Tooth"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Charred Hawk Beak"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Doe Antlers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Dyed Hawk Feathers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Eye of Troll"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Eye of Werewolf"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Flawless Bear Tooth"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Great Antlers"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Large Sabre Cat Claws"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Bear Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Bristleback Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Fox Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Hare Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Mammoth Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Sabre Cat Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Scales"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Polished Wolf Eye"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Sabre Cat Claws"
+        },
+        {
+          "identifier": "Creature Tier 2",
+          "substring": "Wolf Claws"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Boiled Skeever Tail"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Bristleback Heart"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Cured Skeever Hide"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Deer Heart"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Polished Troll Eye"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Polished Werewolf Eye"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Sabre Cat Heart"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Wolf Heart"
+        },
+        {
+          "identifier": "Special Classic Tier 3",
+          "substring": "Goat Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Bear Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Dragon Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Eye of Dragon"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Mammoth Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Polished Dragon Eye"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Troll Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Werewolf Heart"
+        },
+        {
+          "identifier": "Mythic Tier 4",
+          "substring": "Moon Dust"
+        }
+      ]
+    },
+    "potion_multipliers": {
+      "potion_multiplier": [
+        {
+          "identifier": "Tier1",
+          "multiplierMagnitude": "4.25",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier2",
+          "multiplierMagnitude": "6.0",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier3",
+          "multiplierMagnitude": "7.8",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier3.5",
+          "multiplierMagnitude": "8.2",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier4",
+          "multiplierMagnitude": "9.6",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier5",
+          "multiplierMagnitude": "11.4",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "Tier6",
+          "multiplierMagnitude": "15.96",
+          "multiplierDuration": "1.2"
+        },
+        {
+          "identifier": "Tier7",
+          "multiplierMagnitude": "17.00",
+          "multiplierDuration": "1.25"
+        },
+        {
+          "identifier": "DamRegen1",
+          "multiplierMagnitude": "1.0",
+          "multiplierDuration": "3.0"
+        },
+        {
+          "identifier": "DamRegen2",
+          "multiplierMagnitude": "1.0",
+          "multiplierDuration": "5.0"
+        },
+        {
+          "identifier": "DamRegen3",
+          "multiplierMagnitude": "1.0",
+          "multiplierDuration": "7.0"
+        },
+        {
+          "identifier": "DamRegen4",
+          "multiplierMagnitude": "1.0",
+          "multiplierDuration": "9.0"
+        },
+        {
+          "identifier": "DamRegen5",
+          "multiplierMagnitude": "1.0",
+          "multiplierDuration": "10.0"
+        },
+        {
+          "identifier": "MindAffecting1",
+          "multiplierMagnitude": "8.0",
+          "multiplierDuration": "0.7"
+        },
+        {
+          "identifier": "MindAffecting2",
+          "multiplierMagnitude": "12.2",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "MindAffecting3",
+          "multiplierMagnitude": "18.3",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "MindAffecting4",
+          "multiplierMagnitude": "24.4",
+          "multiplierDuration": "1.0"
+        },
+        {
+          "identifier": "MindAffecting5",
+          "multiplierMagnitude": "30.5",
+          "multiplierDuration": "1.0"
+        }
+      ]
+    },
+    "potion_multiplier_bindings": {
+      "binding": [
+        {
+          "identifier": "Tier1",
+          "substring": "Minor"
+        },
+        {
+          "identifier": "Tier1",
+          "substring": "Weak"
+        },
+        {
+          "identifier": "Tier1",
+          "substring": "Lingering Magicka Poison"
+        },
+        {
+          "identifier": "Tier1",
+          "substring": "Lingering Stamina Poison"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Alteration"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Haggling"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Defender"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Guardian"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Strength"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Conjurer's Potion"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Destruction"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Brawler's Potion"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Knight"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Illusion"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Skirmisher's Potion"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Defender"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of True Shot"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Warrior"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Glibness"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Dexterity"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Healer"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Weaponmaster's Potion"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Light Feet"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of the Berserker"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Regeneration"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Lasting Potency"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Vigor"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Enduring"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Resist Fire"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Resist Cold"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Resist Magic"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Resist Shock"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Healing"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Stamina"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Magicka"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Plunder"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Conflict"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Larceny"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Keenshot"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Escape"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Health"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Extra Magicka"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Potion of Enhanced Stamina"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Enduring"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Enduring"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "Poi"
+        },
+        {
+          "identifier": "Tier2",
+          "substring": "ver"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Extended"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Draught"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Plentiful"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Potent"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Lasting"
+        },
+        {
+          "identifier": "Tier3",
+          "substring": "Draught of Lasting Potency"
+        },
+        {
+          "identifier": "Tier3.5",
+          "substring": "Solution"
+        },
+        {
+          "identifier": "Tier3.5",
+          "substring": "Solution of Lasting Potency"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Philter"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Philter of Lasting Potency"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Potion of Vigorous"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Virulent"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Malign"
+        },
+        {
+          "identifier": "Tier4",
+          "substring": "Persisting"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Prolonged"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Elixir"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Elixir of Lasting Potency"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Extreme"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Deadly"
+        },
+        {
+          "identifier": "Tier5",
+          "substring": "Unceasing"
+        },
+        {
+          "identifier": "Tier6",
+          "substring": "Grand Elixir"
+        },
+        {
+          "identifier": "Tier7",
+          "substring": "Prime Elixir"
+        },
+        {
+          "identifier": "DamRegen1",
+          "substring": "Weak Recovery Poison"
+        },
+        {
+          "identifier": "DamRegen1",
+          "substring": "Weak Vigor Poison"
+        },
+        {
+          "identifier": "DamRegen2",
+          "substring": "Magicka Recovery Poison"
+        },
+        {
+          "identifier": "DamRegen2",
+          "substring": "Vigor Poison"
+        },
+        {
+          "identifier": "DamRegen3",
+          "substring": "Potent Recovery Poison"
+        },
+        {
+          "identifier": "DamRegen3",
+          "substring": "Potent Vigor Poison"
+        },
+        {
+          "identifier": "DamRegen4",
+          "substring": "Malign Recovery Poison"
+        },
+        {
+          "identifier": "DamRegen4",
+          "substring": "Malign Vigor Poison"
+        },
+        {
+          "identifier": "DamRegen5",
+          "substring": "Deadly Recovery Poison"
+        },
+        {
+          "identifier": "MindAffecting1",
+          "substring": "Weak Fear Poison"
+        },
+        {
+          "identifier": "MindAffecting1",
+          "substring": "Weak Frenzy Poison"
+        },
+        {
+          "identifier": "MindAffecting2",
+          "substring": "Fear Poison"
+        },
+        {
+          "identifier": "MindAffecting2",
+          "substring": "Frenzy Poison"
+        },
+        {
+          "identifier": "MindAffecting3",
+          "substring": "Potent Fear Poison"
+        },
+        {
+          "identifier": "MindAffecting3",
+          "substring": "Potent Frenzy Poison"
+        },
+        {
+          "identifier": "MindAffecting4",
+          "substring": "Virulent Fear Poison"
+        },
+        {
+          "identifier": "MindAffecting4",
+          "substring": "Virulent Frenzy Poison"
+        },
+        {
+          "identifier": "MindAffecting5",
+          "substring": "Deadly Fear Poison"
+        },
+        {
+          "identifier": "MindAffecting5",
+          "substring": "Deadly Frenzy Poison"
+        }
+      ]
+    },
+    "potion_exclusions": {
+      "exclusion": [
+        {
+          "text": "Food",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Cure Poison",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Invisibility",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Waterbreathing",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Potion of Ultimate",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Paralysis",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Falmer Blood Elixir",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Ice Wraith Essence",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Kordir's Skooma",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Philter of the Phantom",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Potion of Blood",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Soul Husk Extract",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Soul Husk Extract",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Sleeping Tree Sap",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Stallion's Potion",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Unknown Potion",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Vaermina's Torpor",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "White Phial",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Frostbite Venom",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Lotus Extract",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Ice Wraith Bane",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Nightshade Extract",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_DS_BoneBlood",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_DS_Potn_HircinesAgony",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_DS_DragonBlood_SlowedTime",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_DS_DragonBlood_GhostsPassage",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_DS_DragonBlood_Torpor",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "AAEMRestoreStamina001",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "AAEMResistPoison25",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "aaMLPotionSlowtime",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "aaMLPotionLifeRestore",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "aaMLPotionGuardianCircle",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "aaMLPotionMWWaterbreathing",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "aaMLPoisonFrenzy",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "_Anton_Larva",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "AppleOfDestiny",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "DreamsPotion",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "TonyPotion",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "_Shocks_ShadowBanWine",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "_Shocks_RoseThornMead",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "Worshipcollectorfood2",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "mod_magiccarrot",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "TescosCastleLurkDarkanianWine",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "lalawench_A",
+          "target": "EDID",
+          "type": "STARTSWITH"
+        },
+        {
+          "text": "VolundrPotion1",
+          "target": "EDID",
+          "type": "EQUALS"
+        }
+      ]
+    },
+    "ingredient_exclusions": {
+      "exclusion": [
+        {
+          "text": "HISAnimalBloodLarge",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "LCSDragonEggBlue",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "LCSDragonEggGrenn",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "LCSDragonEggRedd",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "Volundr",
+          "target": "EDID",
+          "type": "STARTSWITH"
+        }
+      ]
+    }
+  }
+}

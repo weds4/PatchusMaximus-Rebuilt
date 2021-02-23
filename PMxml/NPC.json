@@ -1,0 +1,46 @@
+{
+  "ns2:npc": {
+    "@xmlns:ns2": "PatchusMaximus.npcXML",
+    "npc_exclusions": {
+      "exclusion": [
+        {
+          "text": "NO TEXT",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "dunSnaplegSpriggan",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "EncSprigganSwarm",
+          "target": "EDID",
+          "type": "EQUALS"
+        },
+        {
+          "text": "ARTHLALShip",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "3DNPC",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Chicken",
+          "target": "EDID",
+          "type": "CONTAINS"
+        }
+      ]
+    },
+    "race_exclusions": {
+      "exclusion": {
+        "text": "Manakin",
+        "target": "EDID",
+        "type": "CONTAINS"
+      }
+    }
+  }
+}

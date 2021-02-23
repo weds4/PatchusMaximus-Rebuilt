@@ -1,0 +1,7607 @@
+{
+  "ns2:leveledLists": {
+    "@xmlns:ns2": "PatchusMaximus.leveledListsXML",
+    "distribution_exclusions_spell_tome": {
+      "distribution_exclusions_spell": {
+        "exclusion": [
+          {
+            "text": "_",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Teleport",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "doom",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PowerKhajiitNightEye",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Race",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLC1",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLC2",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "dlc2",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "crVampire",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CrVampire",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "HowlWerewolf",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Test",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DUPLICATE",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "TransmuteOreMineral",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Focus Lense - Fire",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Focus Lense - Frost",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "dunLabyrinthianSpellReward",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "dunHighGateSummonFlamingThrall",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "dunTrevasSpectralArrow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Reaper_NO_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTAlbert",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTCure",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTFade",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTIce",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTSPL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTTrans",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTVoice",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTVulom",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Conjure Dragon Priest",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "FavorJobsMorviah",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWQQ",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "JoselynFireStorm",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "RelicLifeForce",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ValgusHealth",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "WayoftheNine",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "SOT_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ISS_ConjureSkeleton",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "00_SummonZombies",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DreadZombie",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CRFCircleOfVitality",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "lalawenchspell",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LVA_ChaosNoirTome",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AAFlyingSpell",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_S",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "XWB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WBA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "XWBA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PHX_BlessHomeSpell",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_TW_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_AA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPSummonTardis",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPGiantAB",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPShiftGiant",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPPolymorphHare",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPSummonLuggage",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPSteamSpray",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPPlasmaShards2",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPRuneParalysis",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPNightEye",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPImagineDragon",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPConjureDragonling",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPTransmuteLockpick",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPGravityWellHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPOpenLock",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPResurrect",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPFeather",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPNoUnarmedDmg",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPFakeFrost",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPPoisonCloakDmg",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPShiftWolf",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DE_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_mwl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAChaos",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAEyes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAMatching",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAProtected",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSArmor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAShadow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAWellProtected",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAWrath",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "zINPCServiceAfterglow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_DS_SPEL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FletchSkills_Spell",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "BowBashingSpell",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "daymoyl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLArea",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLCha",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLDebug",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLPass",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLHeal",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLPoi",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLSkill",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxRacial",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "mslVT",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZAERTEST",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZAeR_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR0",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR1",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDRH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "abDeathguard",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "abDoppelganger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "abLich",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "abLoot",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "abSpawn",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vAncientLich",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vArcaneWeapon",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vArea",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vAWPN",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vBCRS",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vBCRS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vBlessedWeapon",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vBWPN",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vConflagrate",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vConflagrate",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vCursed",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDeathguard",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vDGRDSacrCD",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vDiscord",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDivine",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDLT",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDPAL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDPNG",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vDRMR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vEarthbound",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vEBW",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vECH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vEOS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vFBMB",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vFireblast",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vFireCloak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vFRMR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vFrostArmor",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vFrostBomb",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vFuriousCurse",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vGlacialFort",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vHBLT",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vHealingTouch",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vHJST",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vHolybolt",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vHTCH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vIceLance",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vICEL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vLightningStrike",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vLSTRjoltCD",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vMIMG",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vMSWR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vNECR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vPACK",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vPanicCurse",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vPhantomShroud",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vPHOE",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vPhoenix",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vPSWR",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vRift",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vRIFTCD",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vSalamander",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vSeedoflife",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vSGT",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vShieldbreaker",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vSMS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vSOL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vSRMR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vStorm",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vSTRK",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vSwordbreaker",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vTinder",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vVOID",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vVoid",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vVON",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vVOT",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vWildMushrooms",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "vWinter",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vWMS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vWoe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaML_Spell",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JooFireBoltHazardSpell",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "JooFireArrowHazardSpell",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "DX_MAC_TembtraThief04",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "DBL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Bhabhilon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_bh",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AbShieldMassCastBodyFXDUPLICATE001",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Culort",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sofia",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "manny_GF_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Rigmor_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Camp_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "NW_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_book": {
+        "exclusion": [
+          {
+            "text": "Teleport",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Diary",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Note",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Letter",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "letter",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Journal",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ElderScroll",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Elder Scroll",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Jiub's Opus",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Recipe",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Recipe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Recipe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Recipe",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Orders",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Book",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "HouseDecorate",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SpellTomeTransmuteOreMineral",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "DX_Crossbow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SOT_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JVD",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "OBIS",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "vTome",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Power of the Elements",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "WTAd",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTAl",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTAn",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTBa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTBo",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTCl",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTCu",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTDBSa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTDu",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTEl",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTFj",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTFr",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTGa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTGr",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTHa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTHe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTLetter",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTLurius",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTMiner",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTMoon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTNecro",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTOlga",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTPrison",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTRambling",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTSaeglopor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTSpell",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTStormcloak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTThalmor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTTobus",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTVork",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTWanderers",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WTWarlock",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3dnpc",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3MQ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Asteria",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DukeofBeards",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "TheStoneHand",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LongNight",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MortarPestleandPot",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "7000Steps",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWQQ",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DS_Starter",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWQQ",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MAQContract",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "YngvarsList",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "lalawench_book",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LVA_ChaosNoirTome",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AAFlyingSpell",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WBA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "XWB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DE_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_mwl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MLCorpse",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MLBleakFalls",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MLBook",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BSAChaos",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAChapter",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BSAWrath",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_DS_Book",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ZAERTESTTOME",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR04",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDRSeer",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "vTome",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersBanditNote",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersDarmokJournal",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersUlvigNotes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersFrostVaultLog",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersVindicatorRant",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersJsasheBook",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersAnnouncement",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersSongOfUlvaak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersLoveLetter5thEra",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersThalmorNote",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersMadanach",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewersBookTGBrynjolfMap",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DX_MAC_Tembtra",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DBL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_bh",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BhaBhilon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Bhabhilon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "bhabhilon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sulfuras",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "manny_GF_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Rigmor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Camp_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_SAG_BlackHorse",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_SAG_BHC",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "NBBook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "pLetter",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "PandoraL",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "MysticBook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "SolitudeL",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "KingsBook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CrimsonBook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "MythicBook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ValeriaL",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "RABook",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "NordicL",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Halenzeinotes1",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MoonsugarForging",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "NW_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_list": {
+        "exclusion": [
+          {
+            "text": "SOT_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CWSoldierImperialGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldierSonsGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "GuardGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "GuardGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "PenitusGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC2SpellBook",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "fmrBasicSpells",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "fmrAdvSpells",
+            "target": "EDID",
+            "type": "EQUALS"
+          }
+        ]
+      }
+    },
+    "distribution_exclusions_weapon": {
+      "distribution_exclusions_weapon_regular": {
+        "exclusion": [
+          {
+            "text": "Akaviri",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Akaviri",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Vampire",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnguard",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DB",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MG",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "C06",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Imperial",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gharol's Iron Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nettlebane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Angi's Bow",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Alessandra's Dagger",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Amren's Family Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Balgruuf's Greatsword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ceremonial Axe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ceremonial Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dravin's Bow",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "000557f5",
+            "target": "FORMID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Hjalti's Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Phantom Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Queen Freydis's Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rusty Mace",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shagrol's Warhammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Vilkas's Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dragon Priest",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Grimsever",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "The Rueful Axe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Wuuthrad",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Valdr",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Scamp's Hammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "PotW Wig",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Horripilation",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00Giant",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00Spriggan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00FireGiant",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLC1",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLC2",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "dlc2",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "The Longhammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUPLICATE",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Duplicate",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUP",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUP",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Pickaxe",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Woodcutter",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Replica",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Glass Bow of the Stag Prince",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Solonor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shiv",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bound",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skyforge",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Enhanced",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Harkon",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Horksbane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Disciple",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "The Woodsman's Friend",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Pickaxe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Pickaxe",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "weapBasicFork",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "weapBasicKnife",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "TG",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sting",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Narsil",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Sauron",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Inigo",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IW",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JSwords",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ZAC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZBW_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZHS_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Z_N",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZSM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Zth_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZW_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Mareen",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Nadina",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Elyndra",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "The Giving Star",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ironhart's Might",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Sword of Judgment",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Sword of Truth",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Daedra Slayer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shortsword of Backstabbing +3",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "El'druin",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blackwater Blade",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DPAPM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Hoth",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PathfinderSword",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Ygrayne",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gorehowl",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Huntsman",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Daedric",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Dragonbone",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Dwarven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Ebony",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Elven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Glass",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Orcish",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_WEAP_",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Iron",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Steel",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Stone",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "_DS_HuntingKnife_Bone",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "aaBowOfTheDrow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaDreadweaveAxe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaFTBDagger",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaNico",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaObsidianAxe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaToA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaWyrmfang",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DoomshardBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "NicoScimitar",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Balok",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaWere",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaBalok",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AkaviriKatanaSpecial",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BookQuestDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CallenIronSword",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CWQQ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DarksteelDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "FalathilsBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GlathrielBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Honorbound",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IronDagger3mq3",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelLongBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelSteel",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Moris_Ebony",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "PelgurtSword",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SlaveShiv",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "SlaveWarAxe",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "VulwulfBestDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "tos_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "80lb",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "120lb",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TripleStringBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "daymoyl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Hadhafang",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Boarding Axe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Boarding Greataxe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Green Arrow's Bow",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Claidhem-More",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Conan's Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Conan's Greatsword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Oakheart",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Death Dagger",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Death Sword",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Death Claymore",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gladius I",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Sword of the Golden Army",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Warsword of the Golden Army",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Khanda",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Oathkeeper",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Pirate Saber",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Sedethul",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stonewasp Dagger",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Strider",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Tauriel",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Thor's Hammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Thor's Warhammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Yataghan",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "axBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaValdmiresSword",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Robin",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Najash",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rysh Alrzqa",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rysh Hymra",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Aemers",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Nameless Light",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DE_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AAEM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "00ripper",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "00darkhammer",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "00DraugrPick",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "00bksword",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "03Crossbow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "03DwarvenCrossbow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "05DragonboneBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Merta",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dovahkiin Mercenary",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Warglaive",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Lilith",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Bosmer",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "mslVTPwMagShaARendingClawsWPN",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ZAeR_0",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JVD_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FZ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Genesis' Rapier",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Throw Javelins",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewers",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Emeraldbow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArgonianBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "WhiteWoodBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ForgedBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "WhiteElvenBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DarkElvenBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MageLightDaedricBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ElvenDragonboneBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DarkDragonboneBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BloodCursedBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThornsSpear",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "yuricaSovereign",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Atlantean",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Cimmerian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Hyborian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Rexor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Thorgrim",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Thulsa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxBretonKnight",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_bh",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "OS_CV",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "manny_GF_Weapon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Rigmor_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CasiusVaron",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AncientTongues",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Camp_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewVanNord",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewNordic",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "isil",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MysticElven",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxGreatTemplar",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Akatosh",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FirelinkGreat",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DTerra",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "zzzWeapYham",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KhajiitLongDagger",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArgonianKindjal",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AkaviriDha",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnXileelCleaver",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KhajiitYatagan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IJ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "01dam",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "00LegendaryTwilightGreatSword",
+            "target": "EDID",
+            "type": "EQUALS"
+          }
+        ]
+      },
+      "distribution_exclusions_list_regular": {
+        "exclusion": [
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Courier",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ToolRandom",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "NPO",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "dun",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldierImperialGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldierSonsGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemDawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "GuardGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "PenitusGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemForswornWeaponMissile",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsSteel",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsElven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsGlass",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemDisguisedHunterInventory",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemWeaponDaggerTown",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IWLI",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JSwords",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CCF",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FSL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FSM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DS_LI_KnifeMerchandise",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemSpearOr",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LItemJavelin",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_weapon_enchanted": {
+        "exclusion": [
+          {
+            "text": "Akaviri",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Akaviri",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Vampire",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnguard",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DBBladeOfWoe",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Horripilation",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DA0",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DA1",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DA1",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nettlebane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Chillrend",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnbreaker",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MolagBal",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "EbonyBlade",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MehrunesRazor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ghostblade",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Zephyr",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blade of the Wicked",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dragon Priest",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Grimsever",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "The Rueful Axe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Wuuthrad",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gauldur",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Drainspell",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Drainheart",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Solonor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00Giant",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00Spriggan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00FireGiant",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skyforge",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bound",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Enhanced",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Harkon",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Horksbane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Enhanced",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Pickaxe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Pickaxe",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "weapBasicFork",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "weapBasicKnife",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "TG",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sauron",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "FS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JSwords",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DDA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Arcanfoe",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Furious Icefist",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Icebreaker",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shadow Bite",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Marshborn Blight",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Deep-Rout",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Spear of Might",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dovahdaan",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Black Whisper",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Furious Iceblade",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Harkon's Dai-Katana",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Noroknos",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "aaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Aegisbane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Angi's Bow",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bloodthorn",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bolar's Oathblade",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dragonbane",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Kahvozein's Fang",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Pale Blade",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Red Eagle",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "The Longhammer",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Valdr",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Windshear",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ygrayne",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gorehowl",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Huntsman",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Hunting Knife",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Divining Knife",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Balok",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaWere",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaBalok",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AkaviriKatanaSpecial",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BookQuestDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CallenIronSword",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CWQQ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DarksteelDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "FalathilsBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GlathrielBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Honorbound",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IronDagger3mq3",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelLongBow",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelSteel",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Moris_Ebony",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "PelgurtSword",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SlaveShiv",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "SlaveWarAxe",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "VulwulfBestDagger",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "tos_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "80lb",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "120lb",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TripleStringBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "daymoyl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DPAPM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Hoth",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AAEM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "axBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaValdmiresSword",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Aemers",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Nameless Light",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_DE_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DaedricDovahMaar",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DaedricDovahFaas",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "03Crossbow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "03DwarvenCrossbow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "05DragonboneBow",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Merta",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SilverChillGreatsword",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dovahkiin Mercenary",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Lilith",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxRacialDarkElfAncestorSword",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "JVD_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FZ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Throw Javelins",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SSewers",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Atlantean",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Cimmerian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Hyborian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Rexor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Thorgrim",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Thulsa",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_bh",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sulfuras",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "manny_GF_Weapon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Rigmor_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AncientTongues",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewVanNord",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewNordic",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "isil",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MysticElven",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxGreatTemplar",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Akatosh",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FirelinkGreat",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Sol",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "SolII",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "zzzWeapYham",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Ashbringer",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "CorruptedAshbringer",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IJ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_list_enchanted": {
+        "exclusion": [
+          {
+            "text": "NPO",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemDawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "GuardGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "PenitusGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skyforge",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Courier",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LItemForswornWeaponMissile",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsSteel",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsElven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsGlass",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemDisguisedHunterInventory",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IWLI",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JSwords",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SkyforgeSteelSwordReforged",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Emeraldbow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArgonianBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "WhiteWoodBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ForgedBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "WhiteElvenBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DarkElvenBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MageLightDaedricBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ElvenDragonboneBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DarkDragonboneBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BloodCursedBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          }
+        ]
+      }
+    },
+    "distribution_exclusions_armor": {
+      "distribution_exclusions_armor_regular": {
+        "exclusion": [
+          {
+            "text": "Akaviri",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Akaviri",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Aela's",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1ClothesVampireLordArmor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1ClothesVampireLordRoyalArmor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "of the Old Gods",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Asgeir's Wedding Band",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Calcelmo's Ring",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cursed Ring of Hircine",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Fjola's Wedding Band",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Fjotli's Silver Locket",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Helm of Winterhold",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Hrolfdir's Shield",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Jagged Crown",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Jeweled Amulet",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Madesi's Silver Ring",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Moon Amulet",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Mystic Tuning Gloves",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Noster's Helmet",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Reyda's Necklace",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Roggi's Ancestral Shield",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Strange Amulet",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Viola's Gold Ring",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ilas",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "xMAEasterEggMaskNerjal",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "xMASNEArmorDarkCowl",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC01Reaper",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC01SoulCairn",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Archmage",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Archmage",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bound",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUPLICATE",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Duplicate",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUP",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DUP",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Replica",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quality",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Reforged",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Warforged",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorDraugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorBriarHeart",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorBoneCrown",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skyforge",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Bounty",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "JVD_ArmorHaegrif",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Mareen",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Nadina",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Darion",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_DS_LI_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "CWOBoneBreaker",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOTower",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOHelmOfTheUnknownLegate",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DDA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Pale Leather",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Red Stalhrim",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Vampire Cowl",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AAForeign",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Westland Rondache",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Lion's Shield of Courage",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Darion",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "TC_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "SV3_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ACX_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WBA__",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_AA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_LW",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_mz_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_anmorDwarvenBoots_CHN",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_ANrmorDwarvenGauntletsCH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ClothesPsiijicGloves_CH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ClothesPsiijicRobes_CH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "0ArmorEisen",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorGhorzas",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Balok",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "bALOK",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3DMC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AlendrielGoldSapphire",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditBootsMeresine",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditCuirassMeresine3",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditGauntletsMeresine",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorDaedricGauntletsGriffith",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorDwarvenCuirassFAT",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorGlassRothvine",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Skjel's Leather Boots",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "BeatriceAmulet",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "BloodofSkyrimCuirass",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesArmBandagesValla",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesBlackSmithFAT",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesFarmClothesCross01",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesFarmHatCross02",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesWarlockHoodUnplayableDUPLICATE001",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "DenerisGloves",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "EldritchRing",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilArmor",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilBoots",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilGauntlets",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "GriffithArmor",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GriffithBoots",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GrottaRing",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelArmorSteelShield",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelIronBandedShield",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelNecklaceSilverSapphire",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelRingGold",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "tos_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AppleHat",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "daymoyl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Aegis of Champions",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DPAPM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Hoth",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Contractor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Mavari",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Armor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Hood",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Boots",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Gauntlets",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Helm",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Daedra Huntress",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Royal Daedric",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Seratic",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Eridius",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Coat",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Boots",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Gloves",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator's Dustcloak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Witch",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dark Jester's",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AAEM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Emfy",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gwelda",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "000Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "00Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "01Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Telvani",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Clothes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "02Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_02Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Ivory",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "04Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_04Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "05Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Miraak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00Template",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_02Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_04Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Merta",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dovahkiin Mercenary",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Elven Sniper",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Warglaive Shield",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Silverlight",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Ursine",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Arissa_Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_ArmorConan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Doom",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Draugr",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Hyborian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Rexor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Skin",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BosmerArmor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DLC1nVampireNightPowerNecklaceGargoyle",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "01ERADJ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZAeR_0",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorPhantomFX",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JVD_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FZ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Cloth_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Heavy_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Light_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Skaal Heavy",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ludBard",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "EvilMasterArmor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorLadyDraak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorDragonscaleHelmetDragonthanereforged",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorReforgedSteelPlateDragonthane",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorSteelPlateBootsReforgedDragonthane",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorSteelPlateGauntletsreforgedDragonthane",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Avatar Of Grenth",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Lord Marshal",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Steel Falcon",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "002BeltedRobe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "002CommonRobe",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "002QuiltedRobes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "002TravelClothes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "BDYEB",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Medusa",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Drakul",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Schwertleite",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DX_MAC_Tembtra",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "GDDH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "EBDRing",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "GDRARanger",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxSwordMaster",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxWitchHunter",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxVampireHunter",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorThorns",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxMordSith",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DBL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "099",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Blacksmith's Tribute Iron",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "yuricaSovereign",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxthief",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxBretonKnight",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Bhabhilon",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_bh",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Culort",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "OS_CV",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "manny_GF_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorOfIntrigue",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rigmor_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Camp_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "001Vayan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaBelko",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewArmorNordic",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MysticElven",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DivineAegis",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AegisCloak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorAkatosh",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorFirelink",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "zzzArmorYham",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "xxxESOAltmer",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IJ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_list_regular": {
+        "exclusion": [
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorGuard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorImperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "GiantDeath",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemForswornWeaponMissile",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsSteel",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsElven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsGlass",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemDisguisedHunterInventory",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IACL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IADL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAIng",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IALI",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAOL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IASet",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IASL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAVL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shockero_LL_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_armor_enchanted": {
+        "exclusion": [
+          {
+            "text": "Ahzidal",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dukaan",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Hevnoraak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Konahrik",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Krosis",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Miraak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Morokei",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nahkriin",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Otar",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rahgot",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Vokun",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Volsung",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Zahkriisos",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1ClothesVampireLordArmor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1ClothesVampireLordRoyalArmor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Akaviri",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Akaviri",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Aela's",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "of the Old Gods",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MarriageBondofMatrimony",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DA02Armor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "MG02",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MG05",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MG07",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Andurs' Amulet of Arkay",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gauldur Amulet",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ogmund's Amulet of Talos",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Raerek's Inscribed Amulet of Talos",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ring of Pure Mixtures",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Shahvee's Amulet of Zenithar",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "The Forgemaster's Fingers",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorDragonPriestMask",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DBClothes",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Archmage",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Archmage",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Muiri",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Muiri",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightweaver",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "dunRatwayBrawlerGloves",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DBArmor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ClavicusVileMask",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ysgramor",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Linwe's",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LD_Aetherial",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Spellbreaker",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ilas",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bound",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "player",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quality",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Reforged",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Warforged",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Test",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skyforge",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nord",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bounty",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "JVD_ArmorHaegrif",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Boots of Springheel Jak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Crown of the Arch-Curate",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Tarlokyr's Armor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOArielleBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOKhamsin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOLexIustificati",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOSovngardeBow",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOStormbladeWeap",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DDA",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Cowl of Midnight",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dragonguard Mantle",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bloodksal",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Bloodskal",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "aaML",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_Lull",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MS06ShieldL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_AA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_LW",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_mz_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_anmorDwarvenBoots_CHN",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_ANrmorDwarvenGauntletsCH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ClothesPsiijicGloves_CH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ClothesPsiijicRobes_CH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MidasSPEntangleHazard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DPAPM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Hoth",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_mwl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MLFeyngaarsHelmet",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorDragonPriestMask",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Balok",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "bALOK",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3DNPC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "3DMC",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AlendrielGoldSapphire",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditBootsMeresine",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditCuirassMeresine3",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorBanditGauntletsMeresine",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorDaedricGauntletsGriffith",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorDwarvenCuirassFAT",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ArmorGlassRothvine",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Skjel's Leather Boots",
+            "target": "NAME",
+            "type": "EQUALS"
+          },
+          {
+            "text": "BeatriceAmulet",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "BloodofSkyrimCuirass",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesArmBandagesValla",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesBlackSmithFAT",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesFarmClothesCross01",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesFarmHatCross02",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ClothesWarlockHoodUnplayableDUPLICATE001",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "DenerisGloves",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "EldritchRing",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilArmor",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilBoots",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ElenthilGauntlets",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "GriffithArmor",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GriffithBoots",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "GrottaRing",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelArmorSteelShield",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelIronBandedShield",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelNecklaceSilverSapphire",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "IsobelRingGold",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "tos_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "daymoyl_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Contractor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Mavari",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Armor",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Hood",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Boots",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Gauntlets",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Cleric Helm",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Daedra Huntress",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Royal Daedric",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Seratic",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Eridius",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Coat",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Boots",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator Gloves",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Investigator's Dustcloak",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Witch",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dark Jester's",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "AAEM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Emfy",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Gwelda",
+            "target": "NAME",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "000Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "00Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "01Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Telvani",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Clothes",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "02Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_02Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Ivory",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "04Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_04Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "05Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Armor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Miraak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_00Template",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_01Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_02Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_03Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_04Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_05Cloths",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Merta",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dovahkiin Mercenary",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Ursine",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_ArmorConan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Doom",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Draugr",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Hyborian",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Rexor",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "PROM_Skin",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZAeR_0",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ZDR",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jDivRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jFireRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jIceRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jMysticRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jNatureRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jStormRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "jWarRing",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JVD_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FZ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Cloth_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Heavy_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_Light_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Skaal Heavy",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "KA_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "FS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DX_MAC_Tembtra",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "JH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "EBDRing",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LM",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DBL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "WDM_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LB_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MAS",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Culort",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "manny_GF_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorOfIntrigue",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Rigmor_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "001Vayan",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "aaaBelko",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AnewArmorNordic",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "MysticElven",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "DivineAegis",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "AegisCloak",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorAkatosh",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorFirelink",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "ArmorTribunalMask",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IJ",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "ShadowA",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ShadowG",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ShadowH",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "ShadowB",
+            "target": "EDID",
+            "type": "EQUALS"
+          },
+          {
+            "text": "Wolf Pack",
+            "target": "NAME",
+            "type": "STARTSWITH"
+          }
+        ]
+      },
+      "distribution_exclusions_list_enchanted": {
+        "exclusion": [
+          {
+            "text": "Companions",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Blades",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Nightingale",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ThievesGuild",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Imperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Stormcloak",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Penitus",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorGuard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "ArmorImperial",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWOSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Guard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemSoldier",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "BYOH",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Dummy",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "skin",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Dun",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Quest",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Ritual",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "Draugr",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldierImperialGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "CWSoldierSonsGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemDawnguard",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "GuardGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "PenitusGear",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemForswornWeaponMissile",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsSteel",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsElven",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "SublistThalmorBowAndArrowsGlass",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemDisguisedHunterInventory",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardHuntingBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrows_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "DLC1LItemGuardImperialBowAndArrowsAllON_CCO",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_00",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IACL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IADL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAIng",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IALI",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAOL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IASet",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IASL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "IAVL",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "FrostBanditHood",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "JVDliArmorPimpAmulets",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "LItemJVDLordFraGriza",
+            "target": "EDID",
+            "type": "CONTAINS"
+          },
+          {
+            "text": "_tw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_lw_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "_an_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          },
+          {
+            "text": "Shockero_LL_",
+            "target": "EDID",
+            "type": "STARTSWITH"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1145 @@
+{
+  "ns2:ammunition": {
+    "@xmlns:ns2": "PatchusMaximus.ammunitionXML",
+    "ammunition_types": {
+      "ammunition_type": [
+        {
+          "identifier": "Standard Arrow",
+          "type": "ARROW",
+          "damageBase": "13",
+          "rangeBase": "60000",
+          "speedBase": "4900",
+          "gravityBase": "0.3"
+        },
+        {
+          "identifier": "Standard Bolt",
+          "type": "BOLT",
+          "damageBase": "17",
+          "rangeBase": "80000",
+          "speedBase": "5500",
+          "gravityBase": "0.05"
+        },
+        {
+          "identifier": "Standard Javelin",
+          "type": "ARROW",
+          "damageBase": "20",
+          "rangeBase": "20000",
+          "speedBase": "2400",
+          "gravityBase": "1.0"
+        }
+      ]
+    },
+    "ammunition_type_bindings": {
+      "binding": [
+        {
+          "identifier": "Standard Arrow",
+          "substring": "Arrow"
+        },
+        {
+          "identifier": "Standard Bolt",
+          "substring": "Bolt"
+        },
+        {
+          "identifier": "Standard Javelin",
+          "substring": "Javelin"
+        }
+      ]
+    },
+    "ammunition_modifiers": {
+      "ammunition_modifier": [
+        {
+          "identifier": "Strong",
+          "damageModifier": "4",
+          "rangeModifier": "0",
+          "speedModifier": "-20",
+          "gravityModifier": "0.03"
+        },
+        {
+          "identifier": "Strongest",
+          "damageModifier": "8",
+          "rangeModifier": "0",
+          "speedModifier": "-30",
+          "gravityModifier": "0.05"
+        },
+        {
+          "identifier": "Poisoned",
+          "damageModifier": "0",
+          "rangeModifier": "0",
+          "speedModifier": "-10",
+          "gravityModifier": "0.02"
+        },
+        {
+          "identifier": "Fire",
+          "damageModifier": "-2",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "-0.02"
+        },
+        {
+          "identifier": "Frost",
+          "damageModifier": "-2",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "-0.02"
+        },
+        {
+          "identifier": "Shock",
+          "damageModifier": "-2",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "-0.02"
+        },
+        {
+          "identifier": "Barbed",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "0.02"
+        },
+        {
+          "identifier": "Explosive",
+          "damageModifier": "-3",
+          "rangeModifier": "0",
+          "speedModifier": "-50",
+          "gravityModifier": "0.2"
+        },
+        {
+          "identifier": "Timebomb",
+          "damageModifier": "-5",
+          "rangeModifier": "0",
+          "speedModifier": "-50",
+          "gravityModifier": "0.2"
+        },
+        {
+          "identifier": "Lightsource",
+          "damageModifier": "-5",
+          "rangeModifier": "0",
+          "speedModifier": "-50",
+          "gravityModifier": "0.1"
+        },
+        {
+          "identifier": "Noisemaker",
+          "damageModifier": "-3",
+          "rangeModifier": "0",
+          "speedModifier": "-20",
+          "gravityModifier": "0.1"
+        },
+        {
+          "identifier": "Cruel",
+          "damageModifier": "1",
+          "rangeModifier": "25",
+          "speedModifier": "75",
+          "gravityModifier": "0.03"
+        },
+        {
+          "identifier": "Fletched",
+          "damageModifier": "-2",
+          "rangeModifier": "0",
+          "speedModifier": "0",
+          "gravityModifier": "0"
+        },
+        {
+          "identifier": "Elder",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "0",
+          "gravityModifier": "0"
+        }
+      ]
+    },
+    "ammunition_modifier_bindings": {
+      "binding": [
+        {
+          "identifier": "Explosive",
+          "substring": "Explosive"
+        },
+        {
+          "identifier": "Poisoned",
+          "substring": "Poisoned"
+        },
+        {
+          "identifier": "Strong",
+          "substring": "Strong"
+        },
+        {
+          "identifier": "Strongest",
+          "substring": "Strongest"
+        },
+        {
+          "identifier": "Fire",
+          "substring": "Fire"
+        },
+        {
+          "identifier": "Frost",
+          "substring": "Frost"
+        },
+        {
+          "identifier": "Shock",
+          "substring": "Shock"
+        },
+        {
+          "identifier": "Timebomb",
+          "substring": "Timebomb"
+        },
+        {
+          "identifier": "Barbed",
+          "substring": "Barbed"
+        },
+        {
+          "identifier": "Lightsource",
+          "substring": "Lightsource"
+        },
+        {
+          "identifier": "Noisemaker",
+          "substring": "Noisemaker"
+        },
+        {
+          "identifier": "Cruel",
+          "substring": "Cruel"
+        },
+        {
+          "identifier": "Fletched",
+          "substring": "Fletched"
+        }
+      ]
+    },
+    "ammunition_materials": {
+      "ammunition_material": [
+        {
+          "identifier": "Practice",
+          "damageModifier": "-5",
+          "rangeModifier": "0",
+          "speedModifier": "0",
+          "gravityModifier": "0",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Wood",
+          "damageModifier": "0",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "0.01",
+          "multiply": "true"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "damageModifier": "0",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "0.01",
+          "multiply": "false"
+        },
+        {
+          "identifier": "WoodH",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "0.02",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Forsworn",
+          "damageModifier": "3",
+          "rangeModifier": "0",
+          "speedModifier": "15",
+          "gravityModifier": "0.03",
+          "multiply": "true"
+        },
+        {
+          "identifier": "ForswornNoMult",
+          "damageModifier": "3",
+          "rangeModifier": "0",
+          "speedModifier": "15",
+          "gravityModifier": "0.03",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Falmer",
+          "damageModifier": "4",
+          "rangeModifier": "0",
+          "speedModifier": "20",
+          "gravityModifier": "0.04",
+          "multiply": "true"
+        },
+        {
+          "identifier": "FalmerNoMult",
+          "damageModifier": "4",
+          "rangeModifier": "0",
+          "speedModifier": "20",
+          "gravityModifier": "0.04",
+          "multiply": "false"
+        },
+        {
+          "identifier": "FalmerH",
+          "damageModifier": "5",
+          "rangeModifier": "0",
+          "speedModifier": "20",
+          "gravityModifier": "0.05",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Ancient Nord",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "250",
+          "gravityModifier": "0.02",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Ancient NordNoMult",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "25",
+          "gravityModifier": "0.02",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Elven",
+          "damageModifier": "7",
+          "rangeModifier": "0",
+          "speedModifier": "30",
+          "gravityModifier": "0.06",
+          "multiply": "true"
+        },
+        {
+          "identifier": "ElvenNoMult",
+          "damageModifier": "7",
+          "rangeModifier": "0",
+          "speedModifier": "30",
+          "gravityModifier": "0.06",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Noldor",
+          "damageModifier": "6.5",
+          "rangeModifier": "0",
+          "speedModifier": "30",
+          "gravityModifier": "0.06",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Corundum",
+          "damageModifier": "8",
+          "rangeModifier": "0",
+          "speedModifier": "35",
+          "gravityModifier": "0.08",
+          "multiply": "true"
+        },
+        {
+          "identifier": "CorundumNoMult",
+          "damageModifier": "8",
+          "rangeModifier": "0",
+          "speedModifier": "35",
+          "gravityModifier": "0.08",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Nordic",
+          "damageModifier": "8",
+          "rangeModifier": "0",
+          "speedModifier": "35",
+          "gravityModifier": "0.08",
+          "multiply": "true"
+        },
+        {
+          "identifier": "NordicNoMult",
+          "damageModifier": "8",
+          "rangeModifier": "0",
+          "speedModifier": "35",
+          "gravityModifier": "0.08",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Glass",
+          "damageModifier": "10",
+          "rangeModifier": "0",
+          "speedModifier": "400",
+          "gravityModifier": "0.1",
+          "multiply": "true"
+        },
+        {
+          "identifier": "GlassNoMult",
+          "damageModifier": "10",
+          "rangeModifier": "0",
+          "speedModifier": "40",
+          "gravityModifier": "0.1",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Dragonscale",
+          "damageModifier": "13",
+          "rangeModifier": "0",
+          "speedModifier": "50",
+          "gravityModifier": "0.13",
+          "multiply": "true"
+        },
+        {
+          "identifier": "DragonscaleNoMult",
+          "damageModifier": "13",
+          "rangeModifier": "0",
+          "speedModifier": "50",
+          "gravityModifier": "0.13",
+          "multiply": "false"
+        },
+        {
+          "identifier": "RNoldor",
+          "damageModifier": "13.5",
+          "rangeModifier": "0",
+          "speedModifier": "50",
+          "gravityModifier": "0.13",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Ancient Falmer",
+          "damageModifier": "9",
+          "rangeModifier": "0",
+          "speedModifier": "35",
+          "gravityModifier": "0.09",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Iron",
+          "damageModifier": "1",
+          "rangeModifier": "0",
+          "speedModifier": "-5",
+          "gravityModifier": "0.01",
+          "multiply": "true"
+        },
+        {
+          "identifier": "IronNoMult",
+          "damageModifier": "1",
+          "rangeModifier": "0",
+          "speedModifier": "-5",
+          "gravityModifier": "0.01",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Steel",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "-10",
+          "gravityModifier": "0.02",
+          "multiply": "true"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "-10",
+          "gravityModifier": "0.02",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Silver",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "5",
+          "gravityModifier": "0.02",
+          "multiply": "true"
+        },
+        {
+          "identifier": "SilverNoMult",
+          "damageModifier": "2",
+          "rangeModifier": "0",
+          "speedModifier": "5",
+          "gravityModifier": "0.02",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Skyforge",
+          "damageModifier": "4.5",
+          "rangeModifier": "0",
+          "speedModifier": "-15",
+          "gravityModifier": "0.04",
+          "multiply": "true"
+        },
+        {
+          "identifier": "SkyforgeNoMult",
+          "damageModifier": "4.5",
+          "rangeModifier": "0",
+          "speedModifier": "-15",
+          "gravityModifier": "0.04",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Dwarven",
+          "damageModifier": "6",
+          "rangeModifier": "0",
+          "speedModifier": "-20",
+          "gravityModifier": "0.06",
+          "multiply": "true"
+        },
+        {
+          "identifier": "DwarvenNoMult",
+          "damageModifier": "6",
+          "rangeModifier": "0",
+          "speedModifier": "-20",
+          "gravityModifier": "0.06",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Orcish",
+          "damageModifier": "9",
+          "rangeModifier": "0",
+          "speedModifier": "-25",
+          "gravityModifier": "0.09",
+          "multiply": "true"
+        },
+        {
+          "identifier": "OrcishNoMult",
+          "damageModifier": "9",
+          "rangeModifier": "0",
+          "speedModifier": "-25",
+          "gravityModifier": "0.09",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Nord Hero",
+          "damageModifier": "10",
+          "rangeModifier": "0",
+          "speedModifier": "-30",
+          "gravityModifier": "0.1",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Nord HeroNoMult",
+          "damageModifier": "10",
+          "rangeModifier": "0",
+          "speedModifier": "-30",
+          "gravityModifier": "0.1",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Ebony",
+          "damageModifier": "11",
+          "rangeModifier": "0",
+          "speedModifier": "-35",
+          "gravityModifier": "0.11",
+          "multiply": "true"
+        },
+        {
+          "identifier": "EbonyNoMult",
+          "damageModifier": "11",
+          "rangeModifier": "0",
+          "speedModifier": "-35",
+          "gravityModifier": "0.11",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Stalhrim",
+          "damageModifier": "12",
+          "rangeModifier": "0",
+          "speedModifier": "-40",
+          "gravityModifier": "0.12",
+          "multiply": "true"
+        },
+        {
+          "identifier": "StalhrimNoMult",
+          "damageModifier": "12",
+          "rangeModifier": "0",
+          "speedModifier": "-40",
+          "gravityModifier": "0.12",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Dragonbone",
+          "damageModifier": "14",
+          "rangeModifier": "0",
+          "speedModifier": "-45",
+          "gravityModifier": "0.14",
+          "multiply": "true"
+        },
+        {
+          "identifier": "DragonboneNoMult",
+          "damageModifier": "14",
+          "rangeModifier": "0",
+          "speedModifier": "-45",
+          "gravityModifier": "0.14",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Bound",
+          "damageModifier": "15",
+          "rangeModifier": "0",
+          "speedModifier": "-0",
+          "gravityModifier": "0",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Daedric",
+          "damageModifier": "15",
+          "rangeModifier": "0",
+          "speedModifier": "-50",
+          "gravityModifier": "0.15",
+          "multiply": "true"
+        },
+        {
+          "identifier": "DaedricNoMult",
+          "damageModifier": "15",
+          "rangeModifier": "0",
+          "speedModifier": "-50",
+          "gravityModifier": "0.15",
+          "multiply": "false"
+        },
+        {
+          "identifier": "Crude",
+          "damageModifier": "-1",
+          "rangeModifier": "0",
+          "speedModifier": "-25",
+          "gravityModifier": "0.01",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Hunter",
+          "damageModifier": "1",
+          "rangeModifier": "0",
+          "speedModifier": "10",
+          "gravityModifier": "0.01",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Honed",
+          "damageModifier": "3",
+          "rangeModifier": "0",
+          "speedModifier": "20",
+          "gravityModifier": "0.02",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Stalker",
+          "damageModifier": "5",
+          "rangeModifier": "-100",
+          "speedModifier": "30",
+          "gravityModifier": "0.03",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Perfect",
+          "damageModifier": "7",
+          "rangeModifier": "0",
+          "speedModifier": "40",
+          "gravityModifier": "0.04",
+          "multiply": "true"
+        },
+        {
+          "identifier": "Steam",
+          "damageModifier": "57",
+          "rangeModifier": "0",
+          "speedModifier": "1800",
+          "gravityModifier": "0.40",
+          "multiply": "false"
+        }
+      ]
+    },
+    "ammunition_material_bindings": {
+      "binding": [
+        {
+          "identifier": "Ancient Nord",
+          "substring": "Ancient Nord"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Black Sacrament"
+        },
+        {
+          "identifier": "Bound",
+          "substring": "Bound"
+        },
+        {
+          "identifier": "Corundum",
+          "substring": "Corundum"
+        },
+        {
+          "identifier": "Daedric",
+          "substring": "Daedric"
+        },
+        {
+          "identifier": "Dragonbone",
+          "substring": "Dragonbone"
+        },
+        {
+          "identifier": "Dwarven",
+          "substring": "Dwarven"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Ebony"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Bosmer"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Elven"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Bloodcursed"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Sunhallowed"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Scoia'tael"
+        },
+        {
+          "identifier": "Falmer",
+          "substring": "Falmer"
+        },
+        {
+          "identifier": "FalmerH",
+          "substring": "Falmer Honed"
+        },
+        {
+          "identifier": "Iron",
+          "substring": "Horker"
+        },
+        {
+          "identifier": "FalmerH",
+          "substring": "Horker Honed"
+        },
+        {
+          "identifier": "Forsworn",
+          "substring": "Forsworn"
+        },
+        {
+          "identifier": "Glass",
+          "substring": "Glass"
+        },
+        {
+          "identifier": "Iron",
+          "substring": "Iron"
+        },
+        {
+          "identifier": "Iron",
+          "substring": "Rusty"
+        },
+        {
+          "identifier": "Nord Hero",
+          "substring": "Nord Hero"
+        },
+        {
+          "identifier": "Nordic",
+          "substring": "Nordic"
+        },
+        {
+          "identifier": "Orcish",
+          "substring": "Orcish"
+        },
+        {
+          "identifier": "Practice",
+          "substring": "Practice"
+        },
+        {
+          "identifier": "Stalhrim",
+          "substring": "Stalhrim"
+        },
+        {
+          "identifier": "Silver",
+          "substring": "Silver"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Steel"
+        },
+        {
+          "identifier": "Skyforge",
+          "substring": "Skyforge"
+        },
+        {
+          "identifier": "Falmer",
+          "substring": "Wolf"
+        },
+        {
+          "identifier": "Wood",
+          "substring": "Bone"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Riekling"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Stone"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Torch"
+        },
+        {
+          "identifier": "Wood",
+          "substring": "Wood"
+        },
+        {
+          "identifier": "Wood",
+          "substring": "Wooden"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Fire"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Noisemaker"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Oil"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Rope"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Water"
+        },
+        {
+          "identifier": "Crude",
+          "substring": "Crude Bone"
+        },
+        {
+          "identifier": "Hunter",
+          "substring": "Hunter's Bone"
+        },
+        {
+          "identifier": "Honed",
+          "substring": "Honed Bone"
+        },
+        {
+          "identifier": "Stalker",
+          "substring": "Stalker's Bone"
+        },
+        {
+          "identifier": "Perfect",
+          "substring": "Perfect Bone"
+        },
+        {
+          "identifier": "WoodNoMult",
+          "substring": "Mudcrab"
+        },
+        {
+          "identifier": "Noldor",
+          "substring": "Noldor"
+        },
+        {
+          "identifier": "RNoldor",
+          "substring": "Royal Noldor"
+        },
+        {
+          "identifier": "Dragonbone",
+          "substring": "Dragonsteel"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Exotic Arrow"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Dariit"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Justiciar"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Seeker"
+        },
+        {
+          "identifier": "Orcish",
+          "substring": "An-Xileel"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Paladin"
+        },
+        {
+          "identifier": "None",
+          "substring": "Lightsplinter"
+        },
+        {
+          "identifier": "None",
+          "substring": "Dreadweave"
+        },
+        {
+          "identifier": "None",
+          "substring": "Quickthorne"
+        },
+        {
+          "identifier": "None",
+          "substring": "Withervine"
+        },
+        {
+          "identifier": "Glass",
+          "substring": "Mephala"
+        },
+        {
+          "identifier": "Dragonscale",
+          "substring": "Dragonscale"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Dark Brotherhood"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Thieves"
+        },
+        {
+          "identifier": "Dwarven",
+          "substring": "Aetherial Rifle Bolt"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Bandit"
+        },
+        {
+          "identifier": "Orcish",
+          "substring": "Troll"
+        },
+        {
+          "identifier": "Elven",
+          "substring": "Spriggan"
+        },
+        {
+          "identifier": "Dwarven",
+          "substring": "Gold"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Amethyst"
+        },
+        {
+          "identifier": "Dwarven",
+          "substring": "Blades"
+        },
+        {
+          "identifier": "Glass",
+          "substring": "Ruby"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Sapphire"
+        },
+        {
+          "identifier": "Daedric",
+          "substring": "Vampire"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Diamond"
+        },
+        {
+          "identifier": "Dragonbone",
+          "substring": "Dovahkiin"
+        },
+        {
+          "identifier": "Ebony",
+          "substring": "Black Dragon"
+        },
+        {
+          "identifier": "Ancient Falmer",
+          "substring": "Ancient Falmer"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Breton Knight"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Breton Knighl"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Arrow of Extrication"
+        },
+        {
+          "identifier": "Iron",
+          "substring": "Long Bow Arrow"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Flaming Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Frost Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Shock Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Quake Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Swarm Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Gem Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Gust Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Gust Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Ash Rock Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Crimson Flame Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Flaming Bolt"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Gem Bolts"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Cobalt Frost Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Thunderbolt Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Magebreaker Arrows"
+        },
+        {
+          "identifier": "SteelNoMult",
+          "substring": "Trick Arrows"
+        },
+        {
+          "identifier": "Steam",
+          "substring": "Steam Arrows"
+        },
+        {
+          "identifier": "NordicNoMult",
+          "substring": "VanNord"
+        },
+        {
+          "identifier": "DaedricNoMult",
+          "substring": "Mystic Elven"
+        },
+        {
+          "identifier": "Daedric",
+          "substring": "Cynder"
+        },
+        {
+          "identifier": "Steel",
+          "substring": "Gondorian"
+        }
+      ]
+    },
+    "ammunition_exclusions_multiplication": {
+      "exclusion": [
+        {
+          "text": "Test",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "TEST",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "MQ",
+          "target": "EDID",
+          "type": "STARTSWITH"
+        },
+        {
+          "text": "of Fire",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "of Frost",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "of Shock",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Sunhallowed",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Bloodcurse",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Exploding",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Wood",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "Torch",
+          "target": "NAME",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "CW",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "TrapDweBallistaBolt",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "DwarvenSphere",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "AmmoAetherialRifle",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "DPAPM_",
+          "target": "EDID",
+          "type": "CONTAINS"
+        },
+        {
+          "text": "xxxRacialWoodElf",
+          "target": "EDID",
+          "type": "STARTSWITH"
+        },
+        {
+          "text": "manny_GF_Ammo_ExtricationArrow",
+          "target": "EDID",
+          "type": "STARTSWITH"
+        }
+      ]
+    }
+  }
+}
