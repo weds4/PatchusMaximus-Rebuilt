@@ -18,7 +18,7 @@ function GetRecordKeywordEDIDs(rec){
         if (ref) keywords.push(xelib.EditorID(ref));
       });
     };
-  return keywords
+  return keywords;
 };
 
 //adds a condition up to parameter #1
