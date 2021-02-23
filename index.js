@@ -1,5 +1,6 @@
 let Extensions = require(`${patcherPath}/src/PaMaRemadeExtension.js`)
 let ArmorPatcher = require(`${patcherPath}/src/ArmorPatcher.js`)
+
 //User can choose these (need settings.html, I guess?)
 let UseWarrior = true, UseThief = true, UseMage = true;
 
@@ -41,7 +42,6 @@ registerPatcher({
 
     process: [
     ...ArmorPatcher.ArmorPatcher(patchFile, settings, helpers, locals)
-    
   ]
 	})
 });

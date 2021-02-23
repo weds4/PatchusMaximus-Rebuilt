@@ -300,10 +300,9 @@ function initArmorPatcher(locals) {
     && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
       || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
   );
+  console.log(`did this show up?`);
 };
 
-
-module.exports = {/*getNativeFormID,*/
-  initJSONs, namingMimic, GetRecordKeywordEDIDs, addLinkedCondition, addLinkedElementValue, 
-  addLinkedArrayItem, initArmorPatcher
-}
+module.exports = {/*getNativeFormID,*/ GetRecordKeywordEDIDs, addLinkedCondition, 
+  addLinkedElementValue, addLinkedArrayItem, namingMimic, initJSONs, initRefMaps, initArmorPatcher
+};
