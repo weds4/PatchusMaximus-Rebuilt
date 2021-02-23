@@ -1,6 +1,7 @@
 let Extensions = require(`./PaMaRemadeExtension.js`);
 let equalTo = `10000000`;
 let greaterThanEqualTo = `11000000`;
+let expensiveClothingThreshold = 50;
 
 let ClothingKeywords = {
   'ClothingBody': true,
@@ -29,14 +30,28 @@ let armorSlotKeywords = {
   'ArmorShield': true
 };
 
-let expensiveClothingThreshold = 50;
-
 let armorMeltdownOutput = {
   'ArmorCuirass': "meltdownOutputBody",
   'ArmorGauntlets': "meltdownOutputHands",
   'ArmorBoots': "meltdownOutputFeet",
   'ArmorHelmet': "meltdownOutputHead",
   'ArmorShield': "meltdownOutputShield"
+};
+
+let armorSlotMultiplier = {
+  'ArmorCuirass': "armorFactorBody",
+  'ArmorGauntlets': "armorFactorHands",
+  'ArmorBoots': "armorFactorFeet",
+  'ArmorHelmet': "armorFactorHead",
+  'ArmorShield': "armorFactorShield"
+};
+
+let reforgeMap = {
+  NAME: 'Name',
+  EDID: 'EditorID',
+  CONTAINS: 'contains',
+  STARTSWITH: 'startsWith',
+  EQUALS: 'EQUALS'
 };
 
 function getArmorMeltdownOutput(locals, rec) {
@@ -118,14 +133,6 @@ function doArmorKeywords (locals, rec, armorMaterial){
   };
 };
 
-let armorSlotMultiplier = {
-  'ArmorCuirass': "armorFactorBody",
-  'ArmorGauntlets': "armorFactorHands",
-  'ArmorBoots': "armorFactorFeet",
-  'ArmorHelmet': "armorFactorHead",
-  'ArmorShield': "armorFactorShield"
-};
-
 function setArmorValue(locals, rec, armorMaterial){
   let originalAR = xelib.GetValue(rec, `DNAM`);
   let armorSlotMult = 0
@@ -195,14 +202,6 @@ function addMasqueradeKeywords(locals, rec){
       if (kw) {Extensions.addLinkedArrayItem(rec, `KWDA`, locals.masqueradeFactions[kw])};
     });
   };
-};
-
-let reforgeMap = {
-  NAME: 'Name',
-  EDID: 'EditorID',
-  CONTAINS: 'contains',
-  STARTSWITH: 'startsWith',
-  EQUALS: 'EQUALS'
 };
 
 function ReforgeAllowed(locals, rec){
@@ -313,7 +312,7 @@ function addWarforgedArmorRecipe(PerMaPatch, locals, warforgedArmor, reforgedArm
 };
 
 function createWarforgedArmor(PerMaPatch, locals, rec, reforgedArmor, armorMaterial){
-  //rec is the corresponding reforged armor
+  //rec is the original armor
   warforgedArmor = xelib.CopyElement(rec, PerMaPatch, true);
   oldName = xelib.GetValue(warforgedArmor, `FULL`);
   xelib.SetValue(warforgedArmor, `FULL`, `Warforged ${oldName}`);
@@ -526,9 +525,6 @@ function records_AllARMO(){
           && !xelib.GetRecordFlag(rec,`Non-Playable`);//comment this to do non-playable armors;
         });
         helpers.logMessage(`Adding armor recipes`);
-        console.log(`Adding meltdown, reforged, reforged tempering, `+
-          `reforged meltdown, warforged, warforged tempering,`+
-          ` and warforged meltdown recipes for ${armors.length} armors`)
         armors.forEach(rec => {
           let armorMaterial = getArmorMaterial(locals, rec);
           if (ReforgeAllowed(locals, rec)){
@@ -588,4 +584,4 @@ function records_AllARMO(){
   };
 };
 
-module.exports = {/*ArmorPatcher*/ loadAndPatch_Armors, loadAndPatch_Clothes, records_AllARMO};
+module.exports = {loadAndPatch_Armors, loadAndPatch_Clothes, records_AllARMO};
