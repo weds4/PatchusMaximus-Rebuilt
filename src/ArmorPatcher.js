@@ -41,7 +41,7 @@ let armorSlotMultiplier = {
   'ArmorShield': "armorFactorShield"
 };
 
-let reforgeMap = {
+let exclusionMap = {
   NAME: 'Name',
   EDID: 'EditorID',
   CONTAINS: 'contains',
@@ -189,8 +189,8 @@ function ReforgeAllowed(locals, rec){
   else {
     let reforgeRules = locals.armorJson[`ns2:armor`].reforge_exclusions.exclusion;
     return reforgeRules.every(rule => {
-      let target = xelib[reforgeMap[rule.target]](rec);
-      let method = reforgeMap[rule.type];
+      let target = xelib[exclusionMap[rule.target]](rec);
+      let method = exclusionMap[rule.type];
       if(method === 'EQUALS') return target !== rule.text;
       return !target[method](rule.text);
     });

@@ -1,5 +1,6 @@
 let Extensions = require(`${patcherPath}/src/PaMaRemadeExtension.js`)
 let ArmorPatcher = require(`${patcherPath}/src/ArmorPatcher.js`)
+let AlchemyPatcher = require(`${patcherPath}/src/AlchemyPatcher.js`)
 
 //User can choose these (need settings.html, I guess?)
 let UseWarrior = true, UseThief = true, UseMage = true;
@@ -43,7 +44,8 @@ registerPatcher({
     process: [
       ArmorPatcher.loadAndPatch_Armors(patchFile, settings, helpers, locals),
       ArmorPatcher.loadAndPatch_Clothes(patchFile, settings, helpers, locals),
-      ArmorPatcher.records_AllARMO(patchFile, settings, helpers, locals)
+      ArmorPatcher.records_AllARMO(patchFile, settings, helpers, locals),
+      AlchemyPatcher.loadAndPatch_Alchemy(patchFile, settings, helpers, locals),
     ]
 	})
 });

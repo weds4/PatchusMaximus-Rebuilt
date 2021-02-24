@@ -4,10 +4,24 @@ let equalTo = `10000000`;
 let greaterThanEqualTo = `11000000`;
 
 //-----------------Alchemy Patcher Dictionary/Lexicon Objects------------------------
-
+let exclusionMap = {
+  NAME: 'Name',
+  EDID: 'EditorID',
+  CONTAINS: 'contains',
+  STARTSWITH: 'startsWith',
+  EQUALS: 'EQUALS'
+};
 
 //-----------------Alchemy Patcher Supporting Functions------------------------------
-
+function isAlchAllowed(locals, rec){
+  let alchExclusions = locals.alchemyJson["ns2:alchemy"].potion_exclusions.exclusion
+  return alchExclusions.every(exclusion => {
+    let target = xelib[exclusionMap[exclusion.target]](rec);
+    let method = exclusionMap[exclusion.type];
+    if(method === 'EQUALS') return target !== exclusion.text;
+    return !target[method](exclusion.text);
+  });
+};
 
 //-----------------Actual Alchemy Patcher Functions-----------------------------------
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
@@ -17,11 +31,12 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
   return {
     load: {
       signature: `ALCH`,
-      filter: record => {//Called for each loaded record. Return false to skip patching a record
-        
+      filter: rec => {//Called for each loaded record. Return false to skip patching a record
+        locals.UseThief
+        && isAlchAllowed(locals, rec);
       }
     },
-    patch: function (record) {
+    patch: function (rec) {
    
     }
   };
