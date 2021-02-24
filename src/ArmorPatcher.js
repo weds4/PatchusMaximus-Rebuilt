@@ -57,7 +57,7 @@ let armorMeltdownOutput = {
   'ArmorShield': "meltdownOutputShield"
 };
 
-//-----------------Armor Patcher Supporting Functions------------------------
+//-----------------Armor Patcher Supporting Functions----------------------------------
 function getArmorMaterial(locals, rec){
   /*this block finds the pseudo material based on matching text in the armor's name with 
   pre-defined strings. These strings are called binding identifiers.*/
@@ -443,7 +443,7 @@ function doQualityLeather(PerMaPatch, locals, rec, armorMaterial, leatherArmorCO
 };
 
 
-//-----------------Actual Armor Patcher Functions------------------------
+//-----------------Actual Armor Patcher Functions----------------------------------
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
 `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
 but I'm not sure why I'd in this patcher*/

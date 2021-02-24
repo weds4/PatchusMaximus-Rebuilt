@@ -1,7 +1,3 @@
-//--------------------- Conditions----------------------------
-let equalTo = `10000000`;
-let greaterThanEqualTo = `11000000`;
-
 //---------------------Useful Functions----------------------------
 //ironically unused
 function getNativeFormID(pluginFileHandle, localFormId) {
