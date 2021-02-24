@@ -530,16 +530,14 @@ function records_AllARMO(patchFile, settings, helpers, locals){
           && !(keywords.includes(`DaedricArtifact`)
             || xelib.GetHexFormID(rec) == 0xD2846)
           && (getArmorMaterial(locals, rec) !== null)
-          && !xelib.GetRecordFlag(rec,`Non-Playable`);//comment this to do non-playable armors;
+          && ReforgeAllowed(locals, rec);
         });
         helpers.logMessage(`Adding armor recipes`);
         armors.forEach(rec => {
           let armorMaterial = getArmorMaterial(locals, rec);
-          if (ReforgeAllowed(locals, rec)){
-            addArmorMeltdownRecipe(patchFile, locals, rec, armorMaterial);
-            let reforgedArmor = createReforgedArmor(patchFile, locals, rec, armorMaterial);
-            createWarforgedArmor(patchFile, locals, rec, reforgedArmor, armorMaterial);
-          };
+          addArmorMeltdownRecipe(patchFile, locals, rec, armorMaterial);
+          let reforgedArmor = createReforgedArmor(patchFile, locals, rec, armorMaterial);
+          createWarforgedArmor(patchFile, locals, rec, reforgedArmor, armorMaterial);
         });
         helpers.logMessage(`Done adding armor recipes`);
 
