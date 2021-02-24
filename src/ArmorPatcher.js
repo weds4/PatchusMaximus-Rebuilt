@@ -58,30 +58,6 @@ let reforgeMap = {
 };
 
 //-----------------Armor Patcher Supporting Functions------------------------
-function getArmorMeltdownOutput(locals, rec) {
-  let count = 0
-  Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
-    let test = armorMeltdownOutput[kw];
-    if (test) {
-      count = locals.armorJson["ns2:armor"].armor_settings[test]
-      return true
-    };
-  });
-  return count.toString();//I don't like giving 0 material (this case *is* used occasionally)
-};
-
-function addClothingMeltdownRecipe (PerMaPatch,rec, locals) {
-  let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
-  xelib.AddElementValue(newRecipe,`EDID`,`PaMa_CLOTH_MELTDOWN_`+Extensions.namingMimic(rec));
-  let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
-  xelib.SetValue(newItem, `CNTO\\Count`, '1');
-  Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, rec);
-  Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
-  Extensions.addLinkedElementValue(newRecipe, 'CNAM', locals.skyrimMisc.LeatherStrips); //Created Object
-  Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingTanningRack); //Workbench Keyword
-  xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
-};
-
 function getArmorMaterial(locals, rec){
   /*this block finds the pseudo material based on matching text in the armor's name with 
   pre-defined strings. These strings are called binding identifiers.*/
@@ -219,6 +195,30 @@ function ReforgeAllowed(locals, rec){
       return !target[method](rule.text);
     });
   };
+};
+
+function getArmorMeltdownOutput(locals, rec) {
+  let count = 0
+  Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
+    let test = armorMeltdownOutput[kw];
+    if (test) {
+      count = locals.armorJson["ns2:armor"].armor_settings[test]
+      return true
+    };
+  });
+  return count.toString();//I don't like giving 0 material (this case *is* used occasionally)
+};
+
+function addClothingMeltdownRecipe (PerMaPatch,rec, locals) {
+  let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+  xelib.AddElementValue(newRecipe,`EDID`,`PaMa_CLOTH_MELTDOWN_`+Extensions.namingMimic(rec));
+  let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
+  xelib.SetValue(newItem, `CNTO\\Count`, '1');
+  Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, rec);
+  Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
+  Extensions.addLinkedElementValue(newRecipe, 'CNAM', locals.skyrimMisc.LeatherStrips); //Created Object
+  Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingTanningRack); //Workbench Keyword
+  xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
 };
 
 function addArmorMeltdownRecipe(PerMaPatch, locals, rec, armorMaterial){
@@ -464,7 +464,6 @@ function loadAndPatch_Armors(patchFile, settings, helpers, locals) {
     },
     patch: function (record) {
       let armorMaterial = getArmorMaterial(locals, record);
-      //console.log(`${xelib.EditorID(record)}: ${armorMaterial.identifier}`)
       doArmorKeywords(locals, record, armorMaterial);
       if (locals.UseWarrior){
         setArmorValue(locals, record, armorMaterial);
