@@ -23,6 +23,14 @@ function isAlchAllowed(locals, rec){
   });
 };
 
+function makePotionWorkOverTime(locals, rec){
+
+};
+
+function disableAssociatedMagicSchools(locals, rec){
+
+};
+
 //-----------------Actual Alchemy Patcher Functions-----------------------------------
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
 `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
@@ -37,7 +45,7 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
       }
     },
     patch: function (rec) {
-   
+
     }
   };
 };
@@ -46,6 +54,7 @@ function records_Alchemy(patchFile, settings, helpers, locals){
   return {
     records: (filesToPatch, helpers, settings, locals) => {
       
+      return [];
     }
   };
 };
