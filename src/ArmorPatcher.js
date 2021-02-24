@@ -1,8 +1,11 @@
 let Extensions = require(`./PaMaRemadeExtension.js`);
+//Useful constants
 let equalTo = `10000000`;
 let greaterThanEqualTo = `11000000`;
+//configurable value (need to make settings for it)
 let expensiveClothingThreshold = 50;
 
+//-----------------Armor Patcher Dictionary/Lexicon Objects------------------------
 let ClothingKeywords = {
   'ClothingBody': true,
   'ClothingHands': true,
@@ -54,6 +57,7 @@ let reforgeMap = {
   EQUALS: 'EQUALS'
 };
 
+//-----------------Armor Patcher Supporting Functions------------------------
 function getArmorMeltdownOutput(locals, rec) {
   let count = 0
   Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
@@ -110,8 +114,8 @@ function getArmorMaterial(locals, rec){
 };
 
 function doArmorKeywords (locals, rec, armorMaterial){
-  //determine if this armor material is light or heavy, 
-  //and assign the appropriate keywords 
+  /*determine if this armor material is light or heavy, 
+  and assign the appropriate keywords */
   let keywords = Extensions.GetRecordKeywordEDIDs(rec);
   let thisArmorType = locals.armorTypes[armorMaterial.type]
   if (keywords.includes(xelib.EditorID(locals.removeKeywords[armorMaterial.type]))){
@@ -490,7 +494,7 @@ function loadAndPatch_Clothes(patchFile, settings, helpers, locals){
   };
 };
 
-function records_AllARMO(){
+function records_AllARMO(patchFile, settings, helpers, locals){
   return {
     records: (filesToPatch, helpers, settings, locals) => {
       //patch things that need to be used, but not themselves changed in the patch
@@ -507,7 +511,7 @@ function records_AllARMO(){
         });
         helpers.logMessage(`Adding clothing meltdown recipes`);
         clothes.forEach(rec => {
-          addClothingMeltdownRecipe(locals.patchFile, rec, locals);
+          addClothingMeltdownRecipe(patchFile, rec, locals);
         });
         helpers.logMessage(`Done adding clothing meltdown recipes`);
 
@@ -528,9 +532,9 @@ function records_AllARMO(){
         armors.forEach(rec => {
           let armorMaterial = getArmorMaterial(locals, rec);
           if (ReforgeAllowed(locals, rec)){
-            addArmorMeltdownRecipe(locals.patchFile, locals, rec, armorMaterial);
-            let reforgedArmor = createReforgedArmor(locals.patchFile, locals, rec, armorMaterial);
-            createWarforgedArmor(locals.patchFile, locals, rec, reforgedArmor, armorMaterial);
+            addArmorMeltdownRecipe(patchFile, locals, rec, armorMaterial);
+            let reforgedArmor = createReforgedArmor(patchFile, locals, rec, armorMaterial);
+            createWarforgedArmor(patchFile, locals, rec, reforgedArmor, armorMaterial);
           };
         });
         helpers.logMessage(`Done adding armor recipes`);
@@ -549,7 +553,7 @@ function records_AllARMO(){
         //set up daedric duplication here
         artifacts.forEach(rec => {
           let armorMaterial = getArmorMaterial(locals, rec);
-          doDaedricReplicas(locals.patchFile, locals, rec, armorMaterial);
+          doDaedricReplicas(patchFile, locals, rec, armorMaterial);
         });
         helpers.logMessage(`Done adding daedric armor artifact duplicates`);
       };
@@ -574,7 +578,7 @@ function records_AllARMO(){
           "materialTemper": "QualityLeather"
         };
         leatherArmors.forEach(rec => {
-          doQualityLeather(locals.patchFile, locals, rec, armorMaterial, leatherArmorCOBJ);
+          doQualityLeather(patchFile, locals, rec, armorMaterial, leatherArmorCOBJ);
         });
         helpers.logMessage(`Done adding quality leather armors`);
       };
