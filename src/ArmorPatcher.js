@@ -33,14 +33,6 @@ let armorSlotKeywords = {
   'ArmorShield': true
 };
 
-let armorMeltdownOutput = {
-  'ArmorCuirass': "meltdownOutputBody",
-  'ArmorGauntlets': "meltdownOutputHands",
-  'ArmorBoots': "meltdownOutputFeet",
-  'ArmorHelmet': "meltdownOutputHead",
-  'ArmorShield': "meltdownOutputShield"
-};
-
 let armorSlotMultiplier = {
   'ArmorCuirass': "armorFactorBody",
   'ArmorGauntlets': "armorFactorHands",
@@ -55,6 +47,14 @@ let reforgeMap = {
   CONTAINS: 'contains',
   STARTSWITH: 'startsWith',
   EQUALS: 'EQUALS'
+};
+
+let armorMeltdownOutput = {
+  'ArmorCuirass': "meltdownOutputBody",
+  'ArmorGauntlets': "meltdownOutputHands",
+  'ArmorBoots': "meltdownOutputFeet",
+  'ArmorHelmet': "meltdownOutputHead",
+  'ArmorShield': "meltdownOutputShield"
 };
 
 //-----------------Armor Patcher Supporting Functions------------------------
@@ -229,16 +229,13 @@ function addArmorMeltdownRecipe(PerMaPatch, locals, rec, armorMaterial){
     let benchKW = locals.BaseMaterialsArmor[materialMeltdown].craftingStation;
     let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
     xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_MELTDOWN_${Extensions.namingMimic(rec)}`);
-  
     let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
     xelib.SetValue(newItem, `CNTO\\Count`, '1');
-  
     Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, rec);
     if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
     Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
     Extensions.addLinkedElementValue(newRecipe, 'CNAM', output); //Created Object
     Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
-  
     xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
   };
 };
