@@ -64,6 +64,33 @@ function getAlchemyEffect(locals, rec){
   return alchemyEffect;
 };
 
+function getPotionMultiplier(locals, rec){
+  let effectName = xelib.GetValue(rec, `FULL`);
+  let potionMultiplierBindingsObject = locals.alchemyJson["ns2:alchemy"].potion_multiplier_bindings.binding
+  let maxHitSize = 0;
+  let bestHit = null;
+  let currentHitSize = 0;
+  let currentHit = null;
+  potionMultiplierBindingsObject.forEach(binding =>  {
+    if (effectName.includes(binding.substring)) {
+      currentHit = binding.identifier;
+      currentHitSize = binding.substring.length
+      if (currentHitSize> maxHitSize){
+        maxHitSize = currentHitSize;
+        bestHit = currentHit;
+      };
+    };
+  });
+  let potionMultipliersObject = locals.alchemyJson["ns2:alchemy"].potion_multipliers.potion_multiplier;
+  let potionMultiplier = null
+  potionMultipliersObject.forEach(effect => {
+    if (bestHit === effect.identifier){         
+      potionMultiplier = effect;
+    };
+  });
+  return potionMultiplier;
+};
+
 function makePotionWorkOverTime(locals, rec){
   let potionEffects = getAlchData(rec); //the effects of the potion
   Object.keys(potionEffects).forEach(EDIDkey => {
@@ -72,9 +99,13 @@ function makePotionWorkOverTime(locals, rec){
     let oldDur = potionEffect.duration;
     let oldMag = potionEffect.magnitude;
     let oldCost = potionEffect.baseCost;
-    //unecessary stuff here
-    
-    
+    let potionMultiplier = null
+    if (alchemyEffect.allowPotionMultiplier){
+      potionMultiplier = getPotionMultiplier(locals, rec);
+      xelib.SetValue(e, `EFIT\\Magnitude`, oldMag*potionMultiplier.multiplierMagnitude);
+      xelib.SetValue(e, `EFIT\\Duration`,  oldDur*potionMultiplier.multiplierDuration);
+      xelib.SetValue(xelib.GetLinksTo(e, `EFID`), `Magic Effect Data\\DATA\\Base Cost`, alchemyEffect.baseCost);
+    };
   });
 };
 
@@ -109,7 +140,7 @@ function records_Alchemy(patchFile, settings, helpers, locals){
       
       return [];
     }
-  };//extra edit there
+  };
 };
 
 module.exports = {loadAndPatch_Alchemy, records_Alchemy};
