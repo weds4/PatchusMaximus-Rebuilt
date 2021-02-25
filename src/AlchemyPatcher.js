@@ -23,49 +23,57 @@ function isAlchAllowed(locals, rec){
   });
 };
 
-function getAlchMgefEDIDs(rec){
-  let effects = [];
-  xelib.GetElements(rec, `Effects\\EFID`).forEach(e => {
-    let ref = xelib.GetLinksTo(e);
-    if (ref) effects.push(xelib.EditorID(ref));
-  });
-  return effects;
-};
-
-function getAlchDur(rec){
-  let durations = {};
-  exlib.GetElements(rec, `Effects`).forEach(e =>{
-    duration[`${xelib.EditorID(xelib.GetLinksTo(e, `EFID`))}`] = 
-      xelib.GetValue(e, `EFIT\\Duration`);
-  });
-};
-
-function getAlchMag(rec){
-  let magnitudes = {};
-  exlib.GetElements(rec, `Effects`).forEach(e =>{
-    magnitudes[xelib.EditorID(xelib.GetLinksTo(e, `EFID`))] = 
-      xelib.GetValue(e, `EFIT\\Magnitude`);
-  });
-};
-
 function getAlchData(rec){
   let effectsData = {}
   xelib.GetElements(rec, `Effects`).forEach(e => {
-    let effectName = xelib.EditorID(xelib.GetLinksTo(e));
-    effectsData[effectName].mgefHandle = 
-      xelib.GetLinksTo(e, `EFID`);
-    effectsData[effectName].magnitude = 
-      xelib.GetValue(e, `EFIT\\Magnitude`);
-    effectsData[effectName].duration = 
-      xelib.GetValue(e, `EFIT\\Magnitude`);
+    let effectName = xelib.EditorID(xelib.GetLinksTo(e, `EFID`));
+    effectsData[effectName] = {
+      mgefHandle: xelib.GetLinksTo(e, `EFID`),
+      magnitude: xelib.GetValue(e, `EFIT\\Magnitude`),
+      duration: xelib.GetValue(e, `EFIT\\Duration`),
+      baseCost: xelib.GetValue(xelib.GetLinksTo(e, `EFID`), `Magic Effect Data\\DATA\\Base Cost`)
+    };
   });
   return effectsData;
 };
 
+function getAlchemyEffect(locals, rec){
+  let effectName = xelib.GetValue(rec, `FULL`);
+  let alchemyEffectBindingObject = locals.alchemyJson["ns2:alchemy"].alchemy_effect_bindings.binding
+  let maxHitSize = 0;
+  let bestHit = null;
+  let currentHitSize = 0;
+  let currentHit = null;
+  alchemyEffectBindingObject.forEach(binding =>  {
+    if (effectName.includes(binding.substring)) {
+      currentHit = binding.identifier;
+      currentHitSize = binding.substring.length
+      if (currentHitSize> maxHitSize){
+        maxHitSize = currentHitSize;
+        bestHit = currentHit;
+      };
+    };
+  });
+  let alchemyEffectObject = locals.alchemyJson["ns2:alchemy"].alchemy_effects.alchemy_effect;
+  let alchemyEffect = null
+  alchemyEffectObject.forEach(effect => {
+    if (bestHit === effect.identifier){         
+      alchemyEffect = effect;
+    };
+  });
+  return alchemyEffect;
+};
+
 function makePotionWorkOverTime(locals, rec){
-  let effects = getAlchData(rec)
-  Object.keys(effects).forEach(effectName => {
-    let effect = effects.effectName
+  let potionEffects = getAlchData(rec); //the effects of the potion
+  Object.keys(potionEffects).forEach(EDIDkey => {
+    let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
+    let alchemyEffect = getAlchemyEffect(locals, potionEffect.mgefHandle); //what perma thinks the effect is
+    let oldDur = potionEffect.duration;
+    let oldMag = potionEffect.magnitude;
+    let oldCost = potionEffect.baseCost;
+    
+    
     
   });
 };
@@ -83,13 +91,14 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
     load: {
       signature: `ALCH`,
       filter: rec => {//Called for each loaded record. Return false to skip patching a record
-        locals.UseThief
+        return locals.UseThief
         && xelib.HasElement(rec, `Effects`)
         && isAlchAllowed(locals, rec);
       }
     },
     patch: function (rec) {
-
+      makePotionWorkOverTime(locals, rec);
+      //xelib.AddElementValue(rec, `FULL`, 'Nothing');
     }
   };
 };
