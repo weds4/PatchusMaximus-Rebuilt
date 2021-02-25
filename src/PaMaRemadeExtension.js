@@ -37,7 +37,7 @@ function addLinkedElementValue(id, path, val, substring = ''){
 function addLinkedArrayItem(id, path, val, substring = ''){
   let newValue = xelib.AddArrayItem(id, path, '', '');
   xelib.SetLinksTo(newValue, substring, val);
-  return newValue
+  return newValue;
 };
 
 //Mimics T3ndo's EDID naming system
