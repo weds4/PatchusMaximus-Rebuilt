@@ -95,6 +95,7 @@ function getPotionMultiplier(locals, rec){
   in my dev modlist (might be USSEP?), however this patcher catches them, and I feel 
   confident that this is intended behavior, so I'm calling this a bugfix*/
 function makePotionWorkOverTime(locals, rec, patchFile){
+  let mgefOverride //we'll need this later
   let potionEffects = getPotionEffects(rec); //the effects of the potion
   Object.keys(potionEffects).forEach(EDIDkey => {
     let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
@@ -115,7 +116,7 @@ function makePotionWorkOverTime(locals, rec, patchFile){
         xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
       };
       if (oldCost !== newCost && newCost >= 0) {
-        let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
+        mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
         xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, newCost.toString());
         let description = xelib.GetValue(mgefOverride, `DNAM`)
         if (!description.contains(`<dur>`)){
@@ -125,10 +126,19 @@ function makePotionWorkOverTime(locals, rec, patchFile){
       };
     };
   });
+  return mgefOverride;
 };
 
-function disableAssociatedMagicSchools(locals, rec){
-
+function disableAssociatedMagicSchools(potionEffects, patchFile){
+  //let potionEffects = getPotionEffects(rec); //the effects of the potion
+  Object.keys(potionEffects).forEach(EDIDkey => {
+    let mgef =  xelib.GetWinningOverride(potionEffects[EDIDkey].mgefHandle);
+    if (xelib.Name(xelib.GetElementFile(mgef)) !== `PatchusMaximus.esp`)
+    {
+      mgef = xelib.CopyElement(mgef, patchFile)
+    }
+    xelib.SetValue(mgef, `FULL`, `Nothing`);
+  });
 };
 
 //-----------------Actual Alchemy Patcher Functions-----------------------------------
@@ -140,19 +150,25 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
     load: {
       signature: `ALCH`,
       filter: rec => {//Called for each loaded record. Return false to skip patching a record
-        let potionEffects = getPotionEffects(rec)
+        //let potionEffects = getPotionEffects(rec)
         return locals.UseThief
         && xelib.HasElement(rec, `Effects`)
-        && isAlchAllowed(locals, rec)
+        /*&& isAlchAllowed(locals, rec)
         && Object.keys(potionEffects).every(effect => {
           if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle) !== null){return true};
-        })
+        })*/
         ;
       }
     },
     patch: function (rec) {
-      makePotionWorkOverTime(locals, rec, patchFile);
-      //xelib.AddElementValue(rec, `FULL`, 'Nothing');
+      let potionEffects = getPotionEffects(rec)
+      if (isAlchAllowed(locals, rec) && Object.keys(potionEffects).every(effect => {
+        if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle) !== null){return true};
+      })) {
+        makePotionWorkOverTime(locals, rec, patchFile);
+      };
+
+      //disableAssociatedMagicSchools(potionEffects, patchFile);
     }
   };
 };
