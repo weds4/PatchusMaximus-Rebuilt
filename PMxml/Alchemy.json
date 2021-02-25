@@ -489,6 +489,10 @@
         },
         {
           "identifier": "Fortify Single Skill",
+          "substring": "Fortify Archery"
+        },
+        {
+          "identifier": "Fortify Single Skill",
           "substring": "Fortify Block"
         },
         {
