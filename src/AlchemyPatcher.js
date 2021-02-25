@@ -91,8 +91,10 @@ function getPotionMultiplier(locals, rec){
   return potionMultiplier;
 };
 
+/*for some reason, the original patcher doesn't catch vigor and magicka recovery poisons 
+  in my dev modlist (might be USSEP?), however this patcher catches them, and I feel 
+  confident that this is intended behavior, so I'm calling this a bugfix*/
 function makePotionWorkOverTime(locals, rec, patchFile){
-  console.log(`processing ${xelib.Name(rec)}`);
   let potionEffects = getPotionEffects(rec); //the effects of the potion
   Object.keys(potionEffects).forEach(EDIDkey => {
     let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
