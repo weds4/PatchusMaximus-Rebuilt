@@ -99,16 +99,30 @@ function makePotionWorkOverTime(locals, rec, patchFile){
   Object.keys(potionEffects).forEach(EDIDkey => {
     let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
     let alchemyEffect = getAlchemyEffect(locals, potionEffect.mgefHandle); //what perma thinks the effect is
-    let oldDur = potionEffect.duration;
     let oldMag = potionEffect.magnitude;
+    let oldDur = potionEffect.duration;
     let oldCost = potionEffect.baseCost;
     let potionMultiplier = getPotionMultiplier(locals, rec);
     let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
     if (potionMultiplier !== null && alchemyEffect.allowPotionMultiplier){
-      xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, (alchemyEffect.baseMagnitude*potionMultiplier.multiplierMagnitude).toString());
-      xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  (Math.round(alchemyEffect.baseDuration*potionMultiplier.multiplierDuration)).toString());
-      let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
-      xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, alchemyEffect.baseCost.toString());
+      let newMag = alchemyEffect.baseMagnitude*potionMultiplier.multiplierMagnitude;
+      let newDur = Math.round(alchemyEffect.baseDuration*potionMultiplier.multiplierDuration);
+      let newCost = alchemyEffect.baseCost;
+      if (oldMag !== newMag && newMag >= 0) {
+        xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, newMag.toString())
+      };
+      if (oldDur !== newDur && newDur >= 0) {
+        xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
+      };
+      if (oldCost !== newCost && newCost >= 0) {
+        let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
+        xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, newCost.toString());
+        let description = xelib.GetValue(mgefOverride, `DNAM`)
+        if (!description.contains(`<dur>`)){
+          xelib.SetValue(mgefOverride, `DNAM`, `${description} [Duration: <dur> seconds]`);
+          xelib.SetFlag(mgefOverride, `Magic Effect Data\\DATA\\Flags`, `No Duration`, false);
+        };
+      };
     };
   });
 };
