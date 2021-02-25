@@ -23,8 +23,51 @@ function isAlchAllowed(locals, rec){
   });
 };
 
-function makePotionWorkOverTime(locals, rec){
+function getAlchMgefEDIDs(rec){
+  let effects = [];
+  xelib.GetElements(rec, `Effects\\EFID`).forEach(e => {
+    let ref = xelib.GetLinksTo(e);
+    if (ref) effects.push(xelib.EditorID(ref));
+  });
+  return effects;
+};
 
+function getAlchDur(rec){
+  let durations = {};
+  exlib.GetElements(rec, `Effects`).forEach(e =>{
+    duration[`${xelib.EditorID(xelib.GetLinksTo(e, `EFID`))}`] = 
+      xelib.GetValue(e, `EFIT\\Duration`);
+  });
+};
+
+function getAlchMag(rec){
+  let magnitudes = {};
+  exlib.GetElements(rec, `Effects`).forEach(e =>{
+    magnitudes[xelib.EditorID(xelib.GetLinksTo(e, `EFID`))] = 
+      xelib.GetValue(e, `EFIT\\Magnitude`);
+  });
+};
+
+function getAlchData(rec){
+  let effectsData = {}
+  xelib.GetElements(rec, `Effects`).forEach(e => {
+    let effectName = xelib.EditorID(xelib.GetLinksTo(e));
+    effectsData[effectName].mgefHandle = 
+      xelib.GetLinksTo(e, `EFID`);
+    effectsData[effectName].magnitude = 
+      xelib.GetValue(e, `EFIT\\Magnitude`);
+    effectsData[effectName].duration = 
+      xelib.GetValue(e, `EFIT\\Magnitude`);
+  });
+  return effectsData;
+};
+
+function makePotionWorkOverTime(locals, rec){
+  let effects = getAlchData(rec)
+  Object.keys(effects).forEach(effectName => {
+    let effect = effects.effectName
+    
+  });
 };
 
 function disableAssociatedMagicSchools(locals, rec){
@@ -41,6 +84,7 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
       signature: `ALCH`,
       filter: rec => {//Called for each loaded record. Return false to skip patching a record
         locals.UseThief
+        && xelib.HasElement(rec, `Effects`)
         && isAlchAllowed(locals, rec);
       }
     },
