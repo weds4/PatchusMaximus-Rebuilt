@@ -77,7 +77,7 @@ function disableAssociatedMagicSchools(locals, rec){
 //-----------------Actual Alchemy Patcher Functions-----------------------------------
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
 `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
-but I'm not sure why I'd in this patcher*/
+but I'm not sure why I'd need one in this patcher*/
 function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
   return {
     load: {

@@ -446,7 +446,7 @@ function doQualityLeather(PerMaPatch, locals, rec, armorMaterial, leatherArmorCO
 //-----------------Actual Armor Patcher Functions----------------------------------
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
 `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
-but I'm not sure why I'd in this patcher*/
+but I'm not sure why I'd need one in this patcher*/
 function loadAndPatch_Armors(patchFile, settings, helpers, locals) {
   return {
     load: {//armors not clothes
