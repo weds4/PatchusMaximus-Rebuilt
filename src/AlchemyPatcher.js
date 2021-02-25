@@ -103,8 +103,8 @@ function makePotionWorkOverTime(locals, rec, patchFile){
     let potionMultiplier = getPotionMultiplier(locals, rec);
     let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
     if (potionMultiplier !== null && alchemyEffect.allowPotionMultiplier){
-      xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, (oldMag*potionMultiplier.multiplierMagnitude).toString());
-      xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  (oldDur*potionMultiplier.multiplierDuration).toString());
+      xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, (alchemyEffect.baseMagnitude*potionMultiplier.multiplierMagnitude).toString());
+      xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  (Math.round(alchemyEffect.baseDuration*potionMultiplier.multiplierDuration)).toString());
       let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
       xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, alchemyEffect.baseCost.toString());
     };
