@@ -296,7 +296,6 @@ function initArmorPatcher(locals) {
     && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
       || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
   );
-  console.log(`did this show up?`);
 };
 
 module.exports = {/*getNativeFormID,*/ GetRecordKeywordEDIDs, addLinkedCondition, 
