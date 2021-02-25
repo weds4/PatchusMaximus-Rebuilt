@@ -72,7 +72,7 @@ function makePotionWorkOverTime(locals, rec){
     let oldDur = potionEffect.duration;
     let oldMag = potionEffect.magnitude;
     let oldCost = potionEffect.baseCost;
-    
+    //unecessary stuff here
     
     
   });
@@ -109,7 +109,7 @@ function records_Alchemy(patchFile, settings, helpers, locals){
       
       return [];
     }
-  };
+  };//extra edit there
 };
 
 module.exports = {loadAndPatch_Alchemy, records_Alchemy};
