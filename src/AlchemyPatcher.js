@@ -23,12 +23,12 @@ function isAlchAllowed(locals, rec){
   });
 };
 
-function getAlchData(rec){
+function getPotionEffects(rec){
   let effectsData = {}
   xelib.GetElements(rec, `Effects`).forEach(e => {
     let effectName = xelib.EditorID(xelib.GetLinksTo(e, `EFID`));
     effectsData[effectName] = {
-      mgefHandle: xelib.GetLinksTo(e, `EFID`),
+      mgefHandle: xelib.GetWinningOverride(xelib.GetLinksTo(e, `EFID`)),
       magnitude: xelib.GetValue(e, `EFIT\\Magnitude`),
       duration: xelib.GetValue(e, `EFIT\\Duration`),
       baseCost: xelib.GetValue(xelib.GetLinksTo(e, `EFID`), `Magic Effect Data\\DATA\\Base Cost`)
@@ -91,20 +91,22 @@ function getPotionMultiplier(locals, rec){
   return potionMultiplier;
 };
 
-function makePotionWorkOverTime(locals, rec){
-  let potionEffects = getAlchData(rec); //the effects of the potion
+function makePotionWorkOverTime(locals, rec, patchFile){
+  console.log(`processing ${xelib.Name(rec)}`);
+  let potionEffects = getPotionEffects(rec); //the effects of the potion
   Object.keys(potionEffects).forEach(EDIDkey => {
     let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
     let alchemyEffect = getAlchemyEffect(locals, potionEffect.mgefHandle); //what perma thinks the effect is
     let oldDur = potionEffect.duration;
     let oldMag = potionEffect.magnitude;
     let oldCost = potionEffect.baseCost;
-    let potionMultiplier = null
-    if (alchemyEffect.allowPotionMultiplier){
-      potionMultiplier = getPotionMultiplier(locals, rec);
-      xelib.SetValue(e, `EFIT\\Magnitude`, oldMag*potionMultiplier.multiplierMagnitude);
-      xelib.SetValue(e, `EFIT\\Duration`,  oldDur*potionMultiplier.multiplierDuration);
-      xelib.SetValue(xelib.GetLinksTo(e, `EFID`), `Magic Effect Data\\DATA\\Base Cost`, alchemyEffect.baseCost);
+    let potionMultiplier = getPotionMultiplier(locals, rec);
+    let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
+    if (potionMultiplier !== null && alchemyEffect.allowPotionMultiplier){
+      xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, (oldMag*potionMultiplier.multiplierMagnitude).toString());
+      xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  (oldDur*potionMultiplier.multiplierDuration).toString());
+      let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
+      xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, alchemyEffect.baseCost.toString());
     };
   });
 };
@@ -122,13 +124,18 @@ function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
     load: {
       signature: `ALCH`,
       filter: rec => {//Called for each loaded record. Return false to skip patching a record
+        let potionEffects = getPotionEffects(rec)
         return locals.UseThief
         && xelib.HasElement(rec, `Effects`)
-        && isAlchAllowed(locals, rec);
+        && isAlchAllowed(locals, rec)
+        && Object.keys(potionEffects).every(effect => {
+          if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle) !== null){return true};
+        })
+        ;
       }
     },
     patch: function (rec) {
-      makePotionWorkOverTime(locals, rec);
+      makePotionWorkOverTime(locals, rec, patchFile);
       //xelib.AddElementValue(rec, `FULL`, 'Nothing');
     }
   };
