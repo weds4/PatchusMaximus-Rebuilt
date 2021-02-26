@@ -6,19 +6,19 @@ let AlchemyPatcher = require(`${patcherPath}/src/AlchemyPatcher.js`)
 let UseWarrior = true, UseThief = true, UseMage = true;
 
 registerPatcher({
-	info: info,
-	gameModes: [xelib.gmSSE],
-	settings: {
-		label: 'Patchus Maximus Rebuilt',
-		defaultSettings: {
+  info: info,
+  gameModes: [xelib.gmSSE],
+  settings: {
+    label: 'Patchus Maximus Rebuilt',
+    defaultSettings: {
       patchFileName: 'PatchusMaximus.esp'
     }
-	},
+  },
 
-	requiredFiles: [`PerkusMaximus_Master.esp`],
+  requiredFiles: [`PerkusMaximus_Master.esp`],
 
   execute: (patchFile, helpers, settings, locals) => ({
-		initialize: function() {
+    initialize: function() {
       console.log(settings.patchFileName);
       //Initialize locals references for things we need later
       locals.patchFile = patchFile
@@ -50,5 +50,5 @@ registerPatcher({
       AlchemyPatcher.records_Alchemy(patchFile, settings, helpers, locals),
       /*Extensions.records_reportITPOs(patchFile, settings, helpers, locals),*/
     ]
-	})
+  })
 });

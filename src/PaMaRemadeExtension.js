@@ -323,7 +323,7 @@ function initArmorPatcher(locals) {
     "STORMCLOAK": locals.permaKeywords.xMASPEMasqueradeStormcloakKeyword, 
     "THALMOR": locals.permaKeywords.xMASPEMasqueradeThalmorKeyword, 
     "VAMPIRE": locals.permaKeywords.xMASPEMasqueradeVampireKeyword,
-	  "NONE": null
+    "NONE": null
   };
   locals.removeKeywords = {
     "LIGHT": locals.skyrimKeywords.ArmorHeavy,
