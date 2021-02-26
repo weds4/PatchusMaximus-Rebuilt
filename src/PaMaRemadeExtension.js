@@ -337,7 +337,32 @@ function initArmorPatcher(locals) {
   );
 };
 
+function records_reportITPOs(patchFile, settings, helpers, locals) {
+  return {
+    records: (filesToPatch, helpers, settings, locals) => {
+      let overrides = xelib.GetRecords(patchFile, ``, true)
+      .filter(rec => !xelib.IsMaster(rec)
+      && xelib.IsWinningOverride(rec))
+      
+      overrides.forEach(rec => {
+        let WinningOverrideArray = xelib.GetNodeElements(xelib.GetNodes(rec), rec);
+        let  poom = xelib.GetPreviousOverride(rec, patchFile); //previousOverrideOrMaster
+        let pooma = xelib.GetNodeElements(xelib.GetNodes(poom), poom); //previousOverrideOrMasterArray
+        if (WinningOverrideArray.length === pooma.length) {
+          for (i=0; i<pooma.length; i++){
+            if (xelib.GetValue(WinningOverrideArray[i] ,``) === xelib.GetValue(pooma[i] ,``)){
+              console.log(`ITPO found: ${xelib.EditorID(rec)}`);
+            }
+          };
+        };
+      });
+
+      return []
+    }
+  };
+};
+
 module.exports = {/*getNativeFormID,*/ GetRecordKeywordEDIDs, addLinkedCondition, 
   addLinkedElementValue, addLinkedArrayItem, namingMimic, getObjectFromBinding, initJSONs, 
-  initRefMaps, initArmorPatcher
+  initRefMaps, initArmorPatcher, records_reportITPOs
 };
