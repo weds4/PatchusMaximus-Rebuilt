@@ -59,34 +59,7 @@ let armorMeltdownOutput = {
 
 //-----------------Armor Patcher Supporting Functions----------------------------------
 function getArmorMaterial(locals, rec){
-  /*this block finds the pseudo material based on matching text in the armor's name with 
-  pre-defined strings. These strings are called binding identifiers.*/
-  let armorName = xelib.GetValue(rec,`FULL`);
-  let armorMaterialBindingObject = locals.armorJson[`ns2:armor`].armor_material_bindings.binding;
-  let maxHitSize = 0;
-  let bestHit = null;
-  let currentHitSize = 0;
-  let currentHit = null;
-  armorMaterialBindingObject.forEach(binding =>  {
-    if (armorName.includes(binding.substring)) {
-      currentHit = binding.identifier;
-      currentHitSize = binding.substring.length
-      if (currentHitSize> maxHitSize){
-        maxHitSize = currentHitSize;
-        bestHit = currentHit;
-      };
-    };
-  });
-  /*this block links the binding identifier that best matches the armor's name to the armor 
-  material it should be given.*/
-  let armorMaterialObject = locals.armorJson[`ns2:armor`].armor_materials.armor_material;
-  let armorMaterial = null
-  armorMaterialObject.forEach(mat => {
-    if (bestHit === mat.identifier){         
-      armorMaterial = mat;
-    };
-  });
-  return armorMaterial;
+  return Extensions.getObjectFromBinding(rec, locals.armorBindings, locals.armorMaterial);
 };
 
 function doArmorKeywords (locals, rec, armorMaterial){
@@ -130,30 +103,7 @@ function setArmorValue(locals, rec, armorMaterial){
 };
 
 function getArmorModifier(locals, rec){
-  let armorName = xelib.GetValue(rec,`FULL`);
-  let armorModifierBindingObject = locals.armorJson[`ns2:armor`].armor_modifier_bindings.binding;
-  let maxHitSize = 0;
-  let bestHit = null;
-  let currentHitSize = 0;
-  let currentHit = null;
-  armorModifierBindingObject.forEach(binding =>  {
-    if (armorName.includes(binding.substring)) {
-      currentHit = binding.identifier;
-      currentHitSize = binding.substring.length
-      if (currentHitSize> maxHitSize){
-        maxHitSize = currentHitSize;
-        bestHit = currentHit;
-      };
-    };
-  });
-  let armorModifierObject = locals.armorJson[`ns2:armor`].armor_modifiers.armor_modifier;
-  let armorModifier = null
-  armorModifierObject.forEach(mod => {
-    if (bestHit === mod.identifier){         
-      armorModifier = mod;
-    };
-  });
-  return armorModifier;
+  return Extensions.getObjectFromBinding(rec, locals.armorModBindings, locals.armorModifer);
 };
 
 function applyArmorModfiers(locals, rec){

@@ -37,62 +37,6 @@ function getAlchEffects(rec){//this gets the array of effects from the record in
   return effectsData;
 };
 
-function getAlchemyEffect(locals, rec){//could generalize in extensions
-  //this does string matching using alchemyJson
-  let effectName = xelib.GetValue(rec, `FULL`);
-  let alchemyEffectBindingObject = locals.alchemyJson["ns2:alchemy"].alchemy_effect_bindings.binding
-  let maxHitSize = 0;
-  let bestHit = null;
-  let currentHitSize = 0;
-  let currentHit = null;
-  alchemyEffectBindingObject.forEach(binding =>  {
-    if (effectName.includes(binding.substring)) {
-      currentHit = binding.identifier;
-      currentHitSize = binding.substring.length
-      if (currentHitSize> maxHitSize){
-        maxHitSize = currentHitSize;
-        bestHit = currentHit;
-      };
-    };
-  });
-  let alchemyEffectObject = locals.alchemyJson["ns2:alchemy"].alchemy_effects.alchemy_effect;
-  let alchemyEffect = null
-  alchemyEffectObject.forEach(effect => {
-    if (bestHit === effect.identifier){         
-      alchemyEffect = effect;
-    };
-  });
-  return alchemyEffect;
-};
-
-function getPotionMultiplier(locals, rec){//could generalize in extensions
-  //this does string matching using alchemyJson
-  let potionName = xelib.GetValue(rec, `FULL`);
-  let potionMultiplierBindingsObject = locals.alchemyJson["ns2:alchemy"].potion_multiplier_bindings.binding
-  let maxHitSize = 0;
-  let bestHit = null;
-  let currentHitSize = 0;
-  let currentHit = null;
-  potionMultiplierBindingsObject.forEach(binding =>  {
-    if (potionName.includes(binding.substring)) {
-      currentHit = binding.identifier;
-      currentHitSize = binding.substring.length
-      if (currentHitSize> maxHitSize){
-        maxHitSize = currentHitSize;
-        bestHit = currentHit;
-      };
-    };
-  });
-  let potionMultipliersObject = locals.alchemyJson["ns2:alchemy"].potion_multipliers.potion_multiplier;
-  let potionMultiplier = null
-  potionMultipliersObject.forEach(effect => {
-    if (bestHit === effect.identifier){         
-      potionMultiplier = effect;
-    };
-  });
-  return potionMultiplier;
-};
-
 /*for some reason, the original patcher doesn't catch vigor and magicka recovery poisons 
   in my dev modlist (might be USSEP?), however this patcher catches them, and I feel 
   confident that this is intended behavior, so I'm calling this a bugfix*/
@@ -102,11 +46,11 @@ function makePotionWorkOverTime(locals, rec, patchFile){
     let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
     let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
     xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
-    let alchemyEffect = getAlchemyEffect(locals, potionEffect.mgefHandle); //what perma thinks the effect is
+    let alchemyEffect = Extensions.getObjectFromBinding(potionEffect.mgefHandle, locals.alchemyBindings, locals.alchemyEffect);//what perma thinks the effect is
     let oldMag = potionEffect.magnitude;
     let oldDur = potionEffect.duration;
     let oldCost = potionEffect.baseCost;
-    let potionMultiplier = getPotionMultiplier(locals, rec);
+    let potionMultiplier = Extensions.getObjectFromBinding(rec, locals.potionMultBindings, locals.potionMultiplier);//getPotionMultiplier(locals, rec);
     let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
     if (potionMultiplier !== null && alchemyEffect !== null && alchemyEffect.allowPotionMultiplier){
       let newMag = alchemyEffect.baseMagnitude*potionMultiplier.multiplierMagnitude;
@@ -151,44 +95,20 @@ function isIngrAllowed(locals, rec){
   });
 };
 
-function getIngrMultiplier(locals, rec){//could generalize in extensions
-  let ingrName = xelib.GetValue(rec, `FULL`);
-  let ingrMultiplierBindingsObject = locals.alchemyJson["ns2:alchemy"].ingredient_variation_bindings.binding
-  let maxHitSize = 0;
-  let bestHit = null;
-  let currentHitSize = 0;
-  let currentHit = null;
-  ingrMultiplierBindingsObject.forEach(binding =>  {
-    if (ingrName.includes(binding.substring)) {
-      currentHit = binding.identifier;
-      currentHitSize = binding.substring.length
-      if (currentHitSize> maxHitSize){
-        maxHitSize = currentHitSize;
-        bestHit = currentHit;
-      };
-    };
-  });
-  let ingrMultipliersObject = locals.alchemyJson["ns2:alchemy"].ingredient_variations.ingredient_variation;
-  let ingrMultiplier = null;
-  ingrMultipliersObject.forEach(effect => {
-    if (bestHit === effect.identifier){         
-      ingrMultiplier = effect;
-    };
-  });
-  return ingrMultiplier;
-};
-
 function makeIngrWorkOverTime(locals, rec, patchFile){
   let ingrEffects = getAlchEffects(rec); //the effects of the ingredient
   Object.keys(ingrEffects).forEach(EDIDkey => {
     let ingrEffect = ingrEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a ingredient
     let mgefOverride = xelib.CopyElement(ingrEffect.mgefHandle, patchFile);
     xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
-    let alchemyEffect = getAlchemyEffect(locals, ingrEffect.mgefHandle); //what perma thinks the effect is
+    let alchemyEffect = Extensions.getObjectFromBinding(ingrEffect.mgefHandle, //what perma thinks the effect is
+      locals.alchemyJson["ns2:alchemy"].alchemy_effect_bindings.binding, 
+      locals.alchemyJson["ns2:alchemy"].alchemy_effects.alchemy_effect
+    );
     let oldMag = ingrEffect.magnitude;
     let oldDur = ingrEffect.duration;
     let oldCost = ingrEffect.baseCost;
-    let ingrMultiplier = getIngrMultiplier(locals, rec);
+    let ingrMultiplier = Extensions.getObjectFromBinding(rec, locals.ingrVarBindings, locals.ingrVariation);
     let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
     if (ingrMultiplier !== null && alchemyEffect !== null && alchemyEffect.allowPotionMultiplier){
       let newMag = alchemyEffect.baseMagnitude*potionMultiplier.multiplierMagnitude;
@@ -228,9 +148,12 @@ function loadAndPatch_Ingestible(patchFile, settings, helpers, locals){
     patch: function (rec) {
       let potionEffects = getAlchEffects(rec);
       let needToDisableAMS = true
-      if (isPotionAllowed(locals, rec) && Object.keys(potionEffects).some(effect => {
-        if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle) !== null){return true};
-      })) {
+      if (isPotionAllowed(locals, rec) 
+        && Object.keys(potionEffects).some(effect => {
+          if (Extensions.getObjectFromBinding(potionEffects[effect].mgefHandle, locals.alchemyBindings, locals.alchemyEffect) 
+            !== null){return true};
+        })
+      ){
         makePotionWorkOverTime(locals, rec, patchFile);
         needToDisableAMS = false
       };
@@ -253,9 +176,13 @@ function loadAndPatch_Ingredients(patchFile, settings, helpers, locals){
     patch: function (rec) {
       let ingrEffects = getAlchEffects(rec);
       let needToDisableAMS = true
-      if (isIngrAllowed(locals, rec) && Object.keys(ingrEffects).some(effect => {
-        if (getAlchemyEffect(locals, ingrEffects[effect].mgefHandle) !== null){return true};
-      })) {
+      if (isIngrAllowed(locals, rec) 
+        && Object.keys(ingrEffects).some(effect => {
+          if (Extensions.getObjectFromBinding(potionEffects[effect].mgefHandle, locals.alchemyBindings, locals.alchemyEffect) 
+            !== null
+          ){return true}
+        })
+      ){
         makeIngrWorkOverTime(locals, rec, patchFile);
         needToDisableAMS = false
       };

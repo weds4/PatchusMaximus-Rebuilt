@@ -55,6 +55,35 @@ function namingMimic(rec) {
   //but his has more <NOTEXT>s than mine so this should be fine
 };
 
+function getObjectFromBinding(rec, bindingObject, targetObject){
+  /*exmaple using armor patcher: this block finds the pseudo material based on matching text in the armor's name with 
+  pre-defined strings. These strings are called binding identifiers.*/
+  let recordName = xelib.GetValue(rec,`FULL`);
+  let maxHitSize = 0;
+  let bestHit = null;
+  let currentHitSize = 0;
+  let currentHit = null;
+  bindingObject.forEach(binding =>  {
+    if (recordName.includes(binding.substring)) {
+      currentHit = binding.identifier;
+      currentHitSize = binding.substring.length
+      if (currentHitSize> maxHitSize){
+        maxHitSize = currentHitSize;
+        bestHit = currentHit;
+      };
+    };
+  });
+  /*example cont: this block links the binding identifier that best matches the armor's name to the armor 
+  material it should be given.*/
+  let target = null
+  targetObject.forEach(subObject => {
+    if (bestHit === subObject.identifier){         
+      target = subObject;
+    };
+  });
+  return target;
+};
+
 //---------------------Initialization----------------------------
 //this solution breaks language support. Need to load Languages.xml somehow
 function initJSONs (fh, locals, patcherPath) {
@@ -66,6 +95,16 @@ function initJSONs (fh, locals, patcherPath) {
   locals.leveledListsJson = fh.loadJsonFile(`${patcherPath}/PMxml/LeveledLists.json`, 0);
   locals.npcJson = fh.loadJsonFile(`${patcherPath}/PMxml/NPC.json`, 0);
   locals.weaponsJson = fh.loadJsonFile(`${patcherPath}/PMxml/Weapons.json`, 0);
+  locals.armorBindings = locals.armorJson[`ns2:armor`].armor_material_bindings.binding;
+  locals.armorMaterial = locals.armorJson[`ns2:armor`].armor_materials.armor_material;
+  locals.armorModBindings = locals.armorJson[`ns2:armor`].armor_modifier_bindings.binding;
+  locals.armorModifer = locals.armorJson[`ns2:armor`].armor_modifiers.armor_modifier;
+  locals.alchemyBindings = locals.alchemyJson["ns2:alchemy"].alchemy_effect_bindings.binding;
+  locals.alchemyEffect = locals.alchemyJson["ns2:alchemy"].alchemy_effects.alchemy_effect;
+  locals.potionMultBindings = locals.alchemyJson["ns2:alchemy"].potion_multiplier_bindings.binding;
+  locals.potionMultiplier = locals.alchemyJson["ns2:alchemy"].potion_multipliers.potion_multiplier;
+  locals.ingrVarBindings = locals.alchemyJson["ns2:alchemy"].ingredient_variation_bindings.binding
+  locals.ingrVariation = locals.alchemyJson["ns2:alchemy"].ingredient_variations.ingredient_variation;
 };
 
 function initRefMaps(locals){
@@ -299,5 +338,6 @@ function initArmorPatcher(locals) {
 };
 
 module.exports = {/*getNativeFormID,*/ GetRecordKeywordEDIDs, addLinkedCondition, 
-  addLinkedElementValue, addLinkedArrayItem, namingMimic, initJSONs, initRefMaps, initArmorPatcher
+  addLinkedElementValue, addLinkedArrayItem, namingMimic, getObjectFromBinding, initJSONs, 
+  initRefMaps, initArmorPatcher
 };
