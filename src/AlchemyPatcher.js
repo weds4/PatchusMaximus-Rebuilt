@@ -143,10 +143,35 @@ function disableAssociatedMagicSchools(rec, patchFile){
 /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
 `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
 but I'm not sure why I'd need one in this patcher*/
-function loadAndPatch_Alchemy(patchFile, settings, helpers, locals){
+function loadAndPatch_Ingestible(patchFile, settings, helpers, locals){
   return {
     load: {
       signature: `ALCH`,
+      filter: rec => {//Called for each loaded record. Return false to skip patching a record
+        return locals.UseThief
+        && xelib.HasElement(rec, `Effects`);
+      }
+    },
+    patch: function (rec) {
+      let potionEffects = getPotionEffects(rec);
+      let needToDisableAMS = true
+      if (isAlchAllowed(locals, rec) && Object.keys(potionEffects).some(effect => {
+        if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle) !== null){return true};
+      })) {
+        makePotionWorkOverTime(locals, rec, patchFile);
+        needToDisableAMS = false
+      };
+      if (needToDisableAMS) {//this catches any mgefs that didn't get done in makePotionWorkOverTime
+        disableAssociatedMagicSchools(rec, patchFile);
+      };
+    }
+  };
+};
+
+function loadAndPatch_Ingredients(patchFile, settings, helpers, locals){
+  return {
+    load: {
+      signature: `INGR`,
       filter: rec => {//Called for each loaded record. Return false to skip patching a record
         return locals.UseThief
         && xelib.HasElement(rec, `Effects`);
@@ -177,4 +202,4 @@ function records_Alchemy(patchFile, settings, helpers, locals){
   };
 };
 
-module.exports = {loadAndPatch_Alchemy, records_Alchemy};
+module.exports = {loadAndPatch_Ingestible, loadAndPatch_Ingredients, records_Alchemy};
