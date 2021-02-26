@@ -46,7 +46,7 @@ registerPatcher({
       ArmorPatcher.loadAndPatch_Clothes(patchFile, settings, helpers, locals),
       ArmorPatcher.records_AllARMO(patchFile, settings, helpers, locals),
       AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
-      //AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
+      AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
     ]
 	})
 });
