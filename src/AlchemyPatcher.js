@@ -23,6 +23,8 @@ function isPotionAllowed(locals, rec){
   });
 };
 
+function getPotionEffects(){};
+
 function getAlchEffects(rec){//this gets the array of effects from the record in zedit
   let effectsData = {}
   xelib.GetElements(rec, `Effects`).forEach(e => {
