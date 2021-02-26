@@ -47,6 +47,19 @@ registerPatcher({
       ArmorPatcher.records_AllARMO(patchFile, settings, helpers, locals),
       AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
       AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
+      {
+        records: (filesToPatch, helpers, settings, locals) => {
+          xelib.GetRecords(patchFile, ``, true).forEach(rec => {
+            if (xelib.IsWinningOverride(rec)){
+              xelib.GetElements(rec, ``).forEach(e => {
+                if (ElementMatches(rec, ``, e)){}//zeditwiki records page
+              });
+            }
+          });
+
+          return []
+        }
+      }
     ]
 	})
 });
