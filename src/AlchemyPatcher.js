@@ -1,4 +1,4 @@
-module.exports = function(xelib, Extensions, constants, patchFile, settings, helpers, locals){
+module.exports = function({xelib, Extensions, constants, patchFile, settings, helpers, locals}){
 	const {equalTo, greaterThanEqualTo} = constants;
 	//-----------------Alchemy Patcher Dictionary/Lexicon Objects------------------------
 	let exclusionMap = {

@@ -3,7 +3,8 @@ let UseWarrior = true, UseThief = true, UseMage = true;
 const src = require(`${patcherPath}/src`);
 
 function executePatchusMaximus(patchFile, helpers, settings, locals){
-	const {Extensions, ArmorPatcher, AlchemyPatcher} =  src(xelib, fh, patcherPath, patchFile, settings, helpers, locals);
+	let args = {xelib, fh, patcherPath, patchFile, settings, helpers, locals}
+	const {Extensions, ArmorPatcher, AlchemyPatcher} =  src(args);
 	return {
 		initialize: function() {
 			console.log(settings.patchFileName);

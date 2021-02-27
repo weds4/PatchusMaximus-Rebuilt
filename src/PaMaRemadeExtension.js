@@ -2,7 +2,7 @@ const keywordSig = 'KYWD',
 	miscSig = 'MISC',
 	perkSig = 'PERK';
 
-module.exports = function(xelib, fh, patcherPath, patchFile, settings, helpers, locals){
+module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers, locals}){
 	//---------------------Useful Functions----------------------------
 	//ironically unused
 	function getNativeFormID(pluginFileHandle, localFormId) {

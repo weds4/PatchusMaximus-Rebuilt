@@ -1,5 +1,5 @@
 //configurable value (need to make settings for it)
-module.exports = function(xelib, Extensions, constants, patchFile, settings, helpers, locals){
+module.exports = function({xelib, Extensions, constants, patchFile, settings, helpers, locals}){
 	const {equalTo, greaterThanEqualTo} = constants;
 	const locals.armorJson["ns2:armor"] = locals.armorJson["ns2:armor"];
 	//-----------------Armor Patcher Dictionary/Lexicon Objects------------------------
