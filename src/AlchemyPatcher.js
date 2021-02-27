@@ -244,6 +244,4 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
 		loadAndPatch_Ingredients,
 		records_Alchemy
   };
-} 
-
-//module.exports = {loadAndPatch_Ingestible, loadAndPatch_Ingredients, records_Alchemy};
+}

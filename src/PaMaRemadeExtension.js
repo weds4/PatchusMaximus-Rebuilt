@@ -244,7 +244,3 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     records_reportITPOs
   };
 }
-/*module.exports = {getNativeFormID, GetRecordKeywordEDIDs, addLinkedCondition, 
-  addLinkedElementValue, addLinkedArrayItem, namingMimic, getObjectFromBinding, initJSONs, 
-  initRefMaps, initArmorPatcher, records_reportITPOs
-};*/
