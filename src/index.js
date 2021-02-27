@@ -10,6 +10,6 @@ module.exports = function(xelib, fh, patcherPath, patchFile, settings, helpers, 
 	return {
 		Extensions: Extensions(xelib, fh, patcherPath, patchFile, settings, helpers, locals),
 		ArmorPatcher: ArmorPatcher(xelib, Extensions, constants, patchFile, settings, helpers, locals),
-		AlchemyPatcher
+		AlchemyPatcher: AlchemyPatcher(xelib, Extensions, constants, patchFile, settings, helpers, locals)
 	};
 };
