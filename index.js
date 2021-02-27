@@ -5,7 +5,6 @@ let reqAlchemyPatcher = require(`${patcherPath}/src/AlchemyPatcher.js`);
 
 //User can choose these (need settings.html, I guess?)
 let UseWarrior = true, UseThief = true, UseMage = true;
-//const {Extensions} = reqExtensions({xelib, fh, patcherPath, patchFile, settings, helpers, locals});
 
 registerPatcher({
   info: info,
