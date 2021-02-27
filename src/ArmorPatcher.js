@@ -1,8 +1,7 @@
 //configurable value (need to make settings for it)
-let expensiveClothingThreshold = 50;
 module.exports = function(xelib, Extensions, constants, patchFile, settings, helpers, locals){
 	const {equalTo, greaterThanEqualTo} = constants;
-	const armorObject = locals.armorJson["ns2:armor"];
+	const locals.armorJson["ns2:armor"] = locals.armorJson["ns2:armor"];
 	//-----------------Armor Patcher Dictionary/Lexicon Objects------------------------
 	let ClothingKeywords = {
 		'ClothingBody': true,
@@ -40,7 +39,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 	};
 	Object.keys(armorSlotMultiplier).forEach(kw => {
 		let key = armorSlotMultiplier[kw];
-		let mult = armorObject.armor_settings[key];
+		let mult = locals.armorJson["ns2:armor"].armor_settings[key];
 		armorSlotMultiplier[kw] = mult;
 	});
 
@@ -117,7 +116,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 
 	function addMasqueradeKeywords(rec){
 		let armorName = xelib.GetValue(rec, `FULL`);
-		let armorMasqueradeBindingObject = armorObject.armor_masquerade_bindings.armor_masquerade_binding;
+		let armorMasqueradeBindingObject = locals.armorJson["ns2:armor"].armor_masquerade_bindings.armor_masquerade_binding;
 		let keywordList = [];
 		armorMasqueradeBindingObject.forEach(binding =>  {
 			if (armorName.includes(binding.substringArmor)) {
@@ -132,7 +131,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 	function ReforgeAllowed(rec){
 		if (xelib.GetRecordFlag(rec, `Non-Playable`)) return false;
 		else {
-			let reforgeRules = armorObject.reforge_exclusions.exclusion;
+			let reforgeRules = locals.armorJson["ns2:armor"].reforge_exclusions.exclusion;
 			return reforgeRules.every(rule => {
 				let target = xelib[exclusionMap[rule.target]](rec);
 				let method = exclusionMap[rule.type];
@@ -145,7 +144,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 	function getArmorMeltdownOutput(rec) {
 		let meltdownKW = Extensions.GetRecordKeywordEDIDs(rec).find(kw => kw in armorMeltdownOutput);
 		let count = meltdownKW?
-			armorObject.armor_settings[armorMeltdownOutput[meltdownKW]]: 0;
+			locals.armorJson["ns2:armor"].armor_settings[armorMeltdownOutput[meltdownKW]]: 0;
 		return count.toString();//I don't like giving 0 material (this case *is* used occasionally)
 	}
 
@@ -395,11 +394,11 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 		patch: (record) => {
 			let armorMaterial = getArmorMaterial(record);
 			doArmorKeywords(record, armorMaterial);
-			if (locals.UseWarrior){
+			if (settings.UseWarrior){
 				setArmorValue(record, armorMaterial);
 				applyArmorModfiers(locals, record);
 			}
-			if (locals.UseThief){
+			if (settings.UseThief){
 				addMasqueradeKeywords(record)
 			}   
 		}
@@ -410,7 +409,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 			signature: `ARMO`,
 			filter: record => {//Called for each loaded record. Return false to skip patching a record
 				let keywords = Extensions.GetRecordKeywordEDIDs(record)
-				return locals.UseThief 
+				return settings.UseThief 
 					&& !xelib.HasElement(record,`TNAM`)
 					&& keywords.includes(`ClothingBody`)
 					&& !keywords.includes(`ClothingRich`)
@@ -419,7 +418,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 			}
 		},
 		patch: function (record) {
-			if (xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold){
+			if (xelib.GetValue(record, `DATA\\Value`) >= settings.expensiveClothingThreshold){
 				Extensions.addLinkedArrayItem(record, `KWDA`, locals.skyrimKeywords.ClothingRich);
 			}
 		}
@@ -428,7 +427,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 	const records_AllARMO = {
 		records: (filesToPatch, helpers, settings, locals) => {
 			//patch things that need to be used, but not themselves changed in the patch
-			if (locals.UseWarrior) {
+			if (settings.UseWarrior) {
 				helpers.logMessage(`Getting clothes`);
 				let clothes = xelib.GetRecords(filesToPatch, `ARMO`)//meltdown recipies for clothes
 					.map(rec => xelib.GetWinningOverride(rec))
@@ -484,7 +483,7 @@ module.exports = function(xelib, Extensions, constants, patchFile, settings, hel
 				helpers.logMessage(`Done adding daedric armor artifact duplicates`);
 			}
 
-			if (locals.UseThief){
+			if (settings.UseThief){
 				helpers.logMessage(`Getting craftable leather armors`);
 				let leatherArmorCOBJ = {craft: [], temper: []};
 				let leatherArmors = xelib.GetRecords(filesToPatch, `ARMO`)

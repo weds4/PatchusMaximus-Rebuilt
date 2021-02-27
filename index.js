@@ -1,11 +1,9 @@
-let Extensions = require(`${patcherPath}/src/PaMaRemadeExtension.js`)
-let ArmorPatcher = require(`${patcherPath}/src/ArmorPatcher.js`)
-let AlchemyPatcher = require(`${patcherPath}/src/AlchemyPatcher.js`)
-
 //User can choose these (need settings.html, I guess?)
 let UseWarrior = true, UseThief = true, UseMage = true;
+const src = require(`${patcherPath}/src`);
 
 function executePatchusMaximus(patchFile, helpers, settings, locals){
+	const {Extensions, ArmorPatcher, AlchemyPatcher} =  src(xelib, fh, patcherPath, patchFile, settings, helpers, locals);
 	return {
 		initialize: function() {
 			console.log(settings.patchFileName);
@@ -15,9 +13,9 @@ function executePatchusMaximus(patchFile, helpers, settings, locals){
 			locals.Skyrim_Master = xelib.FileByName(`Skyrim.esm`);
 			locals.dragonborn_Master = xelib.FileByName(`Dragonborn.esm`);
 			locals.PerkusMaximus_Master = xelib.FileByName(`PerkusMaximus_Master.esp`);
-			locals.UseWarrior = UseWarrior;
-			locals.UseThief = UseThief;
-			locals.UseMage = UseMage;
+			settings.UseWarrior = UseWarrior;
+			settings.UseThief = UseThief;
+			settings.UseMage = UseMage;
 			if (UseWarrior) {
 				locals.PerkusMaximus_Warrior = xelib.FileByName(`PerkusMaximus_Warrior.esp`);
 				locals.forgedKeyword = xelib.AddElement(patchFile, `KYWD\\KYWD`);
@@ -37,9 +35,9 @@ function executePatchusMaximus(patchFile, helpers, settings, locals){
 			/*ArmorPatcher.loadAndPatch_Armors,
 			ArmorPatcher.loadAndPatch_Clothes,
 			ArmorPatcher.records_AllARMO,*/
-			AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
-			AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
-			AlchemyPatcher.records_Alchemy(patchFile, settings, helpers, locals),
+			AlchemyPatcher.loadAndPatch_Ingestible,
+			AlchemyPatcher.loadAndPatch_Ingredients,
+			AlchemyPatcher.records_Alchemy,
 			/*Extensions.records_reportITPOs(),*/
 		]
 	}
@@ -51,7 +49,8 @@ registerPatcher({
 	settings: {
 		label: 'Patchus Maximus Rebuilt',
 		defaultSettings: {
-			patchFileName: 'PatchusMaximus.esp'
+			patchFileName: 'PatchusMaximus.esp',
+			expensiveClothingThreshold: 50
 		}
 	},
 	requiredFiles: [`PerkusMaximus_Master.esp`],
