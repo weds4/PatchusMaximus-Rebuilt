@@ -86,7 +86,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function setArmorValue(locals, rec, armorMaterial){
+  function setArmorValue(rec, armorMaterial){
     let originalAR = xelib.GetValue(rec, `DNAM`);
     let armorSlotMult = 0;
     Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
@@ -102,12 +102,12 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function getArmorModifier(locals, rec){
+  function getArmorModifier(rec){
     return Extensions.getObjectFromBinding(rec, locals.armorModBindings, locals.armorModifer);
   }
 
-  function applyArmorModfiers(locals, rec){
-    let armorMod = getArmorModifier(locals, rec);
+  function applyArmorModfiers(rec){
+    let armorMod = getArmorModifier(rec);
     if (armorMod != null){
       let current = xelib.GetValue(rec, `DATA\\Weight`);
       xelib.SetValue(rec, `DATA\\Weight`, (current*armorMod.factorWeight).toString());
@@ -118,7 +118,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function addMasqueradeKeywords(locals, rec){
+  function addMasqueradeKeywords(rec){
     let armorName = xelib.GetValue(rec,`FULL`);
     let armorMasqueradeBindingObject = locals.armorJson[`ns2:armor`].armor_masquerade_bindings.armor_masquerade_binding;
     let keywordList = [];
@@ -134,7 +134,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function ReforgeAllowed(locals, rec){
+  function ReforgeAllowed(rec){
     if (xelib.GetRecordFlag(rec,`Non-Playable`)) {return false}
     else {
       let reforgeRules = locals.armorJson[`ns2:armor`].reforge_exclusions.exclusion;
@@ -147,7 +147,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function getArmorMeltdownOutput(locals, rec) {
+  function getArmorMeltdownOutput(rec) {
     let count = 0
     Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
       let test = armorMeltdownOutput[kw];
@@ -159,8 +159,8 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     return count.toString();//I don't like giving 0 material (this case *is* used occasionally)
   }
 
-  function addClothingMeltdownRecipe (PerMaPatch,rec, locals) {
-    let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+  function addClothingMeltdownRecipe(rec) {
+    let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
     xelib.AddElementValue(newRecipe,`EDID`,`PaMa_CLOTH_MELTDOWN_`+Extensions.namingMimic(rec));
     let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
     xelib.SetValue(newItem, `CNTO\\Count`, '1');
@@ -168,16 +168,16 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
     Extensions.addLinkedElementValue(newRecipe, 'CNAM', locals.skyrimMisc.LeatherStrips); //Created Object
     Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingTanningRack); //Workbench Keyword
-    xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
+    xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(rec)); //Created Object Count
   }
 
-  function addArmorMeltdownRecipe(PerMaPatch, locals, rec, armorMaterial){
+  function addArmorMeltdownRecipe(rec, armorMaterial){
     let materialMeltdown = armorMaterial.materialMeltdown;
     if (materialMeltdown !== "NONE"){
       let requiredPerk = locals.BaseMaterialsArmor[materialMeltdown].perk;
       let output = locals.BaseMaterialsArmor[materialMeltdown].meltdownIngot;
       let benchKW = locals.BaseMaterialsArmor[materialMeltdown].meltdownCraftingStation;
-      let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+      let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_MELTDOWN_${Extensions.namingMimic(rec)}`);
       let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
       xelib.SetValue(newItem, `CNTO\\Count`, '1');
@@ -186,17 +186,17 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', output); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
-      xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
+      xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(rec)); //Created Object Count
     }
   }
 
-  function addTemperingRecipe(PerMaPatch, locals, rec, armorMaterial){
+  function addTemperingRecipe(rec, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
     if (materialTemper !== `NONE`){
       let requiredPerk = locals.BaseMaterialsArmor[materialTemper].perk;
       let temperIngot = locals.BaseMaterialsArmor[materialTemper].temperIngot;
       let benchKW = locals.skyrimKeywords.CraftingSmithingArmorTable;
-      let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+      let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_TEMPER_${Extensions.namingMimic(rec)}`);
       let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, temperIngot, `CNTO\\Item`);
       xelib.SetValue(newItem, `CNTO\\Count`, '1');
@@ -207,14 +207,14 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function addReforgedArmorRecipe(PerMaPatch, locals, reforgedArmor, oldArmor, armorMaterial){
+  function addReforgedArmorRecipe(reforgedArmor, oldArmor, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
     if (materialTemper !== `NONE`){
       let reforgePerk = locals.permaPerks.xMASMIArmorer;
       let requiredPerk = locals.BaseMaterialsArmor[materialTemper].perk;
       let temperIngot = locals.BaseMaterialsArmor[materialTemper].temperIngot;
       let benchKW = locals.skyrimKeywords.CraftingSmithingForge;
-      let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+      let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_CRAFT_${Extensions.namingMimic(reforgedArmor)}`);
       let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, oldArmor, `CNTO\\Item`);
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
@@ -228,27 +228,27 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function createReforgedArmor(PerMaPatch, locals, rec, armorMaterial){
-    reforgedArmor = xelib.CopyElement(rec, PerMaPatch, true);
+  function createReforgedArmor(rec, armorMaterial){
+    reforgedArmor = xelib.CopyElement(rec, patchFile, true);
     oldName = xelib.GetValue(reforgedArmor, `FULL`);
     xelib.SetValue(reforgedArmor, `FULL`, `Reforged ${oldName}`);
     xelib.SetValue(reforgedArmor, `EDID`, `PaMa_ARMO_Reforged_${Extensions.namingMimic(rec)}`);
     Extensions.addLinkedArrayItem(reforgedArmor, `KWDA`, locals.forgedKeyword);
-    applyArmorModfiers(locals, reforgedArmor);
-    addReforgedArmorRecipe(PerMaPatch, locals, reforgedArmor, rec, armorMaterial);
-    addArmorMeltdownRecipe(PerMaPatch, locals, reforgedArmor, armorMaterial);
-    addTemperingRecipe(PerMaPatch, locals, reforgedArmor, armorMaterial);
+    applyArmorModfiers(reforgedArmor);
+    addReforgedArmorRecipe(reforgedArmor, rec, armorMaterial);
+    addArmorMeltdownRecipe(reforgedArmor, armorMaterial);
+    addTemperingRecipe(reforgedArmor, armorMaterial);
     return reforgedArmor;
   }
 
-  function addWarforgedArmorRecipe(PerMaPatch, locals, warforgedArmor, reforgedArmor, armorMaterial){
+  function addWarforgedArmorRecipe(warforgedArmor, reforgedArmor, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
     if (materialTemper !== `NONE`){
       let requiredPerk = locals.BaseMaterialsArmor[materialTemper].perk;
       let warforgePerk = locals.permaPerks.xMASMIMasteryWarforged;
       let temperIngot = locals.BaseMaterialsArmor[materialTemper].temperIngot;
       let benchKW = locals.skyrimKeywords.CraftingSmithingForge;
-      let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+      let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_CRAFT_${Extensions.namingMimic(warforgedArmor)}`);
       let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, reforgedArmor, `CNTO\\Item`);
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
@@ -262,20 +262,20 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function createWarforgedArmor(PerMaPatch, locals, rec, reforgedArmor, armorMaterial){
+  function createWarforgedArmor(rec, reforgedArmor, armorMaterial){
     //rec is the original armor
-    warforgedArmor = xelib.CopyElement(rec, PerMaPatch, true);
+    warforgedArmor = xelib.CopyElement(rec, patchFile, true);
     oldName = xelib.GetValue(warforgedArmor, `FULL`);
     xelib.SetValue(warforgedArmor, `FULL`, `Warforged ${oldName}`);
     xelib.SetValue(warforgedArmor, `EDID`, `PaMa_ARMO_Warforged_${Extensions.namingMimic(rec)}`);
     Extensions.addLinkedArrayItem(warforgedArmor, `KWDA`, locals.forgedKeyword);
-    applyArmorModfiers(locals, warforgedArmor);
-    addWarforgedArmorRecipe(PerMaPatch, locals, warforgedArmor, reforgedArmor, armorMaterial);
-    addArmorMeltdownRecipe(PerMaPatch, locals, warforgedArmor, armorMaterial);
-    addTemperingRecipe(PerMaPatch, locals, warforgedArmor, armorMaterial);
-  };
+    applyArmorModfiers(warforgedArmor);
+    addWarforgedArmorRecipe(warforgedArmor, reforgedArmor, armorMaterial);
+    addArmorMeltdownRecipe(warforgedArmor, armorMaterial);
+    addTemperingRecipe(warforgedArmor, armorMaterial);
+  }
 
-  function addReplicaArmorRecipe(PerMaPatch, locals, rec, armorMaterial, original) {
+  function addReplicaArmorRecipe(rec, armorMaterial, original) {
     let materialTemper = armorMaterial.materialTemper;
     if (materialTemper !== `NONE`){
       let requiredPerk = locals.BaseMaterialsArmor[materialTemper].perk;
@@ -283,7 +283,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       let artifactEssence = locals.permaMisc.xMASMICopycatArtifactEssence;
       let temperIngot = locals.BaseMaterialsArmor[materialTemper].temperIngot
       let benchKW = locals.skyrimKeywords.CraftingSmithingForge;
-      let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
+      let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_CRAFT_${Extensions.namingMimic(rec)}`);
       let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, artifactEssence, `CNTO\\Item`);
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
@@ -298,21 +298,21 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     }
   }
 
-  function doDaedricReplicas(PermaPatch, locals, rec, armorMaterial){
-    replicaArmor = xelib.CopyElement(rec, PermaPatch, true);
+  function doDaedricReplicas(rec, armorMaterial){
+    replicaArmor = xelib.CopyElement(rec, patchFile, true);
     oldName = xelib.GetValue(replicaArmor, `FULL`);
     xelib.SetValue(replicaArmor, `FULL`, `${oldName} Replica`);
     xelib.SetValue(replicaArmor, `EDID`, `PaMa_ARMO_${Extensions.namingMimic(replicaArmor)}`);
-    applyArmorModfiers(locals, replicaArmor);
+    applyArmorModfiers(replicaArmor);
     xelib.RemoveElement(replicaArmor, `EITM`);
     xelib.RemoveElement(replicaArmor, `VMAD`);
-    addReplicaArmorRecipe(PermaPatch, locals, replicaArmor, armorMaterial, rec);
-    addArmorMeltdownRecipe(PermaPatch, locals, replicaArmor, armorMaterial);
-    let reforgedArmor = createReforgedArmor(PermaPatch, locals, replicaArmor, armorMaterial);
-    createWarforgedArmor(PermaPatch, locals, replicaArmor, reforgedArmor, armorMaterial);
+    addReplicaArmorRecipe(replicaArmor, armorMaterial, rec);
+    addArmorMeltdownRecipe(replicaArmor, armorMaterial);
+    let reforgedArmor = createReforgedArmor(replicaArmor, armorMaterial);
+    createWarforgedArmor(replicaArmor, reforgedArmor, armorMaterial);
   }
 
-  function getLeatherArmorCOBJ(locals, rec, leatherArmorCOBJ) {
+  function getLeatherArmorCOBJ(rec, leatherArmorCOBJ) {
     let leathers = locals.likelyLeatherRecipes.filter(recipe => 
       xelib.EditorID(xelib.GetLinksTo(recipe, `CNAM`)) == xelib.EditorID(rec) 
     );
@@ -344,7 +344,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     });
   }
 
-  function addQualityLeatherRecipe(PerMaPatch, locals, rec, qualityLeatherArmor, leatherArmorCOBJ){
+  function addQualityLeatherRecipe(rec, qualityLeatherArmor, leatherArmorCOBJ){
     let leatherPerk = locals.permaPerks.xMASMIMaterialLeather;
     let qualityLeather = locals.permaMisc.xMAWAYQualityLeather;
     let qualityLeatherStrips = locals.permaMisc.xMAWAYQualityLeatherStrips;
@@ -353,7 +353,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.EditorID(xelib.GetLinksTo(recipe, `CNAM`)) == xelib.EditorID(rec)
     );
     craftingRecipes.forEach(recipe => {
-      let newRecipe = xelib.CopyElement(recipe, PerMaPatch, true);
+      let newRecipe = xelib.CopyElement(recipe, patchFile, true);
       xelib.SetValue(newRecipe, `EDID`, `PaMa_ARMO_CRAFT_${Extensions.namingMimic(qualityLeatherArmor)}`);
       xelib.RemoveElement(newRecipe, `Conditions`);
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, leatherPerk);
@@ -376,19 +376,19 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     });
   }
 
-  function doQualityLeather(PerMaPatch, locals, rec, armorMaterial, leatherArmorCOBJ){
-    qualityLeatherArmor = xelib.CopyElement(rec, PerMaPatch, true);
+  function doQualityLeather(rec, armorMaterial, leatherArmorCOBJ){
+    qualityLeatherArmor = xelib.CopyElement(rec, patchFile, true);
     oldName = xelib.GetValue(qualityLeatherArmor, `FULL`);
     xelib.SetValue(qualityLeatherArmor, `FULL`, `Quality ${oldName}`);
     xelib.SetValue(qualityLeatherArmor, `EDID`, `PaMa_ARMO_${Extensions.namingMimic(qualityLeatherArmor)}`);
-    applyArmorModfiers(locals, qualityLeatherArmor);
-    addQualityLeatherRecipe(PerMaPatch, locals, rec, qualityLeatherArmor, leatherArmorCOBJ);
-    addArmorMeltdownRecipe(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
-    addTemperingRecipe(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
-    let reforgedArmor = createReforgedArmor(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
-    createWarforgedArmor(PerMaPatch, locals, qualityLeatherArmor, reforgedArmor, armorMaterial);
+    applyArmorModfiers(qualityLeatherArmor);
+    addQualityLeatherRecipe(rec, qualityLeatherArmor, leatherArmorCOBJ);
+    addArmorMeltdownRecipe(qualityLeatherArmor, armorMaterial);
+    addTemperingRecipe(qualityLeatherArmor, armorMaterial);
+    let reforgedArmor = createReforgedArmor(qualityLeatherArmor, armorMaterial);
+    createWarforgedArmor(qualityLeatherArmor, reforgedArmor, armorMaterial);
     if (Extensions.GetRecordKeywordEDIDs(qualityLeatherArmor).includes(`DaedricArtifact`)){
-      doDaedricReplicas(PermaPatch, locals, rec, armorMaterial);
+      doDaedricReplicas(rec, armorMaterial);
     }
   }
 
@@ -397,7 +397,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
   /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
-  function loadAndPatch_Armors(patchFile, settings, helpers, locals) {
+  function loadAndPatch_Armors() {
     return {
       load: {//armors not clothes
         signature: `ARMO`,
@@ -413,17 +413,17 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         let armorMaterial = getArmorMaterial(record);
         doArmorKeywords(locals, record, armorMaterial);
         if (settings.UseWarrior){
-          setArmorValue(locals, record, armorMaterial);
-          applyArmorModfiers(locals, record);
+          setArmorValue(record, armorMaterial);
+          applyArmorModfiers(record);
         }
         if (settings.UseThief){
-          addMasqueradeKeywords(locals, record);
+          addMasqueradeKeywords(record);
         }
       }
     };
   }
 
-  function loadAndPatch_Clothes(patchFile, settings, helpers, locals){
+  function loadAndPatch_Clothes(){
     return {
       load: {//add ClothingRich keyword to ClothingBody clothes valued higher than the threshold
         signature: `ARMO`,
@@ -444,7 +444,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     };
   }
 
-  function records_AllARMO(patchFile, settings, helpers, locals){
+  function records_AllARMO(){
     return {
       records: (filesToPatch, helpers, settings, locals) => {
         //patch things that need to be used, but not themselves changed in the patch
@@ -460,7 +460,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           });
           helpers.logMessage(`Adding clothing meltdown recipes`);
           clothes.forEach(rec => {
-            addClothingMeltdownRecipe(patchFile, rec, locals);
+            addClothingMeltdownRecipe(rec);
           });
           helpers.logMessage(`Done adding clothing meltdown recipes`);
 
@@ -474,14 +474,14 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             && !(keywords.includes(`DaedricArtifact`)
               || xelib.GetHexFormID(rec) == 0xD2846)
             && (getArmorMaterial(rec) !== null)
-            && ReforgeAllowed(locals, rec);
+            && ReforgeAllowed(rec);
           });
           helpers.logMessage(`Adding armor recipes`);
           armors.forEach(rec => {
             let armorMaterial = getArmorMaterial(rec);
-            addArmorMeltdownRecipe(patchFile, locals, rec, armorMaterial);
-            let reforgedArmor = createReforgedArmor(patchFile, locals, rec, armorMaterial);
-            createWarforgedArmor(patchFile, locals, rec, reforgedArmor, armorMaterial);
+            addArmorMeltdownRecipe(rec, armorMaterial);
+            let reforgedArmor = createReforgedArmor(rec, armorMaterial);
+            createWarforgedArmor(rec, reforgedArmor, armorMaterial);
           });
           helpers.logMessage(`Done adding armor recipes`);
 
@@ -498,7 +498,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           //set up daedric duplication here
           artifacts.forEach(rec => {
             let armorMaterial = getArmorMaterial(rec);
-            doDaedricReplicas(patchFile, locals, rec, armorMaterial);
+            doDaedricReplicas(rec, armorMaterial);
           });
           helpers.logMessage(`Done adding daedric armor artifact duplicates`);
         }
@@ -514,7 +514,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             && !xelib.HasElement(rec,`TNAM`)
             && !xelib.EditorID(rec).includes('Reforged')
             && !xelib.EditorID(rec).includes('Warforged')
-            && getLeatherArmorCOBJ(locals, rec, leatherArmorCOBJ)
+            && getLeatherArmorCOBJ(rec, leatherArmorCOBJ)
           });
           helpers.logMessage(`Adding quality leather armors`);
           let armorMaterial = {
@@ -522,7 +522,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             "materialTemper": "QualityLeather"
           };
           leatherArmors.forEach(rec => {
-            doQualityLeather(patchFile, locals, rec, armorMaterial, leatherArmorCOBJ);
+            doQualityLeather(rec, armorMaterial, leatherArmorCOBJ);
           });
           helpers.logMessage(`Done adding quality leather armors`);
         }
