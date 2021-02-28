@@ -411,7 +411,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       },
       patch: function (record) {
         let armorMaterial = getArmorMaterial(record);
-        doArmorKeywords(locals, record, armorMaterial);
+        doArmorKeywords(record, armorMaterial);
         if (settings.UseWarrior){
           setArmorValue(record, armorMaterial);
           applyArmorModfiers(record);
@@ -444,8 +444,8 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     };
   }
 
-  function records_AllARMO(){
-    return {
+  const records_AllARMO = {
+    
       records: (filesToPatch, helpers, settings, locals) => {
         //patch things that need to be used, but not themselves changed in the patch
         if (settings.UseWarrior) {
@@ -528,7 +528,6 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         }
         return [];
       }
-    };
   }
 
   return {

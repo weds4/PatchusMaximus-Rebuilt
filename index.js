@@ -45,11 +45,12 @@ registerPatcher({
         Extensions.initJSONs(fh, locals, patcherPath);
         Extensions.initRefMaps(locals);
         Extensions.initArmorPatcher(locals);
+        locals.fileDict = {};
       },
       process: [
         ArmorPatcher.loadAndPatch_Armors(),
         ArmorPatcher.loadAndPatch_Clothes(),
-        ArmorPatcher.records_AllARMO(),
+        ArmorPatcher.records_AllARMO,
         AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
         AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
         AlchemyPatcher.records_Alchemy(patchFile, settings, helpers, locals),
