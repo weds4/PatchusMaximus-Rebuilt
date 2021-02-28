@@ -1,4 +1,3 @@
-let Extensions = require(`./PaMaRemadeExtension.js`);
 module.exports = function({xelib, Extensions, constants, patchFile, settings, helpers, locals}){
   //Useful constants
   let equalTo = `10000000`;
@@ -59,53 +58,53 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
   };
 
   //-----------------Armor Patcher Supporting Functions----------------------------------
-  function getArmorMaterial(locals, rec){
+  function getArmorMaterial(rec){
     return Extensions.getObjectFromBinding(rec, locals.armorBindings, locals.armorMaterial);
-  };
+  }
 
-  function doArmorKeywords (locals, rec, armorMaterial){
+  function doArmorKeywords(rec, armorMaterial){
     /*determine if this armor material is light or heavy, 
     and assign the appropriate keywords */
     let keywords = Extensions.GetRecordKeywordEDIDs(rec);
     let thisArmorType = locals.armorTypes[armorMaterial.type]
     if (keywords.includes(xelib.EditorID(locals.removeKeywords[armorMaterial.type]))){
       xelib.RemoveKeyword(rec, xelib.GetHexFormID(locals.removeKeywords[armorMaterial.type]));
-    };
+    }
     if (thisArmorType){
       if (!keywords.includes(xelib.EditorID(thisArmorType.keyword))){
         //if it doesnt have the keyword, add it
         Extensions.addLinkedArrayItem(rec, 'KWDA', thisArmorType.keyword);
-      };
+      }
       if (xelib.HasElement(rec, `[BOD2|BODT]\\Armor Type`)) {
         if(!(xelib.GetValue(rec,`[BOD2|BODT]\\Armor Type`) === thisArmorType.ArmorType)){
           xelib.SetValue(rec,`[BOD2|BODT]\\Armor Type`, thisArmorType.ArmorType)
-        };
-      };
+        }
+      }
       keywords.forEach(kw => {
         if (armorSlotKeywords[kw]) {Extensions.addLinkedArrayItem(rec, `KWDA`, thisArmorType[kw]);}
       }); 
-    };
-  };
+    }
+  }
 
   function setArmorValue(locals, rec, armorMaterial){
     let originalAR = xelib.GetValue(rec, `DNAM`);
-    let armorSlotMult = 0
+    let armorSlotMult = 0;
     Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
       let test = armorSlotMultiplier[kw]
       if (test) {
         armorSlotMult = locals.armorJson["ns2:armor"].armor_settings[test]
         return true
-      };
+      }
     });
-    let newAR = armorMaterial.armorBase * armorSlotMult
+    let newAR = armorMaterial.armorBase * armorSlotMult;
     if (newAR > originalAR && newAR > 0) {
       xelib.SetValue(rec, `DNAM`, newAR.toString());
-    };
-  };
+    }
+  }
 
   function getArmorModifier(locals, rec){
     return Extensions.getObjectFromBinding(rec, locals.armorModBindings, locals.armorModifer);
-  };
+  }
 
   function applyArmorModfiers(locals, rec){
     let armorMod = getArmorModifier(locals, rec);
@@ -116,24 +115,24 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.SetValue(rec, `DATA\\Value`, Math.round(current*armorMod.factorValue).toString());
       current = xelib.GetValue(rec, `DNAM`);
       xelib.SetValue(rec, `DNAM`, (current*armorMod.factorArmor).toString());
-    };
-  };
+    }
+  }
 
   function addMasqueradeKeywords(locals, rec){
     let armorName = xelib.GetValue(rec,`FULL`);
     let armorMasqueradeBindingObject = locals.armorJson[`ns2:armor`].armor_masquerade_bindings.armor_masquerade_binding;
-    let keywordList = []
+    let keywordList = [];
     armorMasqueradeBindingObject.forEach(binding =>  {
       if (armorName.includes(binding.substringArmor)) {
           keywordList.push(binding.masqueradeFaction);
-      };
+      }
     });
     if (keywordList) {
       keywordList.forEach(kw => {
         if (kw) {Extensions.addLinkedArrayItem(rec, `KWDA`, locals.masqueradeFactions[kw])};
       });
-    };
-  };
+    }
+  }
 
   function ReforgeAllowed(locals, rec){
     if (xelib.GetRecordFlag(rec,`Non-Playable`)) {return false}
@@ -145,8 +144,8 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         if(method === 'EQUALS') return target !== rule.text;
         return !target[method](rule.text);
       });
-    };
-  };
+    }
+  }
 
   function getArmorMeltdownOutput(locals, rec) {
     let count = 0
@@ -155,10 +154,10 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       if (test) {
         count = locals.armorJson["ns2:armor"].armor_settings[test]
         return true
-      };
+      }
     });
     return count.toString();//I don't like giving 0 material (this case *is* used occasionally)
-  };
+  }
 
   function addClothingMeltdownRecipe (PerMaPatch,rec, locals) {
     let newRecipe = xelib.AddElement(PerMaPatch,`Constructible Object\\COBJ`);
@@ -170,7 +169,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     Extensions.addLinkedElementValue(newRecipe, 'CNAM', locals.skyrimMisc.LeatherStrips); //Created Object
     Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingTanningRack); //Workbench Keyword
     xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
-  };
+  }
 
   function addArmorMeltdownRecipe(PerMaPatch, locals, rec, armorMaterial){
     let materialMeltdown = armorMaterial.materialMeltdown;
@@ -183,13 +182,13 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
       xelib.SetValue(newItem, `CNTO\\Count`, '1');
       Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, rec);
-      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
+      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)}
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMASMIMeltdown);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', output); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
       xelib.AddElementValue(newRecipe, `NAM1`, getArmorMeltdownOutput(locals, rec)); //Created Object Count
-    };
-  };
+    }
+  }
 
   function addTemperingRecipe(PerMaPatch, locals, rec, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
@@ -201,12 +200,12 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.AddElementValue(newRecipe,`EDID`,`PaMa_ARMO_TEMPER_${Extensions.namingMimic(rec)}`);
       let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, temperIngot, `CNTO\\Item`);
       xelib.SetValue(newItem, `CNTO\\Count`, '1');
-      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
+      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)}
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', rec); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
-    };
-  };
+    }
+  }
 
   function addReforgedArmorRecipe(PerMaPatch, locals, reforgedArmor, oldArmor, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
@@ -221,13 +220,13 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
       let newItem2 = Extensions.addLinkedArrayItem(newRecipe, `Items`, temperIngot, `CNTO\\Item`);
       xelib.SetValue(newItem2, `CNTO\\Count`, '2');
-      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
+      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)}
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, reforgePerk)
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', reforgedArmor); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count 
-    };
-  };
+    }
+  }
 
   function createReforgedArmor(PerMaPatch, locals, rec, armorMaterial){
     reforgedArmor = xelib.CopyElement(rec, PerMaPatch, true);
@@ -239,8 +238,8 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     addReforgedArmorRecipe(PerMaPatch, locals, reforgedArmor, rec, armorMaterial);
     addArmorMeltdownRecipe(PerMaPatch, locals, reforgedArmor, armorMaterial);
     addTemperingRecipe(PerMaPatch, locals, reforgedArmor, armorMaterial);
-    return reforgedArmor
-  };
+    return reforgedArmor;
+  }
 
   function addWarforgedArmorRecipe(PerMaPatch, locals, warforgedArmor, reforgedArmor, armorMaterial){
     let materialTemper = armorMaterial.materialTemper;
@@ -255,13 +254,13 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
       let newItem2 = Extensions.addLinkedArrayItem(newRecipe, `Items`, temperIngot, `CNTO\\Item`);
       xelib.SetValue(newItem2, `CNTO\\Count`, '5');
-      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
+      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)}
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, warforgePerk)
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', warforgedArmor); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
-    };
-  };
+    }
+  }
 
   function createWarforgedArmor(PerMaPatch, locals, rec, reforgedArmor, armorMaterial){
     //rec is the original armor
@@ -290,14 +289,14 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
       let newItem2 = Extensions.addLinkedArrayItem(newRecipe, `Items`, temperIngot, `CNTO\\Item`);
       xelib.SetValue(newItem2, `CNTO\\Count`, '3');
-      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)};
+      if (requiredPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, requiredPerk)}
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, copycatPerk);
       Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, original);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', rec); //Created Object
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', benchKW); //Workbench Keyword
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
-    };
-  };
+    }
+  }
 
   function doDaedricReplicas(PermaPatch, locals, rec, armorMaterial){
     replicaArmor = xelib.CopyElement(rec, PermaPatch, true);
@@ -307,11 +306,11 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     applyArmorModfiers(locals, replicaArmor);
     xelib.RemoveElement(replicaArmor, `EITM`);
     xelib.RemoveElement(replicaArmor, `VMAD`);
-    addReplicaArmorRecipe(PermaPatch, locals, replicaArmor, armorMaterial, rec)
+    addReplicaArmorRecipe(PermaPatch, locals, replicaArmor, armorMaterial, rec);
     addArmorMeltdownRecipe(PermaPatch, locals, replicaArmor, armorMaterial);
     let reforgedArmor = createReforgedArmor(PermaPatch, locals, replicaArmor, armorMaterial);
     createWarforgedArmor(PermaPatch, locals, replicaArmor, reforgedArmor, armorMaterial);
-  };
+  }
 
   function getLeatherArmorCOBJ(locals, rec, leatherArmorCOBJ) {
     let leathers = locals.likelyLeatherRecipes.filter(recipe => 
@@ -331,19 +330,19 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         leatherTemper.forEach(rec => {
           leatherArmorCOBJ.temper.push(rec);
         });
-      };
-      return true
-    };
-  };
+      }
+      return true;
+    }
+  }
 
   function ingredientsContainX(recipe, checkFor){
     let ingredients = xelib.GetElements(recipe, `Items`);
     return ingredients.some(rec => {
       if (xelib.EditorID(xelib.GetLinksTo(rec, 'CNTO\\Item')) === xelib.EditorID(checkFor)){
-        return true
-      };
+        return true;
+      }
     });
-  };
+  }
 
   function addQualityLeatherRecipe(PerMaPatch, locals, rec, qualityLeatherArmor, leatherArmorCOBJ){
     let leatherPerk = locals.permaPerks.xMASMIMaterialLeather;
@@ -363,19 +362,19 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         xelib.GetElements(newRecipe, `Items`).forEach(rec => {
           if (xelib.EditorID(xelib.GetLinksTo(rec, 'CNTO\\Item')) === `Leather01`){
             xelib.SetLinksTo(rec, 'CNTO\\Item', qualityLeather);
-          };
+          }
         });
-      };
+      }
       if (xelib.HasElement(recipe, `Items`) && ingredientsContainX(newRecipe, locals.skyrimMisc.LeatherStrips)) {
         Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, qualityLeatherStrips);
         xelib.GetElements(newRecipe, `Items`).forEach(rec => {
           if (xelib.EditorID(xelib.GetLinksTo(rec, 'CNTO\\Item')) === `LeatherStrips`){
             xelib.SetLinksTo(rec, 'CNTO\\Item', qualityLeatherStrips);
-          };
+          }
         });
-      };
+      }
     });
-  };
+  }
 
   function doQualityLeather(PerMaPatch, locals, rec, armorMaterial, leatherArmorCOBJ){
     qualityLeatherArmor = xelib.CopyElement(rec, PerMaPatch, true);
@@ -383,15 +382,15 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     xelib.SetValue(qualityLeatherArmor, `FULL`, `Quality ${oldName}`);
     xelib.SetValue(qualityLeatherArmor, `EDID`, `PaMa_ARMO_${Extensions.namingMimic(qualityLeatherArmor)}`);
     applyArmorModfiers(locals, qualityLeatherArmor);
-    addQualityLeatherRecipe(PerMaPatch, locals, rec, qualityLeatherArmor, leatherArmorCOBJ)
+    addQualityLeatherRecipe(PerMaPatch, locals, rec, qualityLeatherArmor, leatherArmorCOBJ);
     addArmorMeltdownRecipe(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
     addTemperingRecipe(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
     let reforgedArmor = createReforgedArmor(PerMaPatch, locals, qualityLeatherArmor, armorMaterial);
     createWarforgedArmor(PerMaPatch, locals, qualityLeatherArmor, reforgedArmor, armorMaterial);
     if (Extensions.GetRecordKeywordEDIDs(qualityLeatherArmor).includes(`DaedricArtifact`)){
       doDaedricReplicas(PermaPatch, locals, rec, armorMaterial);
-    };
-  };
+    }
+  }
 
 
   //-----------------Actual Armor Patcher Functions----------------------------------
@@ -407,22 +406,22 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           return !xelib.HasElement(record,`TNAM`)
           && !keywords.some(kw => ClothingKeywords[kw])
           && !keywords.some(kw => JewelryKeywords[kw])
-          && (getArmorMaterial(locals, record) !== null);
+          && (getArmorMaterial(record) !== null);
         }
       },
       patch: function (record) {
-        let armorMaterial = getArmorMaterial(locals, record);
+        let armorMaterial = getArmorMaterial(record);
         doArmorKeywords(locals, record, armorMaterial);
         if (settings.UseWarrior){
           setArmorValue(locals, record, armorMaterial);
           applyArmorModfiers(locals, record);
-        };
+        }
         if (settings.UseThief){
-          addMasqueradeKeywords(locals, record)
-        };        
+          addMasqueradeKeywords(locals, record);
+        }
       }
     };
-  };
+  }
 
   function loadAndPatch_Clothes(patchFile, settings, helpers, locals){
     return {
@@ -436,15 +435,14 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           && !keywords.includes(`ClothingRich`)
           && !keywords.includes(`ClothingPoor`)
           && !keywords.some(kw => JewelryKeywords[kw])
+          && xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold;
         }
       },
       patch: function (record) {
-        if (xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold){
-          Extensions.addLinkedArrayItem(record, `KWDA`, locals.skyrimKeywords.ClothingRich);
-        };
+        Extensions.addLinkedArrayItem(record, `KWDA`, locals.skyrimKeywords.ClothingRich);
       }
     };
-  };
+  }
 
   function records_AllARMO(patchFile, settings, helpers, locals){
     return {
@@ -454,7 +452,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           helpers.logMessage(`Getting clothes`);
           let clothes = helpers.loadRecords('ARMO')
           .filter(rec => {//Called for each loaded record. Return false to skip patching a record
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
             return !xelib.HasElement(rec,`TNAM`)
             && keywords.some(kw => ClothingKeywords[kw])
             && !keywords.some(kw => JewelryKeywords[kw])
@@ -469,18 +467,18 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           helpers.logMessage(`Getting armors`);
           let armors = helpers.loadRecords('ARMO')
           .filter(rec => {//Called for each loaded record. Return false to skip patching a record
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
             return !xelib.HasElement(rec,`TNAM`)
             && !keywords.some(kw => ClothingKeywords[kw])
             && !keywords.some(kw => JewelryKeywords[kw])
             && !(keywords.includes(`DaedricArtifact`)
               || xelib.GetHexFormID(rec) == 0xD2846)
-            && (getArmorMaterial(locals, rec) !== null)
+            && (getArmorMaterial(rec) !== null)
             && ReforgeAllowed(locals, rec);
           });
           helpers.logMessage(`Adding armor recipes`);
           armors.forEach(rec => {
-            let armorMaterial = getArmorMaterial(locals, rec);
+            let armorMaterial = getArmorMaterial(rec);
             addArmorMeltdownRecipe(patchFile, locals, rec, armorMaterial);
             let reforgedArmor = createReforgedArmor(patchFile, locals, rec, armorMaterial);
             createWarforgedArmor(patchFile, locals, rec, reforgedArmor, armorMaterial);
@@ -490,7 +488,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           helpers.logMessage(`Getting daedric armor artifacts`);
           let artifacts = helpers.loadRecords('ARMO')//add replicas for daedric artifacts
           .filter(rec => {
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
             return !keywords.includes(kw => kw === `ArmorPerMaForged`)
             && (keywords.includes(`DaedricArtifact`)
             || xelib.GetHexFormID(rec) == 0xD2846)
@@ -499,11 +497,11 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
           helpers.logMessage(`Adding daedric armor artifact duplicates`);
           //set up daedric duplication here
           artifacts.forEach(rec => {
-            let armorMaterial = getArmorMaterial(locals, rec);
+            let armorMaterial = getArmorMaterial(rec);
             doDaedricReplicas(patchFile, locals, rec, armorMaterial);
           });
           helpers.logMessage(`Done adding daedric armor artifact duplicates`);
-        };
+        }
 
         if (settings.UseThief){
           helpers.logMessage(`Getting craftable leather armors`);
@@ -527,16 +525,15 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             doQualityLeather(patchFile, locals, rec, armorMaterial, leatherArmorCOBJ);
           });
           helpers.logMessage(`Done adding quality leather armors`);
-        };
-
+        }
         return [];
       }
     };
-  };
+  }
+
   return {
     loadAndPatch_Armors,
     loadAndPatch_Clothes,
     records_AllARMO
-  }
+  };
 };
-//module.exports = {loadAndPatch_Armors, loadAndPatch_Clothes, records_AllARMO};
