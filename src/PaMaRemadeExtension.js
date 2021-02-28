@@ -32,14 +32,14 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     let newValue = xelib.AddElement(id, path);
     xelib.SetLinksTo(newValue, substring, val);
     return newValue;
-  };
+  }
 
   //analogous to addLinkdedElementValue but for array items like Keywords or Items, etc
   function addLinkedArrayItem(id, path, val, substring = ''){
     let newValue = xelib.AddArrayItem(id, path, '', '');
     xelib.SetLinksTo(newValue, substring, val);
     return newValue;
-  };
+  }
 
   //Mimics T3ndo's EDID naming system
   function namingMimic(rec) {
@@ -54,7 +54,11 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     //this is the most disgusting naming system 
     //I've ever witnessed, and it still doesn't match T3nd0's exactly
     //but his has more <NOTEXT>s than mine so this should be fine
-  };
+  }
+
+  function getFileIDs(filesToPatch){//from Victor, this returns handles to each of the files in filesToPatch, unused
+    return filesToPatch.map(filename => filename in locals.fileDict? locals.fileDict[filename]: locals.fileDict[filename] = xelib.FileByName(filename));
+  }
 
   function getObjectFromBinding(rec, bindingObject, targetObject){
     /*exmaple using armor patcher: this block finds the pseudo material based on matching text in the armor's name with 
@@ -107,7 +111,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.potionMultiplier = alchData.potion_multipliers.potion_multiplier;
     locals.ingrVarBindings = alchData.ingredient_variation_bindings.binding
     locals.ingrVariation = alchData.ingredient_variations.ingredient_variation;
-  };
+  }
 
   function initRefMaps(locals){
     let buildEDIDMap = (handle, sig) => xelib.BuildReferenceMap(handle, sig, xelib.EditorID);
@@ -118,7 +122,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.dragonbornMisc = buildEDIDMap(locals.dragonborn_Master, `MISC`);
     locals.skyrimPerks = buildEDIDMap(locals.Skyrim_Master, `PERK`);
     locals.permaPerks = buildEDIDMap(locals.PerkusMaximus_Master, `PERK`);
-  };
+  }
 
   function initArmorPatcher(locals) {
     //source: src\Patchus Maximus\src\enums\BaseMaterialsArmor 
@@ -129,9 +133,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
         meltdownCraftingStation: locals.skyrimKeywords.CraftingSmelter,
         temperIngot: locals.skyrimMisc.IngotCorundum,
       }*/
-    let materialDef = (perk, meltdownIngot, meltdownCraftingStation, temperIngot) => {
-      return {perk, meltdownIngot, meltdownCraftingStation, temperIngot};
-    };
+    let materialDef = (perk, meltdownIngot, meltdownCraftingStation, temperIngot) => ({perk, meltdownIngot, meltdownCraftingStation, temperIngot});
     locals.BaseMaterialsArmor = {
       "ADVANCED": materialDef(locals.skyrimPerks.AdvancedArmors, locals.skyrimMisc.IngotCorundum, locals.skyrimKeywords.CraftingSmelter, locals.skyrimMisc.IngotCorundum),
       "NONE": materialDef(null, null, null, null),
@@ -160,7 +162,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       "GOLD": materialDef(locals.permaPerks.xMASMIMaterialGoldAndSilver, locals.skyrimMisc.IngotGold, locals.skyrimKeywords.CraftingSmelter, locals.skyrimMisc.IngotGold),
       "WOOD": materialDef(null, locals.skyrimMisc.Coal01, locals.skyrimKeywords.CraftingSmelter, locals.skyrimMisc.Firewood01),
       "QualityLeather": materialDef(locals.permaPerks.xMASMIMaterialLeather, locals.permaMisc.xMAWAYQualityLeatherStrips, locals.skyrimKeywords.CraftingTanningRack, locals.permaMisc.xMAWAYQualityLeather)
-    }
+    };
 
     locals.armorTypes = {
       "HEAVY": {
@@ -198,13 +200,12 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       "LIGHT": locals.skyrimKeywords.ArmorHeavy,
       "HEAVY": locals.skyrimKeywords.ArmorLight
     };
-    locals.likelyLeatherRecipes = xelib.GetRecords(0, `COBJ`)
-    .map(rec => xelib.GetWinningOverride(rec))
+    locals.likelyLeatherRecipes = helpers.loadRecords(`COBJ`)
     .filter(recipe => xelib.GetLinksTo(recipe, `CNAM`) !== 0
       && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
         || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
     );
-  };
+  }
 
   function records_reportITPOs(patchFile, settings, helpers, locals) {
     return {
@@ -229,7 +230,8 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
         return []
       }
     };
-  };
+  }
+
   return {
     /*getNativeFormID,*/
     GetRecordKeywordEDIDs,
@@ -237,6 +239,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     addLinkedElementValue, 
     addLinkedArrayItem, 
     namingMimic, 
+    /*getFileIDs,*/
     getObjectFromBinding, 
     initJSONs, 
     initRefMaps, 

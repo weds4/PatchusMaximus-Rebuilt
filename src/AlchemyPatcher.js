@@ -161,7 +161,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         }
       },
       patch: function (rec) {
-        if (locals.UseThief) {
+        if (settings.UseThief) {
           /*let potionEffects = getRecordArray_Effects(rec);
           let needToDisableAMS = true
           if (isPotionAllowed(locals, rec) 
@@ -195,7 +195,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         }
       },
       patch: function (rec) {
-        if (locals.UseThief) {
+        if (settings.UseThief) {
           /*let ingrEffects = getRecordArray_Effects(rec);
           let needToDisableAMS = true
           if (isIngrAllowed(locals, rec) 
@@ -219,8 +219,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     return {
       records: (filesToPatch, helpers, settings, locals) => {
         helpers.logMessage(`Patching alchemy effects`);
-        let potions = xelib.GetRecords(filesToPatch, `ALCH`)
-        .map(rec => xelib.GetWinningOverride(rec))
+        let potions = helpers.loadRecords('ARMO')
         .filter(rec => xelib.HasElement(rec, `Effects`))
         potions.forEach(rec => {
           disableAssociatedMagicSchools(rec, patchFile);
@@ -228,8 +227,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         helpers.logMessage(`Done patching alchemy effects`);
 
         helpers.logMessage(`Patching ingredient effects`);
-        let ingredients = xelib.GetRecords(filesToPatch, `INGR`)
-        .map(rec => xelib.GetWinningOverride(rec))
+        let ingredients = helpers.loadRecords('ARMO')
         .filter(rec => xelib.HasElement(rec, `Effects`))
         ingredients.forEach(rec => {
           disableAssociatedMagicSchools(rec, patchFile);
