@@ -60,6 +60,16 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     return filesToPatch.map(filename => filename in locals.fileDict? locals.fileDict[filename]: locals.fileDict[filename] = xelib.FileByName(filename));
   }
 
+  function getRecordsToPatch(filesToPatch){
+    let files = getFileIDs(filesToPatch);
+    files.push(patchFile);
+    let recs = files.map(file => xelib.GetRecords(file, 'ARMO', true))
+      .reduce((a, b) => a.concat(b), []),
+      fids = recs.map(rec => xelib.GetHexFormID(rec));
+    recs = recs.filter((rec, index) => fids.lastIndexOf(xelib.GetHexFormID(rec)) === index);
+    return recs
+  }
+
   function getObjectFromBinding(rec, bindingObject, targetObject){
     /*exmaple using armor patcher: this block finds the pseudo material based on matching text in the armor's name with 
     pre-defined strings. These strings are called binding identifiers.*/
@@ -240,6 +250,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     addLinkedArrayItem, 
     namingMimic, 
     /*getFileIDs,*/
+    getRecordsToPatch,
     getObjectFromBinding, 
     initJSONs, 
     initRefMaps, 
