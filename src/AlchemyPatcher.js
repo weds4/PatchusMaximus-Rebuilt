@@ -39,51 +39,52 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   /*for some reason, the original patcher doesn't catch vigor and magicka recovery poisons 
     in my dev modlist (might be USSEP?), however this patcher catches them, and I feel 
     confident that this is intended behavior, so I'm calling this a bugfix*/
-  function makePotionWorkOverTime(rec){
-    let potionEffects = getRecordArray_Effects(rec); //the effects of the potion
+  function makePotionWorkOverTime(Record, disableAMSArray){
+    let potionEffects = getRecordArray_Effects(Record.handle); //the effects of the potion
     Object.keys(potionEffects).forEach(EDIDkey => {
       let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
-      let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
-      //xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
       let alchemyEffect = getAlchemyEffect(potionEffect.mgefHandle);//what perma thinks the effect is
-      let oldMag = potionEffect.magnitude;
-      let oldDur = potionEffect.duration;
-      let oldCost = potionEffect.baseCost;
-      let potionMultiplier = getPotionMultiplier(rec);
-      let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
-      if (potionMultiplier !== null && alchemyEffect !== null){
-        let newMag = alchemyEffect.baseMagnitude;
-        let newDur = Math.round(alchemyEffect.baseDuration);
-        if (stringToBoolean[alchemyEffect.allowPotionMultiplier]){
-          newMag *= potionMultiplier.multiplierMagnitude;
-          newDur = Math.round(alchemyEffect.baseDuration*potionMultiplier.multiplierDuration);
-        };
-        let newCost = alchemyEffect.baseCost;
-        if (oldMag !== newMag && newMag >= 0) {
-          xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, newMag.toString())
-        };
-        if (oldDur !== newDur && newDur >= 0) {
-          xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
-        };
-        if (oldCost !== newCost && newCost >= 0) {
-          xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Base Cost`, newCost.toString());
-          let description = xelib.GetValue(mgefOverride, `DNAM`);
-          if (!description.contains(`<dur>`)){
-            xelib.SetValue(mgefOverride, `DNAM`, `${description} [Duration: <dur> seconds]`);
-            xelib.SetFlag(mgefOverride, `Magic Effect Data\\DATA\\Flags`, `No Duration`, false);
-          };
-        }; 
-      };
+      if (alchemyEffect !== null) {
+        let oldMag = potionEffect.magnitude;
+        let oldDur = potionEffect.duration;
+        let oldCost = potionEffect.baseCost;
+        let potionMultiplier = getPotionMultiplier(Record.handle);
+        if (potionMultiplier !== null && alchemyEffect !== null){
+          let newMag = alchemyEffect.baseMagnitude;
+          let newDur = Math.round(alchemyEffect.baseDuration);
+          if (stringToBoolean[alchemyEffect.allowPotionMultiplier]){
+            newMag *= potionMultiplier.multiplierMagnitude;
+            newDur = Math.round(alchemyEffect.baseDuration*potionMultiplier.multiplierDuration);
+          }
+          let newCost = alchemyEffect.baseCost;
+          if (oldMag !== newMag && newMag >= 0) {
+            if (!Record.isCopy){copyRecord(Record);}
+            let recordHandleEffectArrayItem = xelib.GetArrayItem(Record.handle, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
+            xelib.SetValue(recordHandleEffectArrayItem, `EFIT\\Magnitude`, newMag.toString())
+          }
+          if (oldDur !== newDur && newDur >= 0) {
+            if (!Record.isCopy){copyRecord(Record);}
+            let recordHandleEffectArrayItem = xelib.GetArrayItem(Record.handle, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
+            xelib.SetValue(recordHandleEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
+          }
+          if (oldCost !== newCost && newCost >= 0) {
+            disableAMSArray.push({
+              handle: potionEffect.mgefHandle,
+              cost: newCost
+            });
+          }
+        }
+      }
     });
-  };
+  }
 
   function disableAssociatedMagicSchools(rec){
     let potionEffects = getRecordArray_Effects(rec); //the effects of the potion
     Object.keys(potionEffects).forEach(EDIDkey => {
-      let mgef =  potionEffects[EDIDkey].mgefHandle;
-      if (xelib.GetValue(mgef, `Magic Effect Data\\DATA\\Magic Skill`) !== `None`) {
-        let mgefOverride = xelib.CopyElement(mgef, patchFile);
-        xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);
+      let Record = getRecordObject(potionEffects[EDIDkey].mgefHandle);
+      if (xelib.GetValue(Record.handle, `Magic Effect Data\\DATA\\Magic Skill`) !== `None`) {
+        if (!Record.isCopy){copyRecord(Record);}
+        xelib.SetValue(Record.handle, `Magic Effect Data\\DATA\\Magic Skill`, `None`);
       };
     });
   };
@@ -102,13 +103,36 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return Extensions.getObjectFromBinding(rec, locals.ingrVarBindings, locals.ingrVariation);
   };
 
-  function makeIngrWorkOverTime(rec){
-    let ingrEffects = getRecordArray_Effects(rec); //the effects of the ingredient
+  function makeIngrWorkOverTime(Record){
+    let ingrEffects = getRecordArray_Effects(Record.handle); //the effects of the ingredient
     Object.keys(ingrEffects).forEach(EDIDkey => {
       let ingrEffect = ingrEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a ingredient
       //let mgefOverride = xelib.CopyElement(ingrEffect.mgefHandle, patchFile);
       //xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
       let alchemyEffect = getAlchemyEffect(ingrEffect.mgefHandle);
+      if (alchemyEffect !== null) {
+        let oldMag = ingrEffect.magnitude;
+        let oldDur = ingrEffect.duration;
+        let ingrMultiplier = getIngrMultiplier(Record.handle);
+        if (ingrMultiplier !== null && alchemyEffect !== null){
+          let newMag = alchemyEffect.baseMagnitude;
+          let newDur = Math.round(alchemyEffect.baseDuration);
+          if (stringToBoolean[alchemyEffect.allowPotionMultiplier]){
+            newMag *= ingrMultiplier.multiplierMagnitude;
+            newDur = Math.round(alchemyEffect.baseDuration*ingrMultiplier.multiplierDuration);
+          }
+          if (oldMag !== newMag && newMag >= 0) {
+            if (!Record.isCopy){copyRecord(Record);}
+            let recordHandleEffectArrayItem = xelib.GetArrayItem(Record.handle, `Effects`, `EFID`, xelib.LongName(ingrEffect.mgefHandle));
+            xelib.SetValue(recordHandleEffectArrayItem, `EFIT\\Magnitude`, newMag.toString())
+          }
+          if (oldDur !== newDur && newDur >= 0) {
+            if (!Record.isCopy){copyRecord(Record);}
+            let recordHandleEffectArrayItem = xelib.GetArrayItem(Record.handle, `Effects`, `EFID`, xelib.LongName(ingrEffect.mgefHandle));
+            xelib.SetValue(recordHandleEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
+          }
+        }
+      }/*
       let oldMag = ingrEffect.magnitude;
       let oldDur = ingrEffect.duration;
       let ingrMultiplier = getIngrMultiplier(rec);
@@ -126,7 +150,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         if (oldDur !== newDur && newDur >= 0) {
           xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
         }; 
-      };
+      };*/
     });
   };
 
@@ -134,117 +158,98 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
-  function loadAndPatch_Ingestible(patchFile, settings, helpers, locals){
-    return {
-      load: {
-        signature: `ALCH`,
-        filter: rec => {//Called for each loaded record. Return false to skip patching a record
-          let potionEffects = getRecordArray_Effects(rec)
-          return xelib.HasElement(rec, `Effects`)
-          && isPotionAllowed(rec) 
-          && Object.keys(potionEffects).every(effect => {
-            if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
-          });
-        }
-      },
-      patch: function (rec) {
-        if (settings.UseThief) {
-          let potionEffects = getRecordArray_Effects(rec);
-          let needToDisableAMS = true
-          if (isPotionAllowed(rec) 
-            && Object.keys(potionEffects).some(effect => {
-              if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
-            })
-          ){
-            makePotionWorkOverTime(rec);
-            needToDisableAMS = false
-          };
-          if (needToDisableAMS) {//this catches any mgefs that didn't get done in makePotionWorkOverTime
-            //disableAssociatedMagicSchools(rec);
-          };
-          makePotionWorkOverTime(rec);
-        };
-      }
-    };
-  };
+  const records_Alchemy = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      helpers.logMessage(`Patching alchemical magic effects`);
+      helpers.loadRecords('ALCH')
+      .filter(rec => xelib.HasElement(rec, `Effects`))
+      .forEach(rec => {
+        disableAssociatedMagicSchools(rec);
+      });
 
-  function loadAndPatch_Ingredients(patchFile, settings, helpers, locals){
-    return {
-      load: {
-        signature: `INGR`,
-        filter: rec => {//Called for each loaded record. Return false to skip patching a record
-          let ingrEffects = getRecordArray_Effects(rec)
-          return xelib.HasElement(rec, `Effects`)
-          && isIngrAllowed(rec) 
-          && Object.keys(ingrEffects).some(effect => {
-              if (getAlchemyEffect(ingrEffects[effect].mgefHandle)!== null){return true};
-          })
-        }
-      },
-      patch: function (rec) {
-        if (settings.UseThief) {
-          /*let ingrEffects = getRecordArray_Effects(rec);
-          let needToDisableAMS = true
-          if (isIngrAllowed(rec) 
-            && Object.keys(ingrEffects).some(effect => {
-              if (getAlchemyEffect(ingrEffects[effect].mgefHandle)!== null){return true};
-            })
-          ){
-            makeIngrWorkOverTime(rec);
-            needToDisableAMS = false
-          };
-          if (needToDisableAMS) {//this catches any mgefs that didn't get done in makeIngrWorkOverTime
-            //disableAssociatedMagicSchools(rec);
-          };*/
-          makeIngrWorkOverTime(rec);
-        };
-      }
-    };
+      helpers.loadRecords('ARMO')
+      .filter(rec => xelib.HasElement(rec, `Effects`))
+      .forEach(rec => {
+        disableAssociatedMagicSchools(rec);
+      });
+      helpers.logMessage(`Done patching alchemical magic effects`);
+      return [];
+    }
   };
 
   const records_Ingestible = {
     records: (filesToPatch, helpers, settings, locals) => {
-      helpers.logMessage(`Patching alchemy ingestibles`);
-      let ingests = helpers.loadRecords('ALCH')
-      .filter(rec => {
-        let potionEffects = getRecordArray_Effects(rec)
-        return xelib.HasElement(rec, `Effects`)
-        && isPotionAllowed(rec) 
-        && Object.keys(potionEffects).every(effect => {
-          if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
+      if (settings.UseThief) {
+        helpers.logMessage(`Loading ingestibles`);
+        let disableAMSArray = [];
+        let ingests = helpers.loadRecords('ALCH')
+        .filter(rec => {
+          let potionEffects = getRecordArray_Effects(rec);
+          return xelib.HasElement(rec, `Effects`)
+          && isPotionAllowed(rec) 
+          && !Object.keys(potionEffects).every(effect => {// skip if every alch effect is undetermined
+            if (getAlchemyEffect(potionEffects[effect].mgefHandle) === null){return true;}
+          });
         });
-      });
-      ingests.forEach(rec => {
-
-      });
-    }
-  }
-  function records_Alchemy(patchFile, settings, helpers, locals){
-    return {
-      records: (filesToPatch, helpers, settings, locals) => {
-        helpers.logMessage(`Patching alchemy effects`);
-        let potions = helpers.loadRecords('ALCH')
-        .filter(rec => xelib.HasElement(rec, `Effects`))
-        potions.forEach(rec => {
-          disableAssociatedMagicSchools(rec);
+        helpers.logMessage(`Patching ingestibles`);
+        ingests.forEach(rec => {
+          let Record = getRecordObject(rec);
+          makePotionWorkOverTime(Record, disableAMSArray)
         });
-        helpers.logMessage(`Done patching alchemy effects`);
-
-        helpers.logMessage(`Patching ingredient effects`);
-        let ingredients = helpers.loadRecords('ARMO')
-        .filter(rec => xelib.HasElement(rec, `Effects`))
-        ingredients.forEach(rec => {
-          disableAssociatedMagicSchools(rec);
+        disableAMSArray.forEach(effect => {
+          let Record = getRecordObject(effect.handle);
+          if (!Record.isCopy){copyRecord(Record);}
+          xelib.SetValue(Record.handle, `Magic Effect Data\\DATA\\Base Cost`, effect.cost.toString());
+          let description = xelib.GetValue(Record.handle, `DNAM`);
+          if (!description.contains(`<dur>`)){
+            xelib.SetValue(Record.handle, `DNAM`, `${description} [Duration: <dur> seconds]`);
+            xelib.SetFlag(Record.handle, `Magic Effect Data\\DATA\\Flags`, `No Duration`, false);
+          }
         });
-        helpers.logMessage(`Done patching ingredient effects`);
-        return [];
+        helpers.logMessage(`Done patching ingestibles`);
       }
-    };
+      return [];
+    }
   };
+
+  const records_Ingredients = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      if (settings.UseThief) {
+        helpers.logMessage(`Loading Ingredients`);
+        let disableAMSArray = [];
+        let ingredients = helpers.loadRecords('INGR')
+        .filter(rec => {
+          let ingrEffects = getRecordArray_Effects(rec);
+          return xelib.HasElement(rec, `Effects`)
+          && isIngrAllowed(rec) 
+          && !Object.keys(ingrEffects).every(effect => {// skip if every alch effect is undetermined
+            if (getAlchemyEffect(ingrEffects[effect].mgefHandle) === null){return true;}
+          });
+        });
+        helpers.logMessage(`Patching Ingredients`);
+        ingredients.forEach(rec => {
+          let Record = getRecordObject(rec);
+          makeIngrWorkOverTime(Record);
+        });
+        disableAMSArray.forEach(effect => {
+          let Record = getRecordObject(effect.handle);
+          if (!Record.isCopy){copyRecord(Record);}
+          xelib.SetValue(Record.handle, `Magic Effect Data\\DATA\\Base Cost`, effect.cost.toString());
+          let description = xelib.GetValue(Record.handle, `DNAM`);
+          if (!description.contains(`<dur>`)){
+            xelib.SetValue(Record.handle, `DNAM`, `${description} [Duration: <dur> seconds]`);
+            xelib.SetFlag(Record.handle, `Magic Effect Data\\DATA\\Flags`, `No Duration`, false);
+          };
+        });
+        helpers.logMessage(`Done patching Ingredients`);
+      }
+      return [];
+    }
+  };
+
   return {
-    loadAndPatch_Ingestible,
-		loadAndPatch_Ingredients,
+		records_Alchemy,
     records_Ingestible,
-		records_Alchemy
+    records_Ingredients
   };
 }
