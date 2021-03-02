@@ -107,8 +107,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     let ingrEffects = getRecordArray_Effects(Record.handle); //the effects of the ingredient
     Object.keys(ingrEffects).forEach(EDIDkey => {
       let ingrEffect = ingrEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a ingredient
-      //let mgefOverride = xelib.CopyElement(ingrEffect.mgefHandle, patchFile);
-      //xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
       let alchemyEffect = getAlchemyEffect(ingrEffect.mgefHandle);
       if (alchemyEffect !== null) {
         let oldMag = ingrEffect.magnitude;
@@ -132,25 +130,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
             xelib.SetValue(recordHandleEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
           }
         }
-      }/*
-      let oldMag = ingrEffect.magnitude;
-      let oldDur = ingrEffect.duration;
-      let ingrMultiplier = getIngrMultiplier(rec);
-      let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(ingrEffect.mgefHandle));
-      if (ingrMultiplier !== null && alchemyEffect !== null){
-        let newMag = alchemyEffect.baseMagnitude;
-        let newDur = Math.round(alchemyEffect.baseDuration);
-        if (stringToBoolean[alchemyEffect.allowIngredientVariation]){
-          newMag *= ingrMultiplier.multiplierMagnitude;
-          newDur = Math.round(alchemyEffect.baseDuration*ingrMultiplier.multiplierDuration);
-        };
-        if (oldMag !== newMag && newMag >= 0) {
-          xelib.SetValue(recEffectArrayItem, `EFIT\\Magnitude`, newMag.toString())
-        };
-        if (oldDur !== newDur && newDur >= 0) {
-          xelib.SetValue(recEffectArrayItem, `EFIT\\Duration`,  newDur.toString());
-        }; 
-      };*/
+      }
     });
   };
 
