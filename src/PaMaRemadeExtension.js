@@ -114,6 +114,22 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     return target;
   }
 
+  //---------------------Custom Record Copying Functions----------------------------
+  const RecordObjectFunctions = {
+    getRecordObject: function(rec) {
+      return {
+        isCopy: (xelib.Name(xelib.GetElementFile(rec)) === settings.patchFileName), 
+        handle: rec
+      };
+    },// use with let Record = getRecordObject(rec);
+
+    copyRecord: recordObject => {//this edits recordObject up through all scopes up to and including the scope in which it was delcared
+      let rec = recordObject.handle
+      recordObject.isCopy = true;
+      recordObject.handle = xelib.CopyElement(rec, patchFile);
+    }//use with if (!Record.isCopy){copyRecord(Record);}
+  };
+
   //---------------------Initialization----------------------------
   //this solution breaks language support. Need to load Languages.xml somehow
   function initLocals() {//everything on locals is created here
@@ -259,6 +275,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     addLinkedElementValue, 
     addLinkedArrayItem, 
     namingMimic, 
+    RecordObjectFunctions, 
     /*getFileIDs,*/
     getRecordsToPatch,
     getObjectFromBinding, 

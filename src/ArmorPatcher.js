@@ -1,6 +1,7 @@
 module.exports = function({xelib, Extensions, patchFile, settings, helpers, locals}){
   //Useful constants
   const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants;
+  const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions;
   //configurable value (need to make settings for it)
   let expensiveClothingThreshold = 50;
 
@@ -47,14 +48,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       armorSlotMultiplier[kw] = mult;
     });
   }
-/*
-  let exclusionMap = {
-    NAME: 'Name',
-    EDID: 'EditorID',
-    CONTAINS: 'contains',
-    STARTSWITH: 'startsWith',
-    EQUALS: 'EQUALS'
-  };*/
 
   let armorMeltdownOutput = {
     'ArmorCuirass': "meltdownOutputBody",
@@ -69,7 +62,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return Extensions.getObjectFromBinding(rec, locals.armorBindings, locals.armorMaterial);
   }
 
-  function getRecordObject(rec){
+  /*function getRecordObject(rec){
     return {
       isCopy: (xelib.Name(xelib.GetElementFile(rec)) === settings.patchFileName), 
       handle: rec
@@ -80,7 +73,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     let rec = recordObject.handle
     recordObject.isCopy = true;
     recordObject.handle = xelib.CopyElement(rec, patchFile);
-  }//use with if (!Record.isCopy){copyRecord(Record);}
+  }//use with if (!Record.isCopy){copyRecord(Record);}*/
 
   function doArmorKeywords(Record, armorMaterial){
     /*determine if this armor material is light or heavy, 
@@ -423,31 +416,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
-  /*function loadAndPatch_Armors() {
-    return {
-      load: {//armors not clothes
-        signature: `ARMO`,
-        filter: record => {//Called for each loaded record. Return false to skip patching a record
-          let keywords = Extensions.GetRecordKeywordEDIDs(record)
-          return !xelib.HasElement(record,`TNAM`)
-          && !keywords.some(kw => ClothingKeywords[kw])
-          && !keywords.some(kw => JewelryKeywords[kw])
-          && (getArmorMaterial(record) !== null);
-        }
-      },
-      patch: function (record) {
-        let armorMaterial = getArmorMaterial(record);
-        doArmorKeywords(record, armorMaterial);
-        if (settings.UseWarrior){
-          setArmorValue(record, armorMaterial);
-          applyArmorModfiers(record);
-        }
-        if (settings.UseThief){
-          addMasqueradeKeywords(record);
-        }
-      }
-    };
-  }*/
 
   function loadAndPatch_Clothes(){
     return {

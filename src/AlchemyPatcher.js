@@ -1,6 +1,7 @@
 module.exports = function({xelib, Extensions, patchFile, settings, helpers, locals}){
   //Useful constants
   const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants;
+  const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions;1
 
   //-----------------Alchemy Patcher Supporting Functions------------------------------
   function isPotionAllowed(locals, rec){
