@@ -62,19 +62,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return Extensions.getObjectFromBinding(rec, locals.armorBindings, locals.armorMaterial);
   }
 
-  /*function getRecordObject(rec){
-    return {
-      isCopy: (xelib.Name(xelib.GetElementFile(rec)) === settings.patchFileName), 
-      handle: rec
-    };
-  }// use with let Record = getRecordObject(rec);
-
-  function copyRecord(recordObject){//this edits recordObject up through all scopes up to and including the scope in which it was delcared
-    let rec = recordObject.handle
-    recordObject.isCopy = true;
-    recordObject.handle = xelib.CopyElement(rec, patchFile);
-  }//use with if (!Record.isCopy){copyRecord(Record);}*/
-
   function doArmorKeywords(Record, armorMaterial){
     /*determine if this armor material is light or heavy, 
     and assign the appropriate keywords */
