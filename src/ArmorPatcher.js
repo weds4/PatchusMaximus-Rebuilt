@@ -1,7 +1,6 @@
-module.exports = function({xelib, Extensions, constants, patchFile, settings, helpers, locals}){
+module.exports = function({xelib, Extensions, patchFile, settings, helpers, locals}){
   //Useful constants
-  let equalTo = `10000000`;
-  let greaterThanEqualTo = `11000000`;
+  const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants;
   //configurable value (need to make settings for it)
   let expensiveClothingThreshold = 50;
 
@@ -41,13 +40,21 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     'ArmorShield': "armorFactorShield"
   };
 
+  function loadArmorSettings(){
+    Object.keys(armorSlotMultiplier).forEach(kw => {//from victor
+      let key = armorSlotMultiplier[kw];
+      let mult = locals.armorJson["ns2:armor"].armor_settings[key];
+      armorSlotMultiplier[kw] = mult;
+    });
+  }
+/*
   let exclusionMap = {
     NAME: 'Name',
     EDID: 'EditorID',
     CONTAINS: 'contains',
     STARTSWITH: 'startsWith',
     EQUALS: 'EQUALS'
-  };
+  };*/
 
   let armorMeltdownOutput = {
     'ArmorCuirass': "meltdownOutputBody",
@@ -62,43 +69,58 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     return Extensions.getObjectFromBinding(rec, locals.armorBindings, locals.armorMaterial);
   }
 
-  function doArmorKeywords(rec, armorMaterial){
+  function getRecordObject(rec){
+    return {
+      isCopy: (xelib.Name(xelib.GetElementFile(rec)) === settings.patchFileName), 
+      handle: rec
+    };
+  }// use with let Record = getRecordObject(rec);
+
+  function copyRecord(recordObject){//this edits recordObject up through all scopes up to and including the scope in which it was delcared
+    let rec = recordObject.handle
+    recordObject.isCopy = true;
+    recordObject.handle = xelib.CopyElement(rec, patchFile);
+  }//use with if (!Record.isCopy){copyRecord(Record);}
+
+  function doArmorKeywords(Record, armorMaterial){
     /*determine if this armor material is light or heavy, 
     and assign the appropriate keywords */
-    let keywords = Extensions.GetRecordKeywordEDIDs(rec);
-    let thisArmorType = locals.armorTypes[armorMaterial.type]
+    let keywords = Extensions.GetRecordKeywordEDIDs(Record.handle);
+    let thisArmorType = locals.armorTypes[armorMaterial.type];
     if (keywords.includes(xelib.EditorID(locals.removeKeywords[armorMaterial.type]))){
-      xelib.RemoveKeyword(rec, xelib.GetHexFormID(locals.removeKeywords[armorMaterial.type]));
+      if (!Record.isCopy){copyRecord(Record);}
+      xelib.RemoveKeyword(Record.handle, xelib.GetHexFormID(locals.removeKeywords[armorMaterial.type]));
     }
     if (thisArmorType){
       if (!keywords.includes(xelib.EditorID(thisArmorType.keyword))){
         //if it doesnt have the keyword, add it
-        Extensions.addLinkedArrayItem(rec, 'KWDA', thisArmorType.keyword);
+        if (!Record.isCopy){copyRecord(Record);}
+        Extensions.addLinkedArrayItem(Record.handle, 'KWDA', thisArmorType.keyword);
       }
-      if (xelib.HasElement(rec, `[BOD2|BODT]\\Armor Type`)) {
-        if(!(xelib.GetValue(rec,`[BOD2|BODT]\\Armor Type`) === thisArmorType.ArmorType)){
-          xelib.SetValue(rec,`[BOD2|BODT]\\Armor Type`, thisArmorType.ArmorType)
+      if (xelib.HasElement(Record.handle, `[BOD2|BODT]\\Armor Type`)) {
+        if(!(xelib.GetValue(Record.handle,`[BOD2|BODT]\\Armor Type`) === thisArmorType.ArmorType)){
+          if (!Record.isCopy){copyRecord(Record);}
+          xelib.SetValue(Record.handle,`[BOD2|BODT]\\Armor Type`, thisArmorType.ArmorType);
         }
       }
       keywords.forEach(kw => {
-        if (armorSlotKeywords[kw]) {Extensions.addLinkedArrayItem(rec, `KWDA`, thisArmorType[kw]);}
-      }); 
+        if (armorSlotKeywords[kw]) {
+          if (!Record.isCopy){copyRecord(Record);}
+          Extensions.addLinkedArrayItem(Record.handle, `KWDA`, thisArmorType[kw]);
+        }
+      });
     }
   }
 
-  function setArmorValue(rec, armorMaterial){
-    let originalAR = xelib.GetValue(rec, `DNAM`);
-    let armorSlotMult = 0;
-    Extensions.GetRecordKeywordEDIDs(rec).some(kw => {
-      let test = armorSlotMultiplier[kw]
-      if (test) {
-        armorSlotMult = locals.armorJson["ns2:armor"].armor_settings[test]
-        return true
-      }
-    });
+  function setArmorValue(Record, armorMaterial){
+    let originalAR = xelib.GetValue(Record.handle, `DNAM`);
+    let armorSlot = Extensions.GetRecordKeywordEDIDs(Record.handle)
+    .find(kw => kw in armorSlotMultiplier);
+		let armorSlotMult = armorSlot? armorSlotMultiplier[armorSlot]: 0;
     let newAR = armorMaterial.armorBase * armorSlotMult;
     if (newAR > originalAR && newAR > 0) {
-      xelib.SetValue(rec, `DNAM`, newAR.toString());
+      if (!Record.isCopy){copyRecord(Record);}
+      xelib.SetValue(Record.handle, `DNAM`, newAR.toString());
     }
   }
 
@@ -106,20 +128,21 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     return Extensions.getObjectFromBinding(rec, locals.armorModBindings, locals.armorModifer);
   }
 
-  function applyArmorModfiers(rec){
-    let armorMod = getArmorModifier(rec);
+  function applyArmorModfiers(Record){
+    let armorMod = getArmorModifier(Record.handle);
     if (armorMod != null){
-      let current = xelib.GetValue(rec, `DATA\\Weight`);
-      xelib.SetValue(rec, `DATA\\Weight`, (current*armorMod.factorWeight).toString());
-      current = xelib.GetValue(rec, `DATA\\Value`);
-      xelib.SetValue(rec, `DATA\\Value`, Math.round(current*armorMod.factorValue).toString());
-      current = xelib.GetValue(rec, `DNAM`);
-      xelib.SetValue(rec, `DNAM`, (current*armorMod.factorArmor).toString());
+      if (!Record.isCopy){copyRecord(Record);}
+      let current = xelib.GetValue(Record.handle, `DATA\\Weight`);
+      xelib.SetValue(Record.handle, `DATA\\Weight`, (current*armorMod.factorWeight).toString());
+      current = xelib.GetValue(Record.handle, `DATA\\Value`);
+      xelib.SetValue(Record.handle, `DATA\\Value`, Math.round(current*armorMod.factorValue).toString());
+      current = xelib.GetValue(Record.handle, `DNAM`);
+      xelib.SetValue(Record.handle, `DNAM`, (current*armorMod.factorArmor).toString());
     }
   }
 
-  function addMasqueradeKeywords(rec){
-    let armorName = xelib.GetValue(rec,`FULL`);
+  function addMasqueradeKeywords(Record){
+    let armorName = xelib.GetValue(Record.handle,`FULL`);
     let armorMasqueradeBindingObject = locals.armorJson[`ns2:armor`].armor_masquerade_bindings.armor_masquerade_binding;
     let keywordList = [];
     armorMasqueradeBindingObject.forEach(binding =>  {
@@ -129,7 +152,10 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
     });
     if (keywordList) {
       keywordList.forEach(kw => {
-        if (kw) {Extensions.addLinkedArrayItem(rec, `KWDA`, locals.masqueradeFactions[kw])};
+        if (kw) {
+          if (!Record.isCopy){copyRecord(Record);}
+          Extensions.addLinkedArrayItem(Record.handle, `KWDA`, locals.masqueradeFactions[kw])
+        };
       });
     }
   }
@@ -397,7 +423,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
   /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
-  function loadAndPatch_Armors() {
+  /*function loadAndPatch_Armors() {
     return {
       load: {//armors not clothes
         signature: `ARMO`,
@@ -421,7 +447,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
         }
       }
     };
-  }
+  }*/
 
   function loadAndPatch_Clothes(){
     return {
@@ -443,9 +469,35 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
       }
     };
   }
+  const records_Armors = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      let armors = helpers.loadRecords(`ARMO`)
+      .filter(rec => {
+        let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+        return !xelib.HasElement(rec,`TNAM`)
+        && !keywords.some(kw => ClothingKeywords[kw])
+        && !keywords.some(kw => JewelryKeywords[kw])
+        && (getArmorMaterial(rec) !== null);
+      });
+      armors.forEach(rec => {
+        let Record = getRecordObject(rec);//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
+        if (settings.UseThief){addMasqueradeKeywords(Record);}
+        let armorMaterial = getArmorMaterial(Record.handle);
+        doArmorKeywords(Record, armorMaterial);
+        if (settings.UseWarrior){
+          setArmorValue(Record, armorMaterial);
+          applyArmorModfiers(Record.handle);
+          if (ReforgeAllowed(Record.handle)) {
+            addArmorMeltdownRecipe(Record.handle, armorMaterial);
+            let reforgedArmor = createReforgedArmor(Record.handle, armorMaterial);
+            createWarforgedArmor(Record.handle, reforgedArmor, armorMaterial);
+          }
+        }
+      });
+    }
+  }
 
   const records_AllARMO = {
-    
       records: (filesToPatch, helpers, settings, locals) => {
         //patch things that need to be used, but not themselves changed in the patch
         if (settings.UseWarrior) {
@@ -463,7 +515,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             addClothingMeltdownRecipe(rec);
           });
           helpers.logMessage(`Done adding clothing meltdown recipes`);
-
+/*
           helpers.logMessage(`Getting armors`);
           let armors = helpers.loadRecords('ARMO')
           .filter(rec => {//Called for each loaded record. Return false to skip patching a record
@@ -484,7 +536,7 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
             createWarforgedArmor(rec, reforgedArmor, armorMaterial);
           });
           helpers.logMessage(`Done adding armor recipes`);
-
+*/
           helpers.logMessage(`Getting daedric armor artifacts`);
           let artifacts = helpers.loadRecords('ARMO')//add replicas for daedric artifacts
           .filter(rec => {
@@ -531,8 +583,10 @@ module.exports = function({xelib, Extensions, constants, patchFile, settings, he
   }
 
   return {
-    loadAndPatch_Armors,
+    loadArmorSettings,
+    /*loadAndPatch_Armors,*/
     loadAndPatch_Clothes,
+    records_Armors,
     records_AllARMO
   };
 };

@@ -1,20 +1,6 @@
-module.exports = function({xelib, Extensions, constants, patchFile, settings, helpers, locals}){
+module.exports = function({xelib, Extensions, patchFile, settings, helpers, locals}){
   //Useful constants
-  let equalTo = `10000000`;
-  let greaterThanEqualTo = `11000000`;
-
-  //-----------------Alchemy Patcher Dictionary/Lexicon Objects------------------------
-  let exclusionMap = {
-    NAME: 'Name',
-    EDID: 'EditorID',
-    CONTAINS: 'contains',
-    STARTSWITH: 'startsWith',
-    EQUALS: 'EQUALS'
-  };
-  let stringToBoolean = {
-    "true": true,
-    "false": false
-  };
+  const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants;
 
   //-----------------Alchemy Patcher Supporting Functions------------------------------
   function isPotionAllowed(locals, rec){

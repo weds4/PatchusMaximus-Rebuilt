@@ -42,14 +42,13 @@ registerPatcher({
         };
         if (settings.UseThief) {locals.PerkusMaximus_Thief = xelib.FileByName(`PerkusMaximus_Thief.esp`)};
         if (settings.UseMage) {locals.PerkusMaximus_Mage = xelib.FileByName(`PerkusMaximus_Mage.esp`)};
-        Extensions.initJSONs(fh, locals, patcherPath);
-        Extensions.initRefMaps(locals);
-        Extensions.initArmorPatcher(locals);
-        locals.fileDict = {};
+        Extensions.initLocals(); //everything on locals is created here
+        ArmorPatcher.loadArmorSettings();
       },
       process: [
-        ArmorPatcher.loadAndPatch_Armors(),
+        /*ArmorPatcher.loadAndPatch_Armors(),*/
         ArmorPatcher.loadAndPatch_Clothes(),
+        ArmorPatcher.records_Armors,
         ArmorPatcher.records_AllARMO,
         AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
         AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),

@@ -1,4 +1,19 @@
 module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers, locals}){
+  const constants = {
+		equalTo: `10000000`,
+		greaterThanEqualTo: `11000000`,
+    exclusionMap: {
+      NAME: 'Name',
+      EDID: 'EditorID',
+      CONTAINS: 'contains',
+      STARTSWITH: 'startsWith',
+      EQUALS: 'EQUALS'
+    },
+    stringToBoolean: {
+      "true": true,
+      "false": false
+    }
+	};
   //---------------------Useful Functions----------------------------
   //ironically unused
   function getNativeFormID(pluginFileHandle, localFormId) {
@@ -101,7 +116,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
 
   //---------------------Initialization----------------------------
   //this solution breaks language support. Need to load Languages.xml somehow
-  function initJSONs (fh, locals, patcherPath) {
+  function initLocals() {//everything on locals is created here
     locals.armorJson = fh.loadJsonFile(`${patcherPath}/PMxml/Armor.json`, 0);
     locals.alchemyJson = fh.loadJsonFile(`${patcherPath}/PMxml/Alchemy.json`, 0);
     locals.ammunitionJson = fh.loadJsonFile(`${patcherPath}/PMxml/Ammunition.json`, 0);
@@ -121,9 +136,6 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.potionMultiplier = alchData.potion_multipliers.potion_multiplier;
     locals.ingrVarBindings = alchData.ingredient_variation_bindings.binding
     locals.ingrVariation = alchData.ingredient_variations.ingredient_variation;
-  }
-
-  function initRefMaps(locals){
     let buildEDIDMap = (handle, sig) => xelib.BuildReferenceMap(handle, sig, xelib.EditorID);
     locals.skyrimKeywords = buildEDIDMap(locals.Skyrim_Master, `KYWD`);
     locals.permaKeywords = buildEDIDMap(locals.PerkusMaximus_Master, `KYWD`);
@@ -132,9 +144,6 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.dragonbornMisc = buildEDIDMap(locals.dragonborn_Master, `MISC`);
     locals.skyrimPerks = buildEDIDMap(locals.Skyrim_Master, `PERK`);
     locals.permaPerks = buildEDIDMap(locals.PerkusMaximus_Master, `PERK`);
-  }
-
-  function initArmorPatcher(locals) {
     //source: src\Patchus Maximus\src\enums\BaseMaterialsArmor 
     /*Example object made with materialDef
       "ADVANCED": {
@@ -173,7 +182,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       "WOOD": materialDef(null, locals.skyrimMisc.Coal01, locals.skyrimKeywords.CraftingSmelter, locals.skyrimMisc.Firewood01),
       "QualityLeather": materialDef(locals.permaPerks.xMASMIMaterialLeather, locals.permaMisc.xMAWAYQualityLeatherStrips, locals.skyrimKeywords.CraftingTanningRack, locals.permaMisc.xMAWAYQualityLeather)
     };
-
+  
     locals.armorTypes = {
       "HEAVY": {
         keyword: locals.skyrimKeywords.ArmorHeavy,
@@ -215,7 +224,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
         || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
     );
-  }
+  };
 
   function records_reportITPOs(patchFile, settings, helpers, locals) {
     return {
@@ -243,6 +252,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
   }
 
   return {
+    constants,
     /*getNativeFormID,*/
     GetRecordKeywordEDIDs,
     addLinkedCondition,
@@ -252,9 +262,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     /*getFileIDs,*/
     getRecordsToPatch,
     getObjectFromBinding, 
-    initJSONs, 
-    initRefMaps, 
-    initArmorPatcher, 
+    initLocals,
     records_reportITPOs
   };
 }
