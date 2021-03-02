@@ -462,43 +462,47 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         });
         helpers.logMessage(`Done adding expensive clothing keywords`);
       }
+      return [];
     }
   };
   const records_Armors = {//make armor changes for AR, value, weight; and make recipes and x-forged varients
     records: (filesToPatch, helpers, settings, locals) => {
-      helpers.logMessage(`Getting armors`);
-      let armors = helpers.loadRecords(`ARMO`)
-      .filter(rec => {
-        let keywords = Extensions.GetRecordKeywordEDIDs(rec)
-        return !xelib.HasElement(rec,`TNAM`)
-        && !keywords.some(kw => ClothingKeywords[kw])
-        && !keywords.some(kw => JewelryKeywords[kw])
-        && (getArmorMaterial(rec) !== null);
-      });
-      helpers.logMessage(`Patching armors`);
-      armors.forEach(rec => {
-        let Record = getRecordObject(rec);//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
-        if (settings.UseThief){addMasqueradeKeywords(Record);}
-        let armorMaterial = getArmorMaterial(Record.handle);
-        doArmorKeywords(Record, armorMaterial);
-        if (settings.UseWarrior){
-          setArmorValue(Record, armorMaterial);
-          applyArmorModfiers(Record.handle);
-          if (!xelib.GetRecordFlag(rec,`Non-Playable`) && ReforgeAllowed(Record.handle)) {
-            addArmorMeltdownRecipe(Record.handle, armorMaterial);
-            let reforgedArmor = createReforgedArmor(Record.handle, armorMaterial);
-            createWarforgedArmor(Record.handle, reforgedArmor, armorMaterial);
+      if (settings.UseWarrior) {
+        helpers.logMessage(`Loading armors`);
+        let armors = helpers.loadRecords(`ARMO`)
+        .filter(rec => {
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+          return !xelib.HasElement(rec,`TNAM`)
+          && !keywords.some(kw => ClothingKeywords[kw])
+          && !keywords.some(kw => JewelryKeywords[kw])
+          && (getArmorMaterial(rec) !== null);
+        });
+        helpers.logMessage(`Patching armors`);
+        armors.forEach(rec => {
+          let Record = getRecordObject(rec);//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
+          if (settings.UseThief){addMasqueradeKeywords(Record);}
+          let armorMaterial = getArmorMaterial(Record.handle);
+          doArmorKeywords(Record, armorMaterial);
+          if (settings.UseWarrior){
+            setArmorValue(Record, armorMaterial);
+            applyArmorModfiers(Record.handle);
+            if (!xelib.GetRecordFlag(rec,`Non-Playable`) && ReforgeAllowed(Record.handle)) {
+              addArmorMeltdownRecipe(Record.handle, armorMaterial);
+              let reforgedArmor = createReforgedArmor(Record.handle, armorMaterial);
+              createWarforgedArmor(Record.handle, reforgedArmor, armorMaterial);
+            }
           }
-        }
-      });
-      helpers.logMessage(`Done patching armors`);
+        });
+        helpers.logMessage(`Done patching armors`);
+      }
+      return [];
     }
   };
 
   const records_DaedricArmors = {//add replicas for daedric artifacts
     records: (filesToPatch, helpers, settings, locals) => {
       if (settings.UseWarrior){
-        helpers.logMessage(`Getting daedric armor artifacts`);
+        helpers.logMessage(`Loading daedric armor artifacts`);
         let artifacts = helpers.loadRecords('ARMO')
         .filter(rec => {
           let keywords = Extensions.GetRecordKeywordEDIDs(rec);
@@ -515,13 +519,14 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         });
         helpers.logMessage(`Done adding daedric armor artifact duplicates`);
       }
+      return [];
     }
   };
 
   const records_QualityLeather = {
     records: (filesToPatch, helpers, settings, locals) => {
       if (settings.UseThief){
-        helpers.logMessage(`Getting craftable leather armors`);
+        helpers.logMessage(`Loading craftable leather armors`);
         let leatherArmorCOBJ = {craft: [], temper: []};
         let leatherArmors = helpers.loadRecords('ARMO')
         .filter(rec => {
@@ -543,6 +548,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         });
         helpers.logMessage(`Done adding quality leather armors`);
       }
+      return [];
     }
   }
 
