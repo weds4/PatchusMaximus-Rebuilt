@@ -264,7 +264,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
           };
         });
 
-        return []
+        return [];
       }
     };
   }
