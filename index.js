@@ -1,6 +1,6 @@
-let reqExtensions = require(`${patcherPath}/src/PaMaRemadeExtension.js`);
-let reqArmorPatcher = require(`${patcherPath}/src/ArmorPatcher.js`);
-let reqAlchemyPatcher = require(`${patcherPath}/src/AlchemyPatcher.js`);
+let extensionsFactory = require(`${patcherPath}/src/PaMaRemadeExtension.js`);
+let armorPatcherFactory = require(`${patcherPath}/src/ArmorPatcher.js`);
+let alchemyPatcherFactory = require(`${patcherPath}/src/AlchemyPatcher.js`);
 
 
 //User can choose these (need settings.html, I guess?)
@@ -19,9 +19,9 @@ registerPatcher({
   requiredFiles: [`PerkusMaximus_Master.esp`],
   execute: (patchFile, helpers, settings, locals) => {
     const 
-      Extensions = reqExtensions({xelib, fh, patcherPath, patchFile, settings, helpers, locals}),
-      ArmorPatcher = reqArmorPatcher({xelib, Extensions, patchFile, settings, helpers, locals}),
-      AlchemyPatcher = reqAlchemyPatcher({xelib, Extensions, patchFile, settings, helpers, locals});
+      Extensions = extensionsFactory({xelib, fh, patcherPath, patchFile, settings, helpers, locals}),
+      ArmorPatcher = armorPatcherFactory({xelib, Extensions, patchFile, settings, helpers, locals}),
+      AlchemyPatcher = alchemyPatcherFactory({xelib, Extensions, patchFile, settings, helpers, locals});
 
     return {
       initialize: function() {
