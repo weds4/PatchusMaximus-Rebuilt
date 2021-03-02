@@ -35,11 +35,7 @@ registerPatcher({
         settings.UseWarrior = UseWarrior;
         settings.UseThief = UseThief;
         settings.UseMage = UseMage;
-        if (settings.UseWarrior) {
-          locals.PerkusMaximus_Warrior = xelib.FileByName(`PerkusMaximus_Warrior.esp`)
-          locals.forgedKeyword = xelib.AddElement(patchFile, `KYWD\\KYWD`);
-          xelib.AddElementValue(locals.forgedKeyword, `EDID`, 'ArmorPerMaForged');
-        };
+        if (settings.UseWarrior) {locals.PerkusMaximus_Warrior = xelib.FileByName(`PerkusMaximus_Warrior.esp`)};
         if (settings.UseThief) {locals.PerkusMaximus_Thief = xelib.FileByName(`PerkusMaximus_Thief.esp`)};
         if (settings.UseMage) {locals.PerkusMaximus_Mage = xelib.FileByName(`PerkusMaximus_Mage.esp`)};
         Extensions.initLocals(); //everything on locals is created here

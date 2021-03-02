@@ -240,6 +240,8 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
         || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
     );
+    locals.forgedKeyword = xelib.AddElement(patchFile, `KYWD\\KYWD`);
+    xelib.AddElementValue(locals.forgedKeyword, `EDID`, 'ArmorPerMaForged');
   };
 
   function records_reportITPOs(patchFile, settings, helpers, locals) {
