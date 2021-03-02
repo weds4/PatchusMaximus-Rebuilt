@@ -466,6 +466,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   };
   const records_Armors = {//make armor changes for AR, value, weight; and make recipes and x-forged varients
     records: (filesToPatch, helpers, settings, locals) => {
+      helpers.logMessage(`Getting armors`);
       let armors = helpers.loadRecords(`ARMO`)
       .filter(rec => {
         let keywords = Extensions.GetRecordKeywordEDIDs(rec)
@@ -474,6 +475,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         && !keywords.some(kw => JewelryKeywords[kw])
         && (getArmorMaterial(rec) !== null);
       });
+      helpers.logMessage(`Patching armors`);
       armors.forEach(rec => {
         let Record = getRecordObject(rec);//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
         if (settings.UseThief){addMasqueradeKeywords(Record);}
@@ -489,6 +491,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
           }
         }
       });
+      helpers.logMessage(`Done patching armors`);
     }
   };
 
