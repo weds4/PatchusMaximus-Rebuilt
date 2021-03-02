@@ -4,7 +4,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions;
 
   //-----------------Alchemy Patcher Supporting Functions------------------------------
-  function isPotionAllowed(locals, rec){
+  function isPotionAllowed(rec){
     let alchExclusions = locals.alchemyJson["ns2:alchemy"].potion_exclusions.exclusion
     return alchExclusions.every(exclusion => {
       let target = xelib[exclusionMap[exclusion.target]](rec);
@@ -14,7 +14,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     });
   };
 
-  function getAlchemyEffect(locals, rec){//what perma thinks this magic effect is
+  function getAlchemyEffect(rec){//what perma thinks this magic effect is
     return Extensions.getObjectFromBinding(rec, locals.alchemyBindings, locals.alchemyEffect);
   };
 
@@ -32,24 +32,24 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return effectsData;
   };
 
-  function getPotionMultiplier(locals, rec){
+  function getPotionMultiplier(rec){
     return Extensions.getObjectFromBinding(rec, locals.potionMultBindings, locals.potionMultiplier);
   };
 
   /*for some reason, the original patcher doesn't catch vigor and magicka recovery poisons 
     in my dev modlist (might be USSEP?), however this patcher catches them, and I feel 
     confident that this is intended behavior, so I'm calling this a bugfix*/
-  function makePotionWorkOverTime(locals, rec, patchFile){
+  function makePotionWorkOverTime(rec){
     let potionEffects = getRecordArray_Effects(rec); //the effects of the potion
     Object.keys(potionEffects).forEach(EDIDkey => {
       let potionEffect = potionEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a potion
       let mgefOverride = xelib.CopyElement(potionEffect.mgefHandle, patchFile);
       //xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
-      let alchemyEffect = getAlchemyEffect(locals, potionEffect.mgefHandle);//what perma thinks the effect is
+      let alchemyEffect = getAlchemyEffect(potionEffect.mgefHandle);//what perma thinks the effect is
       let oldMag = potionEffect.magnitude;
       let oldDur = potionEffect.duration;
       let oldCost = potionEffect.baseCost;
-      let potionMultiplier = getPotionMultiplier(locals, rec);
+      let potionMultiplier = getPotionMultiplier(rec);
       let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(potionEffect.mgefHandle));
       if (potionMultiplier !== null && alchemyEffect !== null){
         let newMag = alchemyEffect.baseMagnitude;
@@ -77,7 +77,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     });
   };
 
-  function disableAssociatedMagicSchools(rec, patchFile){
+  function disableAssociatedMagicSchools(rec){
     let potionEffects = getRecordArray_Effects(rec); //the effects of the potion
     Object.keys(potionEffects).forEach(EDIDkey => {
       let mgef =  potionEffects[EDIDkey].mgefHandle;
@@ -88,7 +88,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     });
   };
 
-  function isIngrAllowed(locals, rec){
+  function isIngrAllowed(rec){
     let ingrExclusions = locals.alchemyJson["ns2:alchemy"].ingredient_exclusions.exclusion
     return ingrExclusions.every(exclusion => {
       let target = xelib[exclusionMap[exclusion.target]](rec);
@@ -98,20 +98,20 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     });
   };
 
-  function getIngrMultiplier(locals, rec){
+  function getIngrMultiplier(rec){
     return Extensions.getObjectFromBinding(rec, locals.ingrVarBindings, locals.ingrVariation);
   };
 
-  function makeIngrWorkOverTime(locals, rec, patchFile){
+  function makeIngrWorkOverTime(rec){
     let ingrEffects = getRecordArray_Effects(rec); //the effects of the ingredient
     Object.keys(ingrEffects).forEach(EDIDkey => {
       let ingrEffect = ingrEffects[EDIDkey]; //this is an object containing the mgef hande, duration, magnitude, and cost of an effect on a ingredient
       //let mgefOverride = xelib.CopyElement(ingrEffect.mgefHandle, patchFile);
       //xelib.SetValue(mgefOverride, `Magic Effect Data\\DATA\\Magic Skill`, `None`);//this is the more sensible place to do this, since we are already patching this record
-      let alchemyEffect = getAlchemyEffect(locals, ingrEffect.mgefHandle);
+      let alchemyEffect = getAlchemyEffect(ingrEffect.mgefHandle);
       let oldMag = ingrEffect.magnitude;
       let oldDur = ingrEffect.duration;
-      let ingrMultiplier = getIngrMultiplier(locals, rec);
+      let ingrMultiplier = getIngrMultiplier(rec);
       let recEffectArrayItem = xelib.GetArrayItem(rec, `Effects`, `EFID`, xelib.LongName(ingrEffect.mgefHandle));
       if (ingrMultiplier !== null && alchemyEffect !== null){
         let newMag = alchemyEffect.baseMagnitude;
@@ -141,28 +141,28 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         filter: rec => {//Called for each loaded record. Return false to skip patching a record
           let potionEffects = getRecordArray_Effects(rec)
           return xelib.HasElement(rec, `Effects`)
-          && isPotionAllowed(locals, rec) 
+          && isPotionAllowed(rec) 
           && Object.keys(potionEffects).every(effect => {
-            if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle)!== null){return true};
+            if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
           });
         }
       },
       patch: function (rec) {
         if (settings.UseThief) {
-          /*let potionEffects = getRecordArray_Effects(rec);
+          let potionEffects = getRecordArray_Effects(rec);
           let needToDisableAMS = true
-          if (isPotionAllowed(locals, rec) 
+          if (isPotionAllowed(rec) 
             && Object.keys(potionEffects).some(effect => {
-              if (getAlchemyEffect(locals, potionEffects[effect].mgefHandle)!== null){return true};
+              if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
             })
           ){
-            makePotionWorkOverTime(locals, rec, patchFile);
+            makePotionWorkOverTime(rec);
             needToDisableAMS = false
           };
           if (needToDisableAMS) {//this catches any mgefs that didn't get done in makePotionWorkOverTime
-            //disableAssociatedMagicSchools(rec, patchFile);
-          };*/
-          makePotionWorkOverTime(locals, rec, patchFile);
+            //disableAssociatedMagicSchools(rec);
+          };
+          makePotionWorkOverTime(rec);
         };
       }
     };
@@ -175,9 +175,9 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         filter: rec => {//Called for each loaded record. Return false to skip patching a record
           let ingrEffects = getRecordArray_Effects(rec)
           return xelib.HasElement(rec, `Effects`)
-          && isIngrAllowed(locals, rec) 
+          && isIngrAllowed(rec) 
           && Object.keys(ingrEffects).some(effect => {
-              if (getAlchemyEffect(locals, ingrEffects[effect].mgefHandle)!== null){return true};
+              if (getAlchemyEffect(ingrEffects[effect].mgefHandle)!== null){return true};
           })
         }
       },
@@ -185,31 +185,48 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         if (settings.UseThief) {
           /*let ingrEffects = getRecordArray_Effects(rec);
           let needToDisableAMS = true
-          if (isIngrAllowed(locals, rec) 
+          if (isIngrAllowed(rec) 
             && Object.keys(ingrEffects).some(effect => {
-              if (getAlchemyEffect(locals, ingrEffects[effect].mgefHandle)!== null){return true};
+              if (getAlchemyEffect(ingrEffects[effect].mgefHandle)!== null){return true};
             })
           ){
-            makeIngrWorkOverTime(locals, rec, patchFile);
+            makeIngrWorkOverTime(rec);
             needToDisableAMS = false
           };
           if (needToDisableAMS) {//this catches any mgefs that didn't get done in makeIngrWorkOverTime
-            //disableAssociatedMagicSchools(rec, patchFile);
+            //disableAssociatedMagicSchools(rec);
           };*/
-          makeIngrWorkOverTime(locals, rec, patchFile);
+          makeIngrWorkOverTime(rec);
         };
       }
     };
   };
 
+  const records_Ingestible = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      helpers.logMessage(`Patching alchemy ingestibles`);
+      let ingests = helpers.loadRecords('ALCH')
+      .filter(rec => {
+        let potionEffects = getRecordArray_Effects(rec)
+        return xelib.HasElement(rec, `Effects`)
+        && isPotionAllowed(rec) 
+        && Object.keys(potionEffects).every(effect => {
+          if (getAlchemyEffect(potionEffects[effect].mgefHandle)!== null){return true};
+        });
+      });
+      ingests.forEach(rec => {
+
+      });
+    }
+  }
   function records_Alchemy(patchFile, settings, helpers, locals){
     return {
       records: (filesToPatch, helpers, settings, locals) => {
         helpers.logMessage(`Patching alchemy effects`);
-        let potions = helpers.loadRecords('ARMO')
+        let potions = helpers.loadRecords('ALCH')
         .filter(rec => xelib.HasElement(rec, `Effects`))
         potions.forEach(rec => {
-          disableAssociatedMagicSchools(rec, patchFile);
+          disableAssociatedMagicSchools(rec);
         });
         helpers.logMessage(`Done patching alchemy effects`);
 
@@ -217,7 +234,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         let ingredients = helpers.loadRecords('ARMO')
         .filter(rec => xelib.HasElement(rec, `Effects`))
         ingredients.forEach(rec => {
-          disableAssociatedMagicSchools(rec, patchFile);
+          disableAssociatedMagicSchools(rec);
         });
         helpers.logMessage(`Done patching ingredient effects`);
         return [];
@@ -227,6 +244,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   return {
     loadAndPatch_Ingestible,
 		loadAndPatch_Ingredients,
+    records_Ingestible,
 		records_Alchemy
   };
 }
