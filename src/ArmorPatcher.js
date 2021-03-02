@@ -1,7 +1,7 @@
 module.exports = function({xelib, Extensions, patchFile, settings, helpers, locals}){
   //Useful constants
-  const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants;
-  const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions;
+  const {equalTo, greaterThanEqualTo, exclusionMap, stringToBoolean} = Extensions.constants; //can use this instead of Extensions.constants.equalTo
+  const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions; //can use this instead of Extensions.RecordObjectFunctions.getRecordObject
   //configurable value (need to make settings for it)
   let expensiveClothingThreshold = 50;
 
