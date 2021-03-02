@@ -45,11 +45,13 @@ registerPatcher({
         /*ArmorPatcher.loadAndPatch_Armors(),*/
         //ArmorPatcher.loadAndPatch_Clothes(),
         ArmorPatcher.records_Clothes,
-        ArmorPatcher.records_Armors,
-        ArmorPatcher.records_AllARMO,
+        /*ArmorPatcher.records_Armors,
+        ArmorPatcher.records_DaedricArmors,
+        ArmorPatcher.records_QualityLeather,
+        //ArmorPatcher.records_AllARMO,
         AlchemyPatcher.loadAndPatch_Ingestible(patchFile, settings, helpers, locals),
         AlchemyPatcher.loadAndPatch_Ingredients(patchFile, settings, helpers, locals),
-        AlchemyPatcher.records_Alchemy(patchFile, settings, helpers, locals),
+        AlchemyPatcher.records_Alchemy(patchFile, settings, helpers, locals),*/
         //Extensions.records_reportITPOs(patchFile, settings, helpers, locals),
       ]
     }

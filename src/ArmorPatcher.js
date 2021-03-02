@@ -404,32 +404,12 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
 
-  function loadAndPatch_Clothes(){
-    return {
-      load: {//add ClothingRich keyword to ClothingBody clothes valued higher than the threshold
-        signature: `ARMO`,
-        filter: record => {//Called for each loaded record. Return false to skip patching a record
-          let keywords = Extensions.GetRecordKeywordEDIDs(record)
-          return settings.UseThief 
-          && !xelib.HasElement(record,`TNAM`)
-          && keywords.includes(`ClothingBody`)
-          && !keywords.includes(`ClothingRich`)
-          && !keywords.includes(`ClothingPoor`)
-          && !keywords.some(kw => JewelryKeywords[kw])
-          && xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold;
-        }
-      },
-      patch: function (record) {
-        Extensions.addLinkedArrayItem(record, `KWDA`, locals.skyrimKeywords.ClothingRich);
-      }
-    };
-  }
-
   const records_Clothes = {//adds clothing meltdown recipes and ClothingRich keywords to clothes
     records: (filesToPatch, helpers, settings, locals) => {
+      let clothes;
       if (settings.UseWarrior){
         helpers.logMessage(`Loading clothes`);
-        let clothes = helpers.loadRecords('ARMO')
+        clothes = helpers.loadRecords('ARMO')
         .filter(rec => {//Called for each loaded record. Return false to skip patching a record
           let keywords = Extensions.GetRecordKeywordEDIDs(rec);
           return !xelib.HasElement(rec,`TNAM`)
@@ -439,8 +419,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         });
         helpers.logMessage(`Adding clothing meltdown recipes`);
         clothes.forEach(rec => {
-          let Record = getRecordObject(rec);
-          addClothingMeltdownRecipe(Record.handle);
+          addClothingMeltdownRecipe(rec);
         });
         helpers.logMessage(`Done adding clothing meltdown recipes`);
       }
@@ -457,13 +436,13 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         });
         helpers.logMessage(`Adding expensive clothing keywords`);
         bodyClothes.forEach(rec => {
-          let Record = getRecordObject(rec);
+          let Record = getRecordObject(rec);//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
           if (!Record.isCopy){copyRecord(Record);}
           Extensions.addLinkedArrayItem(Record.handle, `KWDA`, locals.skyrimKeywords.ClothingRich);
         });
         helpers.logMessage(`Done adding expensive clothing keywords`);
       }
-      else if (setting.UseThief){//cannot optimize execution
+      else if (settings.UseThief){//cannot optimize execution
         helpers.logMessage(`Loading body clothes`);
         let bodyClothes = helpers.loadRecords('ARMO')
         .filter(rec => {//Called for each loaded record. Return false to skip patching a record
@@ -473,19 +452,19 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
           && !keywords.some(kw => JewelryKeywords[kw])
           && !keywords.includes(`ClothingRich`)
           && !keywords.includes(`ClothingPoor`)
-          && xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold;
+          && xelib.GetValue(rec, `DATA\\Value`) >= expensiveClothingThreshold;
         });
         helpers.logMessage(`Adding expensive clothing keywords`);
         bodyClothes.forEach(rec => {
           let Record = getRecordObject(rec);
-          if (!Record.isCopy){copyRecord(Record);}
+          if (!Record.isCopy){copyRecord(Record);}//functions that get Record passed to them can read/write Record, functions that only get Record.handle are read-only users
           Extensions.addLinkedArrayItem(Record.handle, `KWDA`, locals.skyrimKeywords.ClothingRich);
         });
         helpers.logMessage(`Done adding expensive clothing keywords`);
       }
     }
   };
-  const records_Armors = {
+  const records_Armors = {//make armor changes for AR, value, weight; and make recipes and x-forged varients
     records: (filesToPatch, helpers, settings, locals) => {
       let armors = helpers.loadRecords(`ARMO`)
       .filter(rec => {
@@ -513,97 +492,62 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     }
   };
 
-  const records_AllARMO = {
-      records: (filesToPatch, helpers, settings, locals) => {
-        //patch things that need to be used, but not themselves changed in the patch
-        if (settings.UseWarrior) {
-          /*helpers.logMessage(`Getting clothes`);
-          let clothes = helpers.loadRecords('ARMO')
-          .filter(rec => {//Called for each loaded record. Return false to skip patching a record
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
-            return !xelib.HasElement(rec,`TNAM`)
-            && keywords.some(kw => ClothingKeywords[kw])
-            && !keywords.some(kw => JewelryKeywords[kw])
-            && !xelib.GetRecordFlag(rec,`Non-Playable`);//comment this to do non-playable ARMOs
-          });
-          helpers.logMessage(`Adding clothing meltdown recipes`);
-          clothes.forEach(rec => {
-            addClothingMeltdownRecipe(rec);
-          });
-          helpers.logMessage(`Done adding clothing meltdown recipes`);
-
-          helpers.logMessage(`Getting armors`);
-          let armors = helpers.loadRecords('ARMO')
-          .filter(rec => {//Called for each loaded record. Return false to skip patching a record
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
-            return !xelib.HasElement(rec,`TNAM`)
-            && !keywords.some(kw => ClothingKeywords[kw])
-            && !keywords.some(kw => JewelryKeywords[kw])
-            && !(keywords.includes(`DaedricArtifact`)
-              || xelib.GetHexFormID(rec) == 0xD2846)
-            && (getArmorMaterial(rec) !== null)
-            && ReforgeAllowed(rec);
-          });
-          helpers.logMessage(`Adding armor recipes`);
-          armors.forEach(rec => {
-            let armorMaterial = getArmorMaterial(rec);
-            addArmorMeltdownRecipe(rec, armorMaterial);
-            let reforgedArmor = createReforgedArmor(rec, armorMaterial);
-            createWarforgedArmor(rec, reforgedArmor, armorMaterial);
-          });
-          helpers.logMessage(`Done adding armor recipes`);
-*/
-          helpers.logMessage(`Getting daedric armor artifacts`);
-          let artifacts = helpers.loadRecords('ARMO')//add replicas for daedric artifacts
-          .filter(rec => {
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec);
-            return !keywords.includes(kw => kw === `ArmorPerMaForged`)
-            && (keywords.includes(`DaedricArtifact`)
-            || xelib.GetHexFormID(rec) == 0xD2846)
-            && !keywords.some(kw => JewelryKeywords[kw])
-          });
-          helpers.logMessage(`Adding daedric armor artifact duplicates`);
-          //set up daedric duplication here
-          artifacts.forEach(rec => {
-            let armorMaterial = getArmorMaterial(rec);
-            doDaedricReplicas(rec, armorMaterial);
-          });
-          helpers.logMessage(`Done adding daedric armor artifact duplicates`);
-        }
-
-        if (settings.UseThief){
-          helpers.logMessage(`Getting craftable leather armors`);
-          let leatherArmorCOBJ = {craft: [], temper: []};
-          let leatherArmors = helpers.loadRecords('ARMO')
-          .filter(rec => {
-            let keywords = Extensions.GetRecordKeywordEDIDs(rec)
-            return !keywords.includes(kw => kw === `ArmorPerMaForged`)
-            && keywords.includes(`ArmorMaterialLeather`)
-            && !xelib.HasElement(rec,`TNAM`)
-            && !xelib.EditorID(rec).includes('Reforged')
-            && !xelib.EditorID(rec).includes('Warforged')
-            && getLeatherArmorCOBJ(rec, leatherArmorCOBJ)
-          });
-          helpers.logMessage(`Adding quality leather armors`);
-          let armorMaterial = {
-            "materialMeltdown": "QualityLeather",
-            "materialTemper": "QualityLeather"
-          };
-          leatherArmors.forEach(rec => {
-            doQualityLeather(rec, armorMaterial, leatherArmorCOBJ);
-          });
-          helpers.logMessage(`Done adding quality leather armors`);
-        }
-        return [];
+  const records_DaedricArmors = {//add replicas for daedric artifacts
+    records: (filesToPatch, helpers, settings, locals) => {
+      if (settings.UseWarrior){
+        helpers.logMessage(`Getting daedric armor artifacts`);
+        let artifacts = helpers.loadRecords('ARMO')
+        .filter(rec => {
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec);
+          return !keywords.includes(kw => kw === `ArmorPerMaForged`)
+          && (keywords.includes(`DaedricArtifact`)
+          || xelib.GetHexFormID(rec) == 0xD2846)
+          && !keywords.some(kw => JewelryKeywords[kw])
+        });
+        helpers.logMessage(`Adding daedric armor artifact duplicates`);
+        //set up daedric duplication here
+        artifacts.forEach(rec => {
+          let armorMaterial = getArmorMaterial(rec);
+          doDaedricReplicas(rec, armorMaterial);
+        });
+        helpers.logMessage(`Done adding daedric armor artifact duplicates`);
       }
+    }
+  };
+
+  const records_QualityLeather = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      if (settings.UseThief){
+        helpers.logMessage(`Getting craftable leather armors`);
+        let leatherArmorCOBJ = {craft: [], temper: []};
+        let leatherArmors = helpers.loadRecords('ARMO')
+        .filter(rec => {
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+          return !keywords.includes(kw => kw === `ArmorPerMaForged`)
+          && keywords.includes(`ArmorMaterialLeather`)
+          && !xelib.HasElement(rec,`TNAM`)
+          && !xelib.EditorID(rec).includes('Reforged')
+          && !xelib.EditorID(rec).includes('Warforged')
+          && getLeatherArmorCOBJ(rec, leatherArmorCOBJ)
+        });
+        helpers.logMessage(`Adding quality leather armors`);
+        let armorMaterial = {
+          "materialMeltdown": "QualityLeather",
+          "materialTemper": "QualityLeather"
+        };
+        leatherArmors.forEach(rec => {
+          doQualityLeather(rec, armorMaterial, leatherArmorCOBJ);
+        });
+        helpers.logMessage(`Done adding quality leather armors`);
+      }
+    }
   }
 
   return {
     loadArmorSettings,
-    /*loadAndPatch_Armors,*/
-    loadAndPatch_Clothes,
     records_Clothes,
     records_Armors,
-    records_AllARMO
+    records_DaedricArmors,
+    records_QualityLeather,
   };
 };
