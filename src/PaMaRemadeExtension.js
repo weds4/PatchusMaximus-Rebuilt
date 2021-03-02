@@ -86,7 +86,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
   }
 
   function getObjectFromBinding(rec, bindingObject, targetObject){
-    /*exmaple using armor patcher: this block finds the pseudo material based on matching text in the armor's name with 
+    /*example using armor patcher: this block finds the pseudo material based on matching text in the armor's name with 
     pre-defined strings. These strings are called binding identifiers.*/
     let recordName = xelib.GetValue(rec,`FULL`);
     let maxHitSize = 0;
