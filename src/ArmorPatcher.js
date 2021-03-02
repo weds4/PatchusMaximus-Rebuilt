@@ -424,6 +424,67 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       }
     };
   }
+
+  const records_Clothes = {//adds clothing meltdown recipes and ClothingRich keywords to clothes
+    records: (filesToPatch, helpers, settings, locals) => {
+      if (settings.UseWarrior){
+        helpers.logMessage(`Loading clothes`);
+        let clothes = helpers.loadRecords('ARMO')
+        .filter(rec => {//Called for each loaded record. Return false to skip patching a record
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec);
+          return !xelib.HasElement(rec,`TNAM`)
+          && keywords.some(kw => ClothingKeywords[kw])
+          && !keywords.some(kw => JewelryKeywords[kw])
+          && !xelib.GetRecordFlag(rec,`Non-Playable`);
+        });
+        helpers.logMessage(`Adding clothing meltdown recipes`);
+        clothes.forEach(rec => {
+          let Record = getRecordObject(rec);
+          addClothingMeltdownRecipe(Record.handle);
+        });
+        helpers.logMessage(`Done adding clothing meltdown recipes`);
+      }
+
+      if (settings.UseThief && settings.UseWarrior){//can optimize execution
+        helpers.logMessage(`Loading body clothes`);
+        let bodyClothes = clothes
+        .filter(rec => {//Called for each loaded record. Return false to skip patching a record
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+          return keywords.includes(`ClothingBody`)
+          && !keywords.includes(`ClothingRich`)
+          && !keywords.includes(`ClothingPoor`)
+          && xelib.GetValue(rec, `DATA\\Value`) >= expensiveClothingThreshold;
+        });
+        helpers.logMessage(`Adding expensive clothing keywords`);
+        bodyClothes.forEach(rec => {
+          let Record = getRecordObject(rec);
+          if (!Record.isCopy){copyRecord(Record);}
+          Extensions.addLinkedArrayItem(Record.handle, `KWDA`, locals.skyrimKeywords.ClothingRich);
+        });
+        helpers.logMessage(`Done adding expensive clothing keywords`);
+      }
+      else if (setting.UseThief){//cannot optimize execution
+        helpers.logMessage(`Loading body clothes`);
+        let bodyClothes = helpers.loadRecords('ARMO')
+        .filter(rec => {//Called for each loaded record. Return false to skip patching a record
+          let keywords = Extensions.GetRecordKeywordEDIDs(rec)
+          return !xelib.HasElement(rec,`TNAM`)
+          && keywords.includes(`ClothingBody`)
+          && !keywords.some(kw => JewelryKeywords[kw])
+          && !keywords.includes(`ClothingRich`)
+          && !keywords.includes(`ClothingPoor`)
+          && xelib.GetValue(record, `DATA\\Value`) >= expensiveClothingThreshold;
+        });
+        helpers.logMessage(`Adding expensive clothing keywords`);
+        bodyClothes.forEach(rec => {
+          let Record = getRecordObject(rec);
+          if (!Record.isCopy){copyRecord(Record);}
+          Extensions.addLinkedArrayItem(Record.handle, `KWDA`, locals.skyrimKeywords.ClothingRich);
+        });
+        helpers.logMessage(`Done adding expensive clothing keywords`);
+      }
+    }
+  };
   const records_Armors = {
     records: (filesToPatch, helpers, settings, locals) => {
       let armors = helpers.loadRecords(`ARMO`)
@@ -442,7 +503,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         if (settings.UseWarrior){
           setArmorValue(Record, armorMaterial);
           applyArmorModfiers(Record.handle);
-          if (ReforgeAllowed(Record.handle)) {
+          if (!xelib.GetRecordFlag(rec,`Non-Playable`) && ReforgeAllowed(Record.handle)) {
             addArmorMeltdownRecipe(Record.handle, armorMaterial);
             let reforgedArmor = createReforgedArmor(Record.handle, armorMaterial);
             createWarforgedArmor(Record.handle, reforgedArmor, armorMaterial);
@@ -450,13 +511,13 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         }
       });
     }
-  }
+  };
 
   const records_AllARMO = {
       records: (filesToPatch, helpers, settings, locals) => {
         //patch things that need to be used, but not themselves changed in the patch
         if (settings.UseWarrior) {
-          helpers.logMessage(`Getting clothes`);
+          /*helpers.logMessage(`Getting clothes`);
           let clothes = helpers.loadRecords('ARMO')
           .filter(rec => {//Called for each loaded record. Return false to skip patching a record
             let keywords = Extensions.GetRecordKeywordEDIDs(rec);
@@ -470,7 +531,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
             addClothingMeltdownRecipe(rec);
           });
           helpers.logMessage(`Done adding clothing meltdown recipes`);
-/*
+
           helpers.logMessage(`Getting armors`);
           let armors = helpers.loadRecords('ARMO')
           .filter(rec => {//Called for each loaded record. Return false to skip patching a record
@@ -541,6 +602,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     loadArmorSettings,
     /*loadAndPatch_Armors,*/
     loadAndPatch_Clothes,
+    records_Clothes,
     records_Armors,
     records_AllARMO
   };
