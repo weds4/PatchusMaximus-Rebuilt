@@ -399,8 +399,8 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   }
 
 
-  //-----------------Actual Armor Patcher Functions----------------------------------
-  /*Every function feeds a zedit `process` block. A process block is either a `load:` and 
+  //-----------------Armor Patcher Objects----------------------------------
+  /*Every object feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
 

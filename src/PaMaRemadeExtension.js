@@ -141,7 +141,8 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.leveledListsJson = fh.loadJsonFile(`${patcherPath}/PMxml/LeveledLists.json`, 0);
     locals.npcJson = fh.loadJsonFile(`${patcherPath}/PMxml/NPC.json`, 0);
     locals.weaponsJson = fh.loadJsonFile(`${patcherPath}/PMxml/Weapons.json`, 0);
-    let armorObject = locals.armorJson[`ns2:armor`], alchData = locals.alchemyJson["ns2:alchemy"];
+    let armorObject = locals.armorJson[`ns2:armor`], alchData = locals.alchemyJson["ns2:alchemy"],
+      ammoObject = locals.ammunitionJson[`ns2:ammunition`];
     locals.armorBindings = armorObject.armor_material_bindings.binding;
     locals.armorMaterial = armorObject.armor_materials.armor_material;
     locals.armorModBindings = armorObject.armor_modifier_bindings.binding;
@@ -152,6 +153,11 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.potionMultiplier = alchData.potion_multipliers.potion_multiplier;
     locals.ingrVarBindings = alchData.ingredient_variation_bindings.binding
     locals.ingrVariation = alchData.ingredient_variations.ingredient_variation;
+    locals.ammoTypeBindings = ammoObject.ammunition_type_bindings.binding;
+    locals.ammoTypes = ammoObject.ammunition_types.ammunition_type;
+    locals.ammoMaterialBindings = ammoObject.ammunition_material_bindings.binding;
+    locals.ammoMaterials = ammoObject.ammunition_materials.ammunition_material;
+
     let buildEDIDMap = (handle, sig) => xelib.BuildReferenceMap(handle, sig, xelib.EditorID);
     locals.skyrimKeywords = buildEDIDMap(locals.Skyrim_Master, `KYWD`);
     locals.permaKeywords = buildEDIDMap(locals.PerkusMaximus_Master, `KYWD`);
@@ -244,30 +250,26 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     xelib.AddElementValue(locals.forgedKeyword, `EDID`, 'ArmorPerMaForged');
   };
 
-  function records_reportITPOs(patchFile, settings, helpers, locals) {
-    return {
-      records: (filesToPatch, helpers, settings, locals) => {
-        let overrides = xelib.GetRecords(patchFile, ``, true)
-        .filter(rec => !xelib.IsMaster(rec)
-        && xelib.IsWinningOverride(rec))
-        
-        overrides.forEach(rec => {
-          let WinningOverrideArray = xelib.GetNodeElements(xelib.GetNodes(rec), rec);
-          let  poom = xelib.GetPreviousOverride(rec, patchFile); //previousOverrideOrMaster
-          let pooma = xelib.GetNodeElements(xelib.GetNodes(poom), poom); //previousOverrideOrMasterArray
-          if (WinningOverrideArray.length === pooma.length) {
-            for (i=0; i<pooma.length; i++){
-              if (xelib.GetValue(WinningOverrideArray[i] ,``) === xelib.GetValue(pooma[i] ,``)){
-                console.log(`ITPO found: ${xelib.EditorID(rec)}`);
-              }
-            };
+  records_reportITPOs = {
+    records: (filesToPatch, helpers, settings, locals) => {
+      let overrides = xelib.GetRecords(patchFile, ``, true)
+      .filter(rec => !xelib.IsMaster(rec)
+       && xelib.IsWinningOverride(rec))
+      overrides.forEach(rec => {
+        let WinningOverrideArray = xelib.GetNodeElements(xelib.GetNodes(rec), rec);
+        let  poom = xelib.GetPreviousOverride(rec, patchFile); //previousOverrideOrMaster
+        let pooma = xelib.GetNodeElements(xelib.GetNodes(poom), poom); //previousOverrideOrMasterArray
+        if (WinningOverrideArray.length === pooma.length) {
+          for (i=0; i<pooma.length; i++){
+            if (xelib.GetValue(WinningOverrideArray[i] ,``) === xelib.GetValue(pooma[i] ,``)){
+              console.log(`ITPO found: ${xelib.EditorID(rec)}`);
+            }
           };
-        });
-
-        return [];
-      }
-    };
-  }
+        };
+      });
+      return [];
+    }
+  };
 
   return {
     constants,

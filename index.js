@@ -1,6 +1,7 @@
 let extensionsFactory = require(`${patcherPath}/src/PaMaRemadeExtension.js`);
 let armorPatcherFactory = require(`${patcherPath}/src/ArmorPatcher.js`);
 let alchemyPatcherFactory = require(`${patcherPath}/src/AlchemyPatcher.js`);
+let ammunitionPatcherFactory = require(`${patcherPath}/src/AmmunitionPatcher.js`);
 
 
 //User can choose these (need settings.html, I guess?)
@@ -22,6 +23,7 @@ registerPatcher({
       Extensions = extensionsFactory({xelib, fh, patcherPath, patchFile, settings, helpers, locals}),
       ArmorPatcher = armorPatcherFactory({xelib, Extensions, patchFile, settings, helpers, locals}),
       AlchemyPatcher = alchemyPatcherFactory({xelib, Extensions, patchFile, settings, helpers, locals});
+      AmmoPatcher = ammunitionPatcherFactory({xelib, Extensions, patchFile, settings, helpers, locals});
 
     return {
       initialize: function() {
@@ -49,7 +51,8 @@ registerPatcher({
         AlchemyPatcher.records_Ingestible,
         AlchemyPatcher.records_Alchemy,
         AlchemyPatcher.records_Ingredients,
-        //Extensions.records_reportITPOs(patchFile, settings, helpers, locals),
+        AmmoPatcher.records_Ammo,
+        //Extensions.records_reportITPOs,
       ]
     }
   }
