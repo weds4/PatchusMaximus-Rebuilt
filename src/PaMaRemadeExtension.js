@@ -167,6 +167,9 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.skyrimPerks = buildEDIDMap(locals.Skyrim_Master, `PERK`);
     locals.permaPerks = buildEDIDMap(locals.PerkusMaximus_Master, `PERK`);
     locals.permaExplosions = buildEDIDMap(locals.PerkusMaximus_Master, `EXPL`);
+
+
+    //---------------Armor Patcher stuff------------------
     //source: src\Patchus Maximus\src\enums\BaseMaterialsArmor 
     /*Example object made with materialDef
       "ADVANCED": {
@@ -226,6 +229,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
         "ArmorShield": locals.permaKeywords.xMAArmorLightShield
       }
     };
+
     locals.masqueradeFactions = {
       "BANDIT": locals.permaKeywords.xMASPEMasqueradeBanditKeyword, 
       "CULTIST": locals.permaKeywords.xMASPEMasqueradeCultistKeyword, 
@@ -238,17 +242,31 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       "VAMPIRE": locals.permaKeywords.xMASPEMasqueradeVampireKeyword,
       "NONE": null
     };
+
     locals.removeKeywords = {
       "LIGHT": locals.skyrimKeywords.ArmorHeavy,
       "HEAVY": locals.skyrimKeywords.ArmorLight
     };
+
     locals.likelyLeatherRecipes = helpers.loadRecords(`COBJ`)
     .filter(recipe => xelib.GetLinksTo(recipe, `CNAM`) !== 0
       && (xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingForge` 
         || xelib.EditorID(xelib.GetLinksTo(recipe, `BNAM`)) === `CraftingSmithingArmorTable`)
     );
+
     locals.forgedKeyword = xelib.AddElement(patchFile, `KYWD\\KYWD`);
     xelib.AddElementValue(locals.forgedKeyword, `EDID`, 'ArmorPerMaForged');
+    
+    //---------------Ammo Patcher stuff------------------
+    locals.variantTypes = {
+      "poison": {
+        name: "Poisoned",
+        desc: "Explodes upon impact, dealing 3 points of poison damage per second for 20 seconds.",
+        EXPL: locals.permaExplosions.xMAALCPoisonBurstAmmoPoisonExplosion,
+        flagExplosion: true,
+        flagAltTrigger: false
+      }
+    };
   };
 
   records_reportITPOs = {
