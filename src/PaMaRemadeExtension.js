@@ -166,6 +166,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.dragonbornMisc = buildEDIDMap(locals.dragonborn_Master, `MISC`);
     locals.skyrimPerks = buildEDIDMap(locals.Skyrim_Master, `PERK`);
     locals.permaPerks = buildEDIDMap(locals.PerkusMaximus_Master, `PERK`);
+    locals.permaExplosions = buildEDIDMap(locals.PerkusMaximus_Master, `EXPL`);
     //source: src\Patchus Maximus\src\enums\BaseMaterialsArmor 
     /*Example object made with materialDef
       "ADVANCED": {
