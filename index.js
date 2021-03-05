@@ -44,13 +44,13 @@ registerPatcher({
         ArmorPatcher.loadArmorSettings();
       },
       process: [
-        ArmorPatcher.records_Clothes,
+        /*ArmorPatcher.records_Clothes,
         ArmorPatcher.records_Armors,
         ArmorPatcher.records_DaedricArmors,
         ArmorPatcher.records_QualityLeather,
         AlchemyPatcher.records_Ingestible,
         AlchemyPatcher.records_Alchemy,
-        AlchemyPatcher.records_Ingredients,
+        AlchemyPatcher.records_Ingredients,*/
         AmmoPatcher.records_Ammo,
         //Extensions.records_reportITPOs,
       ]
