@@ -23,23 +23,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   function setDamage(rec){xelib.SetValue(rec, `DESC`, `changed damage`);}
   function patchProjectile(rec){}
 
-function doAmmoVariants(rec, ammoMaterial, ammoType){
-  if (stringToBoolean[ammoMaterial.multiply]) {
-    if (ammoType.type === `ARROW`) {
-      createArrowVariant(rec, "poison");
-      //createArrowVariant(rec, "fire");
-      //createArrowVariant(rec, "frost");
-      //createArrowVariant(rec, "shock");
-      //createArrowVariant(rec, "lightsource");
-      //createArrowVariant(rec, "explosive");
-      //createArrowVariant(rec, "timebomb");
-    }
-    else if (ammoType.type === `BOLT`) {
-      createBoltVariant(rec);
-    }
-  }
-}
-
   function ammoNamingMimic(rec, type) {
     return `${xelib.GetValue(rec, `FULL`)}${type}${xelib.GetHexFormID(rec).slice(2,)}`+
     `${xelib.LongPath(xelib.GetMasterRecord(rec))
@@ -101,6 +84,23 @@ function doAmmoVariants(rec, ammoMaterial, ammoType){
 
   function createBoltVariant(rec) {
 
+  }
+
+  function doAmmoVariants(rec, ammoMaterial, ammoType){
+    if (stringToBoolean[ammoMaterial.multiply]) {
+      if (ammoType.type === `ARROW`) {
+        createArrowVariant(rec, "poison");
+        //createArrowVariant(rec, "fire");
+        //createArrowVariant(rec, "frost");
+        //createArrowVariant(rec, "shock");
+        //createArrowVariant(rec, "lightsource");
+        //createArrowVariant(rec, "explosive");
+        //createArrowVariant(rec, "timebomb");
+      }
+      else if (ammoType.type === `BOLT`) {
+        createBoltVariant(rec);
+      }
+    }
   }
 
   //-----------------Ammo Patcher Objects----------------------------------
