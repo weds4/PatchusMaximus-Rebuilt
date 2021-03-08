@@ -41,8 +41,12 @@ function doAmmoVariants(Record, ammoMaterial, ammoType){
         .slice(0,xelib.LongPath(xelib.GetMasterRecord(rec)).indexOf(".")+4)}`
   }
 
-  function createAmmoVariantRecipe(newAmmo, type) {
+  function createAmmoCraftingRecipe(newAmmo, type, input, output, requiredPerks, blockerPerk) {
+    let edid = `PaMa_AMMO_CRAFT_${ammoNamingMimic(newAmmo, type)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
+  }
 
+  function createAmmoVariantRecipes(newAmmo, type, input, output, requiredPerks, blockerPerk) {
+    createAmmoCraftingRecipe(newAmmo, type, input, output, requiredPerks, blockerPerk);
   }
 
   function createArrowVariant(rec, type) {
@@ -64,7 +68,7 @@ function doAmmoVariants(Record, ammoMaterial, ammoType){
     xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);
     //assign new projectile to new ammo
     xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
-    createAmmoVariantRecipe(ammoVariant, type);
+    createAmmoVariantRecipes(ammoVariant, type);
   }
 
   function createBoltVariant(rec) {
