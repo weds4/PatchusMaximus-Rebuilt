@@ -4,7 +4,13 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   const {getRecordObject, copyRecord} = Extensions.RecordObjectFunctions; //can use this instead of Extensions.RecordObjectFunctions.getRecordObject
 
   //-----------------Ammo Patcher Dictionary/Lexicon Objects------------------------
-
+  const enhancedAmmoData = {//needs to be set in settings
+    timebombTimer: 4.0,
+    enhancementIn: 20,
+    enhancementOut: 10,
+    enhancementOutSE0Mult: 1.2,
+    enhancementOutSE1Mult: 1.4
+  };
   //-----------------Ammo Patcher Supporting Functions----------------------------------
   function addRecordAmmoType(rec, referenceObject){
     referenceObject[rec] = Extensions.getObjectFromBinding(rec, locals.ammoTypeBindings, locals.ammoTypes);
@@ -14,23 +20,22 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     referenceObject[rec] = Extensions.getObjectFromBinding(rec, locals.ammoMaterialBindings, locals.ammoMaterials);
   }
 
-  function setDamage(rec){}
+  function setDamage(rec){xelib.SetValue(rec, `DESC`, `changed damage`);}
   function patchProjectile(rec){}
 
-function doAmmoVariants(Record, ammoMaterial, ammoType){
+function doAmmoVariants(rec, ammoMaterial, ammoType){
   if (stringToBoolean[ammoMaterial.multiply]) {
-    if (!Record.isCopy){copyRecord(Record);}
     if (ammoType.type === `ARROW`) {
-      createArrowVariant(Record.handle, "poison");
-      //createArrowVariant(Record.handle, "fire");
-      //createArrowVariant(Record.handle, "frost");
-      //createArrowVariant(Record.handle, "shock");
-      //createArrowVariant(Record.handle, "lightsource");
-      //createArrowVariant(Record.handle, "explosive");
-      //createArrowVariant(Record.handle, "timebomb");
+      createArrowVariant(rec, "poison");
+      //createArrowVariant(rec, "fire");
+      //createArrowVariant(rec, "frost");
+      //createArrowVariant(rec, "shock");
+      //createArrowVariant(rec, "lightsource");
+      //createArrowVariant(rec, "explosive");
+      //createArrowVariant(rec, "timebomb");
     }
     else if (ammoType.type === `BOLT`) {
-      createBoltVariant(Record.handle);
+      createBoltVariant(rec);
     }
   }
 }
@@ -41,12 +46,35 @@ function doAmmoVariants(Record, ammoMaterial, ammoType){
         .slice(0,xelib.LongPath(xelib.GetMasterRecord(rec)).indexOf(".")+4)}`
   }
 
-  function createAmmoCraftingRecipe(newAmmo, type, input, output, requiredPerks, blockerPerk) {
-    let edid = `PaMa_AMMO_CRAFT_${ammoNamingMimic(newAmmo, type)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
+  function createAmmoCraftingRecipe(baseAmmo, newAmmo, input, output, requiredPerks, blockerPerk) {
+    let edid = `PaMa_AMMO_CRAFT_${xelib.GetValue(newAmmo, `FULL`)}${Extensions.getFormStr(baseAmmo)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
+    console.log(edid);
+    let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
+    xelib.AddElementValue(newRecipe, `EDID`, edid);
+    let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, baseAmmo, `CNTO\\Item`);
+    xelib.SetValue(newItem, `CNTO\\Count`, input.toString());
+    if (blockerPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `0`, equalTo, blockerPerk);}
+    requiredPerks.forEach(perk => {
+      Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, perk);
+    });
+    Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, baseAmmo)
+    Extensions.addLinkedElementValue(newRecipe, 'CNAM', newAmmo); //Created Object
+    Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingSmithingForge); //Workbench Keyword
+    xelib.AddElementValue(newRecipe, `NAM1`, output.toString()); //Created Object Count
   }
 
-  function createAmmoVariantRecipes(newAmmo, type, input, output, requiredPerks, blockerPerk) {
-    createAmmoCraftingRecipe(newAmmo, type, input, output, requiredPerks, blockerPerk);
+  function createAmmoVariantRecipes(baseAmmo, newAmmo, type) {
+    let {enhancementIn, enhancementOut, enhancementOutSE0Mult, enhancementOutSE1Mult} = enhancedAmmoData;
+    let requiredPerks = [locals.variantTypes[type].perk];
+    let tierOnePerk = locals.permaPerks.xMAALCSkilledEnhancer0;
+    let tierTwoPerk = locals.permaPerks.xMAALCSkilledEnhancer1;
+    let enhancementOutSE0 = enhancementOut*enhancementOutSE0Mult;
+    let enhancementOutSE1 = enhancementOut*enhancementOutSE1Mult;
+    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOut, requiredPerks, tierOnePerk);
+    requiredPerks.push(tierOnePerk);
+    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOutSE0, requiredPerks, tierTwoPerk);
+    requiredPerks.push(tierTwoPerk);
+    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOutSE1, requiredPerks, null);
   }
 
   function createArrowVariant(rec, type) {
@@ -68,7 +96,7 @@ function doAmmoVariants(Record, ammoMaterial, ammoType){
     xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);
     //assign new projectile to new ammo
     xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
-    createAmmoVariantRecipes(ammoVariant, type);
+    createAmmoVariantRecipes(rec, ammoVariant, type);
   }
 
   function createBoltVariant(rec) {
@@ -103,13 +131,13 @@ function doAmmoVariants(Record, ammoMaterial, ammoType){
           if (!Record.isCopy){copyRecord(Record);}
           setDamage(Record.handle);
           patchProjectile(Record.handle);
-          doAmmoVariants(Record, ammoMaterialsReference[rec], ammoTypesReference[rec]);
+          doAmmoVariants(Record.handle, ammoMaterialsReference[rec], ammoTypesReference[rec]);
         });
       }
       else {
         ammo.forEach(rec => {
           let Record = getRecordObject(rec);
-          doAmmoVariants(Record, ammoMaterialsReference[rec]);
+          doAmmoVariants(Record.handle, ammoMaterialsReference[rec], ammoTypesReference[rec]);
         });
       }
       helpers.logMessage(`Done patching ammuniton`);
