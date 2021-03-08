@@ -39,20 +39,20 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     xelib.SetValue(newCond, 'CTDA\\Function', condFunc);
     xelib.SetValue(newCond, 'CTDA\\Comparison Value', compVal);
     xelib.SetValue(newCond, 'CTDA\\Type', Type);
-    xelib.SetLinksTo(newCond, 'CTDA\\Parameter #1', p1);
+    xelib.SetLinksTo(newCond, 'CTDA\\Parameter #1', p1);//zedit wiki says SetLinks to is "id, id2, path", but this way works as well. Not sure why
   }
 
   //analogous to AddElementValue but you pass a handle instead of a string
   function addLinkedElementValue(id, path, val, substring = ''){
     let newValue = xelib.AddElement(id, path);
-    xelib.SetLinksTo(newValue, substring, val);
+    xelib.SetLinksTo(newValue, substring, val);//zedit wiki says SetLinks to is "id, id2, path", but this way works as well. Not sure why
     return newValue;
   }
 
   //analogous to addLinkdedElementValue but for array items like Keywords or Items, etc
   function addLinkedArrayItem(id, path, val, substring = ''){
     let newValue = xelib.AddArrayItem(id, path, '', '');
-    xelib.SetLinksTo(newValue, substring, val);
+    xelib.SetLinksTo(newValue, substring, val);//zedit wiki says SetLinks to is "id, id2, path", but this way works as well. Not sure why
     return newValue;
   }
 
@@ -269,7 +269,8 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
         desc: "Explodes upon impact, dealing 3 points of poison damage per second for 20 seconds.",
         EXPL: locals.permaExplosions.xMAALCPoisonBurstAmmoPoisonExplosion,
         flagExplosion: true,
-        flagAltTrigger: false
+        flagAltTrigger: false,
+        perk: locals.permaPerks.xMAALCPoisonBurst
       }
     };
   };
