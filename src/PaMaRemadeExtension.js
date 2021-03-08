@@ -56,6 +56,13 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     return newValue;
   }
 
+  function getFormStr(rec){
+    return (
+      `${xelib.GetHexFormID(rec).slice(2,)}${xelib.LongPath(xelib.GetMasterRecord(rec))
+        .slice(0,xelib.LongPath(xelib.GetMasterRecord(rec)).indexOf(".")+4)}`
+    );
+  }
+
   //Mimics T3ndo's EDID naming system
   function namingMimic(rec) {
     let itemName
@@ -63,9 +70,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
         {itemName = xelib.GetValue(rec,`FULL`).toPascalCase()}
     else 
         {itemName = `<NOTEXT>`}
-    return `${itemName}${xelib.GetHexFormID(rec).slice(2,)}`+
-    `${xelib.LongPath(xelib.GetMasterRecord(rec))
-        .slice(0,xelib.LongPath(xelib.GetMasterRecord(rec)).indexOf(".")+4)}`
+    return `${itemName}${getFormStr(rec)}`
     //this is the most disgusting naming system 
     //I've ever witnessed, and it still doesn't match T3nd0's exactly
     //but his has more <NOTEXT>s than mine so this should be fine
@@ -297,6 +302,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     addLinkedCondition,
     addLinkedElementValue, 
     addLinkedArrayItem, 
+    getFormStr,
     namingMimic, 
     RecordObjectFunctions, 
     /*getFileIDs,*/
