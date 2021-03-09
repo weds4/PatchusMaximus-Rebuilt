@@ -29,18 +29,23 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         .slice(0,xelib.LongPath(xelib.GetMasterRecord(rec)).indexOf(".")+4)}`
   }
 
-  function createAmmoCraftingRecipe(baseAmmo, newAmmo, input, output, requiredPerks, blockerPerk) {
-    let edid = `PaMa_AMMO_CRAFT_${xelib.GetValue(newAmmo, `FULL`)}${Extensions.getFormStr(baseAmmo)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
+  function createAmmoCraftingRecipe(args) {
+    let {baseAmmo, newAmmo, input, ingredients, output, requiredPerks, blockerPerk} = args
+    let edid = `PaMa_AMMO_CRAFT_${xelib.GetValue(newAmmo, `FULL`).toPascalCase()}${Extensions.getFormStr(baseAmmo)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
     console.log(edid);
     let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
     xelib.AddElementValue(newRecipe, `EDID`, edid);
     let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, baseAmmo, `CNTO\\Item`);
     xelib.SetValue(newItem, `CNTO\\Count`, input.toString());
-    if (blockerPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `0`, equalTo, blockerPerk);}
+    ingredients.forEach(ingr => {
+      let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, ingr, `CNTO\\Item`);
+      xelib.SetValue(newItem, `CNTO\\Count`, `1`);
+    });
+    Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, baseAmmo);
     requiredPerks.forEach(perk => {
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, perk);
     });
-    Extensions.addLinkedCondition(newRecipe, `GetItemCount`, `1`, greaterThanEqualTo, baseAmmo)
+    if (blockerPerk) {Extensions.addLinkedCondition(newRecipe, `HasPerk`, `0`, equalTo, blockerPerk);}
     Extensions.addLinkedElementValue(newRecipe, 'CNAM', newAmmo); //Created Object
     Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.skyrimKeywords.CraftingSmithingForge); //Workbench Keyword
     xelib.AddElementValue(newRecipe, `NAM1`, output.toString()); //Created Object Count
@@ -48,21 +53,33 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
 
   function createAmmoVariantRecipes(baseAmmo, newAmmo, type) {
     let {enhancementIn, enhancementOut, enhancementOutSE0Mult, enhancementOutSE1Mult} = enhancedAmmoData;
-    let requiredPerks = [locals.variantTypes[type].perk];
+    let enhancementOutSE0 = enhancementOut*enhancementOutSE0Mult;//should be able to move out once enhancement counts are moved to settings
+    let enhancementOutSE1 = enhancementOut*enhancementOutSE1Mult;//should be able to move out once enhancement counts are moved to settings
     let tierOnePerk = locals.permaPerks.xMAALCSkilledEnhancer0;
     let tierTwoPerk = locals.permaPerks.xMAALCSkilledEnhancer1;
-    let enhancementOutSE0 = enhancementOut*enhancementOutSE0Mult;
-    let enhancementOutSE1 = enhancementOut*enhancementOutSE1Mult;
-    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOut, requiredPerks, tierOnePerk);
-    requiredPerks.push(tierOnePerk);
-    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOutSE0, requiredPerks, tierTwoPerk);
-    requiredPerks.push(tierTwoPerk);
-    createAmmoCraftingRecipe(baseAmmo, newAmmo, enhancementIn, enhancementOutSE1, requiredPerks, null);
+    let args = {
+      baseAmmo: baseAmmo,
+      newAmmo: newAmmo,
+      input: enhancementIn,
+      ingredients: locals.variantTypes[type].ingredients,
+      output: enhancementOut,
+      requiredPerks: [locals.variantTypes[type].perk],
+      blockerPerk: tierOnePerk
+    };
+    createAmmoCraftingRecipe(args);
+    args.output = enhancementOutSE0
+    args.requiredPerks.push(tierOnePerk);
+    args.blockerPerk = tierTwoPerk;
+    createAmmoCraftingRecipe(args);
+    args.output = enhancementOutSE1;
+    args.requiredPerks.push(tierTwoPerk);
+    args.blockerPerk = null;
+    createAmmoCraftingRecipe(args);
   }
 
   function createArrowVariant(rec, type) {
     //get the variant data for the type parameter from locals
-    let {name, desc, EXPL, flagExplosion, flagAltTrigger} = locals.variantTypes[type]
+    let {name, desc, flagExplosion, flagAltTrigger, EXPL} = locals.variantTypes[type]
     //make the variant ammo and set relevant data
     let ammoVariant = xelib.CopyElement(rec, patchFile, true);
     let newEDID = `PaMa_AMMO_${ammoNamingMimic(ammoVariant, name)}`;
@@ -76,7 +93,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     xelib.SetValue(newProjectile, `EDID`, newEDID);
     xelib.SetFlag(newProjectile, `DATA\\Flags`, `Explosion`, flagExplosion);
     xelib.SetFlag(newProjectile, `DATA\\Flags`, `Alt. Trigger`, flagAltTrigger);
-    xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);
+    if (EXPL) {xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);}
     //assign new projectile to new ammo
     xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
     createAmmoVariantRecipes(rec, ammoVariant, type);
@@ -90,12 +107,12 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     if (stringToBoolean[ammoMaterial.multiply]) {
       if (ammoType.type === `ARROW`) {
         createArrowVariant(rec, "poison");
-        //createArrowVariant(rec, "fire");
-        //createArrowVariant(rec, "frost");
-        //createArrowVariant(rec, "shock");
-        //createArrowVariant(rec, "lightsource");
-        //createArrowVariant(rec, "explosive");
-        //createArrowVariant(rec, "timebomb");
+        createArrowVariant(rec, "fire");
+        createArrowVariant(rec, "frost");
+        createArrowVariant(rec, "shock");
+        createArrowVariant(rec, "lightsource");
+        createArrowVariant(rec, "explosive");
+        createArrowVariant(rec, "timebomb");
       }
       else if (ammoType.type === `BOLT`) {
         createBoltVariant(rec);
