@@ -67,7 +67,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       blockerPerk: tierOnePerk
     };
     createAmmoCraftingRecipe(args);
-    args.output = enhancementOutSE0
+    args.output = enhancementOutSE0;
     args.requiredPerks.push(tierOnePerk);
     args.blockerPerk = tierTwoPerk;
     createAmmoCraftingRecipe(args);
@@ -103,20 +103,18 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
 
   }
 
-  function doAmmoVariants(rec, ammoMaterial, ammoType){
-    if (stringToBoolean[ammoMaterial.multiply]) {
-      if (ammoType.type === `ARROW`) {
-        createArrowVariant(rec, "poison");
-        createArrowVariant(rec, "fire");
-        createArrowVariant(rec, "frost");
-        createArrowVariant(rec, "shock");
-        createArrowVariant(rec, "lightsource");
-        createArrowVariant(rec, "explosive");
-        createArrowVariant(rec, "timebomb");
-      }
-      else if (ammoType.type === `BOLT`) {
-        createBoltVariant(rec);
-      }
+  function doAmmoVariants(rec, ammoType){//read-only functions
+    if (ammoType === `ARROW`) {
+      createArrowVariant(rec, "poison");
+      createArrowVariant(rec, "fire");
+      createArrowVariant(rec, "frost");
+      createArrowVariant(rec, "shock");
+      createArrowVariant(rec, "lightsource");
+      createArrowVariant(rec, "explosive");
+      createArrowVariant(rec, "timebomb");
+    }
+    else if (ammoType === `BOLT`) {
+      createBoltVariant(rec);
     }
   }
 
@@ -132,7 +130,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       let ammoMaterialsReference = {};
       let ammo = helpers.loadRecords('AMMO')
       .filter(rec => {//Called for each loaded record. Return false to skip patching a record
-        let keywords = Extensions.GetRecordKeywordEDIDs(rec);
         addRecordAmmoType(rec, ammoTypesReference);
         addRecordAmmoMaterial(rec, ammoMaterialsReference);
         return xelib.HasElement(rec, `FULL`) 
@@ -148,13 +145,16 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
           if (!Record.isCopy){copyRecord(Record);}
           setDamage(Record.handle);
           patchProjectile(Record.handle);
-          doAmmoVariants(Record.handle, ammoMaterialsReference[rec], ammoTypesReference[rec]);
+          if (stringToBoolean[ammoMaterialsReference[rec].multiply]){
+            doAmmoVariants(Record.handle, ammoTypesReference[rec].type);
+          }
         });
       }
       else {
         ammo.forEach(rec => {
-          let Record = getRecordObject(rec);
-          doAmmoVariants(Record.handle, ammoMaterialsReference[rec], ammoTypesReference[rec]);
+          if (stringToBoolean[ammoMaterialsReference[rec].multiply]){
+            doAmmoVariants(rec, ammoTypesReference[rec].type);
+          }
         });
       }
       helpers.logMessage(`Done patching ammuniton`);
