@@ -20,8 +20,42 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     referenceObject[rec] = Extensions.getObjectFromBinding(rec, locals.ammoMaterialBindings, locals.ammoMaterials);
   }
 
-  function setDamage(rec){xelib.SetValue(rec, `DESC`, `changed damage`);}
-  function patchProjectile(rec){}
+  function setDamage(Record, ammoType, ammoMaterial){
+    let oldDamage = parseFloat(xelib.GetValue(Record.handle, `DATA\\Damage`));
+    let newDamage = parseFloat(ammoType.damageBase) + parseFloat(ammoMaterial.damageModifier);
+    if (oldDamage !== newDamage){
+      if (!Record.isCopy){copyRecord(Record);}
+      xelib.SetValue(Record.handle, `DATA\\Damage`, newDamage.toString());
+    }
+  }
+
+  function patchProjectile(rec, ammoType, ammoMaterial){
+    let projectile = xelib.GetWinningOverride(xelib.GetLinksTo(rec, `DATA\\Projectile`));
+    if (projectile !== 0){//if projectile exists
+      let Record = getRecordObject(projectile);
+      console.log(`projectile is ` + xelib.Name(Record.handle));
+      let oldSpeed = parseFloat(xelib.GetValue(Record.handle, `DATA\\Speed`));
+      let newSpeed = parseFloat(ammoType.speedBase) + parseFloat(ammoMaterial.speedModifier);
+      if (oldSpeed !== newSpeed){
+        if (!Record.isCopy){copyRecord(Record);}
+        xelib.SetValue(Record.handle, `DATA\\Speed`, newSpeed.toString());
+      }
+      let oldGravity = parseFloat(xelib.GetValue(Record.handle, `DATA\\Gravity`));
+      let newGravity = parseFloat(ammoType.gravityBase) + parseFloat(ammoMaterial.gravityModifier);
+      if (oldGravity !== newGravity){
+        if (!Record.isCopy){copyRecord(Record);}
+        xelib.SetValue(Record.handle, `DATA\\Gravity`, newGravity.toString());
+      }
+      let oldRange = parseFloat(xelib.GetValue(Record.handle, `DATA\\Range`));
+      let newRange = parseFloat(ammoType.rangeBase) + parseFloat(ammoMaterial.rangeModifier);
+      if (oldRange !== newRange){
+        if (!Record.isCopy){copyRecord(Record);}
+        xelib.SetValue(Record.handle, `DATA\\Range`, newRange.toString());
+      }
+    }
+    
+
+  }
 
   function ammoNamingMimic(rec, type) {
     return `${xelib.GetValue(rec, `FULL`)}${type}${xelib.GetHexFormID(rec).slice(2,)}`+
@@ -32,7 +66,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   function createAmmoCraftingRecipe(args) {
     let {baseAmmo, newAmmo, input, ingredients, output, requiredPerks, blockerPerk} = args
     let edid = `PaMa_AMMO_CRAFT_${xelib.GetValue(newAmmo, `FULL`).toPascalCase()}${Extensions.getFormStr(baseAmmo)}${(blockerPerk)? `${Extensions.getFormStr(blockerPerk)}`: ''}`;
-    console.log(edid);
     let newRecipe = xelib.AddElement(patchFile,`Constructible Object\\COBJ`);
     xelib.AddElementValue(newRecipe, `EDID`, edid);
     let newItem = Extensions.addLinkedArrayItem(newRecipe, `Items`, baseAmmo, `CNTO\\Item`);
@@ -88,14 +121,17 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     xelib.SetValue(ammoVariant, `FULL`, newName);
     xelib.SetValue(ammoVariant, `DESC`, desc);
     //make a new projectile for the new ammo, projectile info changes with ammo type
-    let newProjectile = xelib.CopyElement(xelib.GetLinksTo(ammoVariant, `DATA\\Projectile`), patchFile, true);
-    newEDID = `PaMa_PROJ_${ammoNamingMimic(newProjectile, `-${name}`)}`;
-    xelib.SetValue(newProjectile, `EDID`, newEDID);
-    xelib.SetFlag(newProjectile, `DATA\\Flags`, `Explosion`, flagExplosion);
-    xelib.SetFlag(newProjectile, `DATA\\Flags`, `Alt. Trigger`, flagAltTrigger);
-    if (EXPL) {xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);}
-    //assign new projectile to new ammo
-    xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
+    let oldProjectile = xelib.GetLinksTo(ammoVariant, `DATA\\Projectile`);
+    if (oldProjectile !== 0) {//if oldProjectile exists
+      let newProjectile = xelib.CopyElement(oldProjectile, patchFile, true);
+      newEDID = `PaMa_PROJ_${ammoNamingMimic(newProjectile, `-${name}`)}`;
+      xelib.SetValue(newProjectile, `EDID`, newEDID);
+      xelib.SetFlag(newProjectile, `DATA\\Flags`, `Explosion`, flagExplosion);
+      xelib.SetFlag(newProjectile, `DATA\\Flags`, `Alt. Trigger`, flagAltTrigger);
+      if (EXPL) {xelib.SetLinksTo(newProjectile, `DATA\\Explosion`, EXPL);}
+      //assign new projectile to new ammo
+      xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
+    }    
     createAmmoVariantRecipes(rec, ammoVariant, type);
   }
 
@@ -142,9 +178,8 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       if (settings.UseWarrior){
         ammo.forEach(rec => {
           let Record = getRecordObject(rec);
-          if (!Record.isCopy){copyRecord(Record);}
-          setDamage(Record.handle);
-          patchProjectile(Record.handle);
+          setDamage(Record, ammoTypesReference[rec], ammoMaterialsReference[rec]);
+          patchProjectile(Record.handle, ammoTypesReference[rec], ammoMaterialsReference[rec]);
           if (stringToBoolean[ammoMaterialsReference[rec].multiply]){
             doAmmoVariants(Record.handle, ammoTypesReference[rec].type);
           }
