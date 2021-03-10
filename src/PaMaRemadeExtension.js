@@ -265,23 +265,29 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     xelib.AddElementValue(locals.forgedKeyword, `EDID`, 'ArmorPerMaForged');
     
     //---------------Ammo Patcher stuff------------------
-    let arrowDef = (name, desc, flagExplosion, flagAltTrigger, EXPL, perk, ingredients) => ({name, desc, EXPL, flagExplosion, flagAltTrigger, perk, ingredients});
+    let ammoDef = (name, desc, flagExplosion, flagAltTrigger, EXPL, perk, ingredients) => ({name, desc, EXPL, flagExplosion, flagAltTrigger, perk, ingredients});
     let poisonDesc = "Explodes upon impact, dealing 3 points of poison damage per second for 20 seconds.",
       fireDesc = "Explodes upon impact, dealing 30 points of fire damage.",
       frostDesc = "Explodes upon impact, dealing 30 points of frost damage.",
       shockDesc = "Explodes upon impact, dealing 30 points of shock damage.",
       lightsourceDesc = "Emits light after being fired.",
       explosiveDesc = "Explodes upon impact, dealing 60 points of non-elemental damage.",
-      timebombDesc = "Explodes 3 seconds after being fired into a surface, dealing 150 points of non-elemental damage.";
+      timebombDesc = "Explodes 3 seconds after being fired into a surface, dealing 150 points of non-elemental damage.",
+      strongDesc = "",
+      strongestDesc = "",
+      barbedDesc = "Deals 6 points of bleeding damag per second over 8 seconds, and slows the target down by 20%.";
 
     locals.variantTypes = {
-      "poison": arrowDef("Poisoned", "Explodes upon impact, dealing 3 points of poison damage per second for 20 seconds.", true, false, locals.permaExplosions.xMAALCPoisonBurstAmmoPoisonExplosion, locals.permaPerks.xMAALCPoisonBurst,  [locals.skyrimIngredients.deathBell]),
-      "fire": arrowDef("Fire", fireDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionFire, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FireSalts]),
-      "frost": arrowDef("Frost", frostDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionFrost, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FrostSalts]),
-      "shock": arrowDef("Shock", shockDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionShock, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.VoidSalts]),
-      "lightsource": arrowDef("Lightsource", lightsourceDesc, false, false, null, locals.permaPerks.xMASNEThiefsToolbox0, [locals.skyrimIngredients.FireflyThorax, locals.skyrimMisc.LeatherStrips]),
-      "explosive": arrowDef("Explosive", explosiveDesc, true, false, locals.permaExplosions.xMAALCFuseExplosion, locals.permaPerks.xMAALCFuse, [locals.skyrimIngredients.FireflyThorax, locals.skyrimIngestibles.Ale]),
-      "timebomb": arrowDef("Timebomb", timebombDesc, true, true, locals.permaExplosions.xMAALCAdvancedExplosivesMissileExplosion, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FireflyThorax, locals.skyrimIngestibles.Ale, locals.skyrimMisc.Charcoal]),
+      "poison": ammoDef("Poisoned", poisonDesc, true, false, locals.permaExplosions.xMAALCPoisonBurstAmmoPoisonExplosion, locals.permaPerks.xMAALCPoisonBurst,  [locals.skyrimIngredients.deathBell]),
+      "fire": ammoDef("Fire", fireDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionFire, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FireSalts]),
+      "frost": ammoDef("Frost", frostDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionFrost, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FrostSalts]),
+      "shock": ammoDef("Shock", shockDesc, true, false, locals.permaExplosions.xMAALCElementalBurstExplosionShock, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.VoidSalts]),
+      "lightsource": ammoDef("Lightsource", lightsourceDesc, false, false, null, locals.permaPerks.xMASNEThiefsToolbox0, [locals.skyrimIngredients.FireflyThorax, locals.skyrimMisc.LeatherStrips]),
+      "explosive": ammoDef("Explosive", explosiveDesc, true, false, locals.permaExplosions.xMAALCFuseExplosion, locals.permaPerks.xMAALCFuse, [locals.skyrimIngredients.FireflyThorax, locals.skyrimIngestibles.Ale]),
+      "timebomb": ammoDef("Timebomb", timebombDesc, true, true, locals.permaExplosions.xMAALCAdvancedExplosivesMissileExplosion, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FireflyThorax, locals.skyrimIngestibles.Ale, locals.skyrimMisc.Charcoal]),
+      "strong": ammoDef("Strong", strongDesc, false, false, null, locals.permaPerks.xMARANAdvancedMissilecraft0, [locals.skyrimMisc.IngotIron]),
+      "strongest": ammoDef("Strongest", strongestDesc, false, false, null, locals.permaPerks.xMARANAdvancedMissilecraft0, [locals.skyrimMisc.IngotSteel]),
+      "barbed": ammoDef("Barbed", barbedDesc, true, false, locals.permaExplosions.xMARANAdvancedMissilecraft1BarbedExplosion, locals.permaPerks.xMARANAdvancedMissilecraft1, [locals.skyrimMisc.IngotIron, locals.skyrimMisc.IngotSteel]), 
       next: {
         name: "",
         desc: "",

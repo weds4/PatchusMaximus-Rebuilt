@@ -53,8 +53,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         xelib.SetValue(Record.handle, `DATA\\Range`, newRange.toString());
       }
     }
-    
-
   }
 
   function ammoNamingMimic(rec, type) {
@@ -110,7 +108,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     createAmmoCraftingRecipe(args);
   }
 
-  function createArrowVariant(rec, type) {
+  function createAmmoVariant(rec, type) {
     //get the variant data for the type parameter from locals
     let {name, desc, flagExplosion, flagAltTrigger, EXPL} = locals.variantTypes[type]
     //make the variant ammo and set relevant data
@@ -133,24 +131,46 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       xelib.SetLinksTo(ammoVariant, `DATA\\Projectile`, newProjectile);
     }    
     createAmmoVariantRecipes(rec, ammoVariant, type);
-  }
-
-  function createBoltVariant(rec) {
-
+    return ammoVariant;
   }
 
   function doAmmoVariants(rec, ammoType){//read-only functions
     if (ammoType === `ARROW`) {
-      createArrowVariant(rec, "poison");
-      createArrowVariant(rec, "fire");
-      createArrowVariant(rec, "frost");
-      createArrowVariant(rec, "shock");
-      createArrowVariant(rec, "lightsource");
-      createArrowVariant(rec, "explosive");
-      createArrowVariant(rec, "timebomb");
+      createAmmoVariant(rec, "poison");
+      createAmmoVariant(rec, "fire");
+      createAmmoVariant(rec, "frost");
+      createAmmoVariant(rec, "shock");
+      createAmmoVariant(rec, "lightsource");
+      createAmmoVariant(rec, "explosive");
+      createAmmoVariant(rec, "timebomb");
     }
     else if (ammoType === `BOLT`) {
-      createBoltVariant(rec);
+      let strongAmmo = createAmmoVariant(rec, "strong");
+      let strongestAmmo = createAmmoVariant(rec, "strongest");
+      createAmmoVariant(rec, "poison");
+      createAmmoVariant(strongAmmo, "poison");
+      createAmmoVariant(strongestAmmo, "poison");
+      createAmmoVariant(rec, "shock");
+      createAmmoVariant(strongAmmo, "shock");
+      createAmmoVariant(strongestAmmo, "shock");
+      createAmmoVariant(rec, "frost");
+      createAmmoVariant(strongAmmo, "frost");
+      createAmmoVariant(strongestAmmo, "frost");
+      createAmmoVariant(rec, "fire");
+      createAmmoVariant(strongAmmo, "fire");
+      createAmmoVariant(strongestAmmo, "fire");
+      createAmmoVariant(rec, "barbed");
+      createAmmoVariant(strongAmmo, "barbed");
+      createAmmoVariant(strongestAmmo, "barbed");
+      createAmmoVariant(rec, "explosive");
+      createAmmoVariant(strongAmmo, "explosive");
+      createAmmoVariant(strongestAmmo, "explosive");
+      createAmmoVariant(rec, "timebomb");
+      createAmmoVariant(strongAmmo, "timebomb");
+      createAmmoVariant(strongestAmmo, "timebomb");
+      createAmmoVariant(rec, "lightsource");
+      createAmmoVariant(strongAmmo, "lightsource");
+      createAmmoVariant(strongestAmmo, "lightsource");
     }
   }
 
@@ -170,7 +190,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         addRecordAmmoMaterial(rec, ammoMaterialsReference);
         return xelib.HasElement(rec, `FULL`) 
         && (xelib.GetValue(rec, `FULL`) !== ``)
-        && !xelib.GetRecordFlag(rec,`Non-Playable`)
+        && !xelib.GetFlag(rec,`DATA\\Flags`, `Non-Playable`)
         && (ammoTypesReference[rec] !== null)
         && (ammoMaterialsReference[rec] !== null);
       });
