@@ -20,6 +20,16 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     referenceObject[rec] = Extensions.getObjectFromBinding(rec, locals.ammoMaterialBindings, locals.ammoMaterials);
   }
 
+  function multiplicationAllowed(rec){//using this info apparently improves patcher performance even though the original didn't use it
+    let multiplicationRules = locals.ammunitionJson[`ns2:ammunition`].ammunition_exclusions_multiplication.exclusion;
+    return multiplicationRules.every(rule => {
+      let target = xelib[exclusionMap[rule.target]](rec);
+      let method = exclusionMap[rule.type];
+      if(method === 'EQUALS') return target !== rule.text;
+      return !target[method](rule.text);
+    });
+  }
+
   function setDamage(Record, ammoType, ammoMaterial){
     let oldDamage = parseFloat(xelib.GetValue(Record.handle, `DATA\\Damage`));
     let newDamage = parseFloat(ammoType.damageBase) + parseFloat(ammoMaterial.damageModifier);
@@ -200,14 +210,14 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
           let Record = getRecordObject(rec);
           setDamage(Record, ammoTypesReference[rec], ammoMaterialsReference[rec]);
           patchProjectile(Record.handle, ammoTypesReference[rec], ammoMaterialsReference[rec]);
-          if (stringToBoolean[ammoMaterialsReference[rec].multiply]){
+          if (stringToBoolean[ammoMaterialsReference[rec].multiply] && multiplicationAllowed(Record.handle)){
             doAmmoVariants(Record.handle, ammoTypesReference[rec].type);
           }
         });
       }
       else {
-        ammo.forEach(rec => {
-          if (stringToBoolean[ammoMaterialsReference[rec].multiply]){
+        ammo.forEach(rec => {//Record uneeded since this entire block is read-only
+          if (stringToBoolean[ammoMaterialsReference[rec].multiply] && multiplicationAllowed(rec)){
             doAmmoVariants(rec, ammoTypesReference[rec].type);
           }
         });
