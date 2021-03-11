@@ -287,16 +287,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
       "timebomb": ammoDef("Timebomb", timebombDesc, true, true, locals.permaExplosions.xMAALCAdvancedExplosivesMissileExplosion, locals.permaPerks.xMAALCElementalBombard, [locals.skyrimIngredients.FireflyThorax, locals.skyrimIngestibles.Ale, locals.skyrimMisc.Charcoal]),
       "strong": ammoDef("Strong", strongDesc, false, false, null, locals.permaPerks.xMARANAdvancedMissilecraft0, [locals.skyrimMisc.IngotIron]),
       "strongest": ammoDef("Strongest", strongestDesc, false, false, null, locals.permaPerks.xMARANAdvancedMissilecraft0, [locals.skyrimMisc.IngotSteel]),
-      "barbed": ammoDef("Barbed", barbedDesc, true, false, locals.permaExplosions.xMARANAdvancedMissilecraft1BarbedExplosion, locals.permaPerks.xMARANAdvancedMissilecraft1, [locals.skyrimMisc.IngotIron, locals.skyrimMisc.IngotSteel]), 
-      next: {
-        name: "",
-        desc: "",
-        EXPL: locals.permaExplosions.xMAALCPoisonBurstAmmoPoisonExplosion,
-        flagExplosion: true,
-        flagAltTrigger: false,
-        perk: locals.permaPerks.xMAALCElementalBombard,
-        ingredients: [locals.skyrimIngredients.deathBell]
-      }
+      "barbed": ammoDef("Barbed", barbedDesc, true, false, locals.permaExplosions.xMARANAdvancedMissilecraft1BarbedExplosion, locals.permaPerks.xMARANAdvancedMissilecraft1, [locals.skyrimMisc.IngotIron, locals.skyrimMisc.IngotSteel])
     };
   };
 
