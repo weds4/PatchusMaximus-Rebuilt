@@ -43,7 +43,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     let projectile = xelib.GetWinningOverride(xelib.GetLinksTo(rec, `DATA\\Projectile`));
     if (projectile !== 0){//if projectile exists
       let Record = getRecordObject(projectile);
-      console.log(`projectile is ` + xelib.Name(Record.handle));
       let oldSpeed = parseFloat(xelib.GetValue(Record.handle, `DATA\\Speed`));
       let newSpeed = parseFloat(ammoType.speedBase) + parseFloat(ammoMaterial.speedModifier);
       if (oldSpeed !== newSpeed){
@@ -145,7 +144,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   }
 
   function doAmmoVariants(rec, ammoType){//read-only functions
-    if (ammoType === `ARROW`) {
+    if (ammoType === `ARROW`) {//7
       createAmmoVariant(rec, "poison");
       createAmmoVariant(rec, "fire");
       createAmmoVariant(rec, "frost");
@@ -154,7 +153,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       createAmmoVariant(rec, "explosive");
       createAmmoVariant(rec, "timebomb");
     }
-    else if (ammoType === `BOLT`) {
+    else if (ammoType === `BOLT`) {//26
       let strongAmmo = createAmmoVariant(rec, "strong");
       let strongestAmmo = createAmmoVariant(rec, "strongest");
       createAmmoVariant(rec, "poison");
