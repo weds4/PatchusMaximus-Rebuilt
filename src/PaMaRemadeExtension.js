@@ -174,6 +174,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.permaExplosions = buildEDIDMap(locals.PerkusMaximus_Master, `EXPL`);
     locals.skyrimIngredients = buildEDIDMap(locals.Skyrim_Master, `INGR`);
     locals.skyrimIngestibles = buildEDIDMap(locals.Skyrim_Master, `ALCH`);
+    locals.permaFLists = buildEDIDMap(locals.PerkusMaximus_Master, `FLST`);
 
 
     //---------------Armor Patcher stuff------------------
