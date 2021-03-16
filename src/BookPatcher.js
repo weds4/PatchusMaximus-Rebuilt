@@ -16,7 +16,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     }
   }
   
-  function exclusionFinder(rec, ruleSet) {
+  function inclusionAllowed(rec, ruleSet) {
     return rules[ruleSet].every(rule => {
       let target = xelib[exclusionMap[rule.target]](rec);
       let method = exclusionMap[rule.type];
@@ -26,22 +26,22 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   }
 
   function checkStaff(rec, booksReference) {
-    if (exclusionFinder(rec, `staff`)) {
+    if (inclusionAllowed(rec, `staff`)) {
       booksReference.staff.push(rec);
     }
   }
 
   function checkScroll(rec, booksReference) {
-    if (exclusionFinder(rec, `scroll`)) {
+    if (inclusionAllowed(rec, `scroll`)) {
       booksReference.scroll.push(rec);
     }
   }
 
   function checkDistribute(rec, booksReference) {
-    if (exclusionFinder(rec, `distSpell`)) {
+    if (inclusionAllowed(rec, `distSpell`)) {
       booksReference.distSpell.push(rec);
     }
-    if (exclusionFinder(rec, `distBook`)) {
+    if (inclusionAllowed(rec, `distBook`)) {
       booksReference.distBook.push(rec);
     }
   }
