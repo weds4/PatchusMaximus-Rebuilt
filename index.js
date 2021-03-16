@@ -44,6 +44,7 @@ registerPatcher({
         if (settings.UseMage) {locals.PerkusMaximus_Mage = xelib.FileByName(`PerkusMaximus_Mage.esp`)};
         Extensions.initLocals(); //everything on locals is created here
         ArmorPatcher.loadArmorSettings();
+        BookPatcher.loadBookRules();
       },
       process: [
         /*ArmorPatcher.records_Clothes,
