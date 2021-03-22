@@ -5,7 +5,13 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   
   //-----------------Book Patcher Dictionary/Lexicon Objects------------------------
   let rules = {};
-  
+  let emptyStaffIndex = {
+    Alteration: "",
+    Conjuration: "",
+    Destruction: "",
+    Illusion: "",
+    Restoration: ""
+  }
   //-----------------Book Patcher Supporting Functions----------------------------------
   function loadBookRules() {
     rules = {
@@ -50,12 +56,26 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return xelib.GetLinksTo(rec, `DATA\\Teaches`);
   }
 
+  function BgenerateStaff(rec) {//read only function
+    let spell = getTaughtSpell(rec);
+    let school = Extensions.getSchool(spell);
+    if ((xelib.GetValue(rec, `SPIT\\Cast Type`) !== `Constant Effect`) && (xelib.GetValue(rec, `SPIT\\Target Type`) !== `Self`) && (xelib.GetValue(rec, `ETYP`) !== `Both Hands`) && (school != null)) {
+      let newStaff = xelib.AddElement(patchFile, `WEAP`);
+      let newEnch = xelib.CopyElement(locals.permaObjEffects.xMAEmptyStaffEnch, patchFile, true);
+      xelib.SetValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
+      let newRecipe = xelib.AddElement(patchFile, `COBJ`);
+      Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
+      xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
+    }
+  }
+
   //-----------------Book Patcher Objects----------------------------------
   /*Every object feeds a zedit `process` block. A process block is either a `load:` and 
   `patch` object, or a `records:` object. You can also do a `records:` and `patch:` object,
   but I'm not sure why I'd need one in this patcher*/
   const records_Books = {
     records: (filesToPatch, helpers, settings, locals) => {
+      /* //A-method
       let booksReference = {staff: [], scroll: [], distBook: [], distSpell: []};
       helpers.loadRecords('BOOK')
       .filter(rec => 
@@ -85,8 +105,16 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       booksReference.distSpell.forEach(rec => {
         console.log(`distSpell: ${xelib.Name(rec)}`);
 
-      });
+      });*/
+      //B-method
+      helpers.loadRecords('BOOK')
+      .filter(rec => 
+        xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
+      )
+      .forEach(rec => {
+        BgenerateStaff(rec);
 
+      });
 
       return [];
     }

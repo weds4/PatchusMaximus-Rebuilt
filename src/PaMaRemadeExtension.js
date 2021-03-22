@@ -119,6 +119,23 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     return target;
   }
 
+  function getSchool(rec) {//rec is a spell
+    let allowedSchools = [`Alteration`, `Conjuration`, `Destruction`, `Illusion`, `Restoration`]
+    let effects = [];
+    if (xelib.HasElement(rec, `Effects`)){
+      xelib.GetElements(rec, 'Effects').forEach((e) => {
+        let ref = xelib.GetLinksTo(e);
+        if (ref) effects.push(ref);
+      });
+    }
+    let school = null;
+    effects.reverse().forEach(rec => {
+      let magicSkill = xelib.GetValue(rec, `DATA\\Magic Skill`);
+      if (allowedSchools.includes(magicSkill)) {school = magicSkill};
+    });
+    return school;
+  }
+
   //---------------------Custom Record Copying Functions----------------------------
   const RecordObjectFunctions = {
     getRecordObject: function(rec) {
@@ -175,6 +192,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.skyrimIngredients = buildEDIDMap(locals.Skyrim_Master, `INGR`);
     locals.skyrimIngestibles = buildEDIDMap(locals.Skyrim_Master, `ALCH`);
     locals.permaFLists = buildEDIDMap(locals.PerkusMaximus_Master, `FLST`);
+    locals.permaObjEffects = buildEDIDMap(locals.PerkusMaximus_Master, `ENCH`);
 
 
     //---------------Armor Patcher stuff------------------
@@ -326,6 +344,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     /*getFileIDs,*/
     getRecordsToPatch,
     getObjectFromBinding, 
+    getSchool,
     initLocals,
     records_reportITPOs
   };
