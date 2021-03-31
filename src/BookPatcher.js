@@ -113,7 +113,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       )
       .forEach(rec => {
         BgenerateStaff(rec);
-
+        //testing
       });
 
       return [];
