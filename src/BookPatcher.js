@@ -75,7 +75,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       xelib.SetValue(newEnch, `ENIT\\Cast Type`, castType);
       xelib.SetValue(newEnch, `ENIT\\Target Type`, targetType);
       let newCost = Math.min(100, Math.max(xelib.GetValue(spell, `SPIT\\Base Cost`), 50));
-      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`)
+      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`, newCost);
       let newRecipe = xelib.AddElement(patchFile, `COBJ`);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
