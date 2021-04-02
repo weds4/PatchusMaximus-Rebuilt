@@ -30,7 +30,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       return !target[method](rule.text);
     });
   }
-
+/*
   function checkStaff(rec, booksReference) {
     if (inclusionAllowed(rec, `staff`)) {
       booksReference.staff.push(rec);
@@ -50,23 +50,40 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     if (inclusionAllowed(rec, `distBook`)) {
       booksReference.distBook.push(rec);
     }
-  }
+  }*/
 
   function getTaughtSpell(rec){
     return xelib.GetLinksTo(rec, `DATA\\Teaches`);
   }
 
+  function getSpellData(rec){
+    return {
+      school: Extensions.getSchool(rec),
+      castType: xelib.GetValue(rec, `SPIT\\Cast Type`),
+      targetType: xelib.GetValue(rec, `SPIT\\Target Type`),
+      equipType: xelib.GetValue(rec, `ETYP`)
+    };
+  }
+
   function BgenerateStaff(rec) {//read only function
     let spell = getTaughtSpell(rec);
-    let school = Extensions.getSchool(spell);
-    if ((xelib.GetValue(rec, `SPIT\\Cast Type`) !== `Constant Effect`) && (xelib.GetValue(rec, `SPIT\\Target Type`) !== `Self`) && (xelib.GetValue(rec, `ETYP`) !== `Both Hands`) && (school != null)) {
+    let {school, castType, targetType, equipType} = getSpellData(spell);
+    if ((school != null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `Both Hands`)) {
       let newStaff = xelib.AddElement(patchFile, `WEAP`);
       let newEnch = xelib.CopyElement(locals.permaObjEffects.xMAEmptyStaffEnch, patchFile, true);
       xelib.SetValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
+      xelib.SetValue(newEnch, `ENIT\\Cast Type`, castType);
+      xelib.SetValue(newEnch, `ENIT\\Target Type`, targetType);
+      let newCost = Math.min(100, Math.max(xelib.GetValue(spell, `SPIT\\Base Cost`), 50));
+      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`)
       let newRecipe = xelib.AddElement(patchFile, `COBJ`);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
     }
+  }
+
+  function BgenerateScroll(rec){//read only function
+
   }
 
   //-----------------Book Patcher Objects----------------------------------
@@ -112,7 +129,9 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
       )
       .forEach(rec => {
-        BgenerateStaff(rec);
+        let spell = getTaughtSpell(rec);
+        if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) BgenerateStaff(rec);
+        if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) BgenerateScroll(rec);
         //testing
       });
 
