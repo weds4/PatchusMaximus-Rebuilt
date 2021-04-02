@@ -124,13 +124,13 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     let effects = [];
     if (xelib.HasElement(rec, `Effects`)){
       xelib.GetElements(rec, 'Effects').forEach((e) => {
-        let ref = xelib.GetLinksTo(e);
+        let ref = xelib.GetLinksTo(e, `EFID`);
         if (ref) effects.push(ref);
       });
     }
     let school = null;
     effects.reverse().forEach(rec => {
-      let magicSkill = xelib.GetValue(rec, `DATA\\Magic Skill`);
+      let magicSkill = xelib.GetValue(rec, `Magic Effect Data\\DATA\\Magic Skill`);
       if (allowedSchools.includes(magicSkill)) {school = magicSkill};
     });
     return school;
