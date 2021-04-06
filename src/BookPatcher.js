@@ -65,18 +65,28 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     };
   }
 
-  function BgenerateStaff(rec) {//read only function
-    let spell = getTaughtSpell(rec);
+  function addMagicEffects(spell, newEnch) {
+    xelib.RemoveArrayItem(newEnch, `Effects`, `EFID`, `NULL - Null Reference [00000000]`);
+    let spellEffects = xelib.GetElements(spell, `Effects`);
+    let enchEffects = xelib.GetElement(newEnch, `Effects`);
+    spellEffects.forEach(e => {
+      xelib.CopyElement(e, enchEffects);
+    });
+    return newEnch;
+  }
+
+  function BgenerateStaff(spell) {//read only function
     let {school, castType, targetType, equipType} = getSpellData(spell);
-    if ((school != null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `Both Hands`)) {
-      let newStaff = xelib.AddElement(patchFile, `WEAP`);
+    if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `Both Hands`)) {
       let newEnch = xelib.CopyElement(locals.permaObjEffects.xMAEmptyStaffEnch, patchFile, true);
       xelib.SetValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
       xelib.SetValue(newEnch, `ENIT\\Cast Type`, castType);
       xelib.SetValue(newEnch, `ENIT\\Target Type`, targetType);
       let newCost = Math.min(100, Math.max(xelib.GetValue(spell, `SPIT\\Base Cost`), 50));
-      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`, newCost);
-      let newRecipe = xelib.AddElement(patchFile, `COBJ`);
+      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`, newCost.toString());
+      newEnch = addMagicEffects(spell, newEnch);
+      let newStaff = xelib.AddElement(patchFile, `Weapon\\WEAP`);
+      let newRecipe = xelib.AddElement(patchFile, `Constructible Object\\COBJ`);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
     }
@@ -124,15 +134,18 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
 
       });*/
       //B-method
-      helpers.loadRecords('BOOK')
+      let books = helpers.loadRecords('BOOK')
       .filter(rec => 
         xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
-      )
+      );
+      console.log(books.length);
+      books
       .forEach(rec => {
         let spell = getTaughtSpell(rec);
-        if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) BgenerateStaff(rec);
-        if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) BgenerateScroll(rec);
+        if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {BgenerateStaff(spell);}
+        if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {BgenerateScroll(rec);}
         //testing
+        BgenerateStaff(spell);
       });
 
       return [];
