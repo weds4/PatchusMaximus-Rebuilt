@@ -148,21 +148,20 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
       );
       console.log(books.length);
-      let patchedSpells = [];
+      let patchedSpells = {};
       books
       .forEach(rec => {
         let spell = getTaughtSpell(rec);
-        if (!patchedSpells.includes(xelib.EditorID(spell))){
+        if (!patchedSpells.hasOwnProperty(xelib.EditorID(spell))){
           if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {
             BgenerateStaff(spell);
-            patchedSpells.push(xelib.EditorID(spell));
+            patchedSpells[xelib.EditorID(spell)] = true;
           }
           if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {
             BgenerateScroll(spell);
-            patchedSpells.push(xelib.EditorID(spell));
+            patchedSpells[xelib.EditorID(spell)] = true;
           }
         }
-        //testing
       });
 
       return [];
