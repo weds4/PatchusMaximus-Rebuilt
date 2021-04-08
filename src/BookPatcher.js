@@ -101,7 +101,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     }
   }
 
-  function BgenerateScroll(rec){//read only function
+  function BgenerateScroll(spell){//read only function
 
   }
 
@@ -148,11 +148,20 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
       );
       console.log(books.length);
+      let patchedSpells = [];
       books
       .forEach(rec => {
         let spell = getTaughtSpell(rec);
-        if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {BgenerateStaff(spell);}
-        if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {BgenerateScroll(rec);}
+        if (!patchedSpells.includes(xelib.EditorID(spell))){
+          if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {
+            BgenerateStaff(spell);
+            patchedSpells.push(xelib.EditorID(spell));
+          }
+          if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {
+            BgenerateScroll(spell);
+            patchedSpells.push(xelib.EditorID(spell));
+          }
+        }
         //testing
       });
 
