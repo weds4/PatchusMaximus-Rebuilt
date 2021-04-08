@@ -6,11 +6,11 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   //-----------------Book Patcher Dictionary/Lexicon Objects------------------------
   let rules = {};
   let emptyStaffIndex = {
-    Alteration: "",
-    Conjuration: "",
-    Destruction: "",
-    Illusion: "",
-    Restoration: ""
+    Alteration: "StaffTemplateAlteration",
+    Conjuration: "StaffTemplateConjuration",
+    Destruction: "StaffTemplateDestruction",
+    Illusion: "StaffTemplateIIllusion",
+    Restoration: "StaffTemplateRestoration"
   }
   //-----------------Book Patcher Supporting Functions----------------------------------
   function loadBookRules() {
@@ -77,15 +77,24 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
 
   function BgenerateStaff(spell) {//read only function
     let {school, castType, targetType, equipType} = getSpellData(spell);
-    if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `Both Hands`)) {
+    if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `BothHands [EQUP:00013F45]`)) {
+      console.log(`Generating staff for ${xelib.LongName(spell)}, school is ${school}, template is ${emptyStaffIndex[school]}`);
+      //make new enchantment
       let newEnch = xelib.CopyElement(locals.permaObjEffects.xMAEmptyStaffEnch, patchFile, true);
-      xelib.SetValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
-      xelib.SetValue(newEnch, `ENIT\\Cast Type`, castType);
-      xelib.SetValue(newEnch, `ENIT\\Target Type`, targetType);
+      xelib.AddElementValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
+      xelib.AddElementValue(newEnch, `ENIT\\Cast Type`, castType);
+      xelib.AddElementValue(newEnch, `ENIT\\Target Type`, targetType);
+      xelib.AddElementValue(newEnch, `FULL`, `ENCH_${xelib.Name(spell)}`)
       let newCost = Math.min(100, Math.max(xelib.GetValue(spell, `SPIT\\Base Cost`), 50));
-      xelib.SetValue(newEnch, `ENIT\\Enchantment Cost`, newCost.toString());
+      xelib.AddElementValue(newEnch, `ENIT\\Enchantment Cost`, newCost.toString());
       newEnch = addMagicEffects(spell, newEnch);
-      let newStaff = xelib.AddElement(patchFile, `Weapon\\WEAP`);
+      //done with new ench, now make staff
+      let newStaff = xelib.CopyElement(locals.skyrimWeapons[emptyStaffIndex[school]], patchFile, true);
+      xelib.AddElementValue(newStaff, `EDID`, `PaMa_STAFF_${Extensions.namingMimic(spell)}`);
+      xelib.AddElementValue(newStaff, `FULL`, `Staff [${xelib.Name(spell)}]`);
+      xelib.AddElementValue(newStaff, `DATA\\Value`, `500`);
+      xelib.AddElementValue(newStaff, `EAMT`, `2500`);
+      Extensions.addLinkedElementValue(newStaff, `EITM`, newEnch); //add new enchantment to staff
       let newRecipe = xelib.AddElement(patchFile, `Constructible Object\\COBJ`);
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
@@ -145,7 +154,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {BgenerateStaff(spell);}
         if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {BgenerateScroll(rec);}
         //testing
-        BgenerateStaff(spell);
       });
 
       return [];
