@@ -75,7 +75,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return newEnch;
   }
 
-  function BgenerateStaff(spell) {//read only function
+  function BgenerateStaff(rec, spell) {//read only function
     let {school, castType, targetType, equipType} = getSpellData(spell);
     if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `BothHands [EQUP:00013F45]`)) {
       console.log(`Generating staff for ${xelib.LongName(spell)}, school is ${school}, template is ${emptyStaffIndex[school]}`);
@@ -96,6 +96,14 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       xelib.AddElementValue(newStaff, `EAMT`, `2500`);
       Extensions.addLinkedElementValue(newStaff, `EITM`, newEnch); //add new enchantment to staff
       let newRecipe = xelib.AddElement(patchFile, `Constructible Object\\COBJ`);
+      xelib.AddElementValue(newRecipe, `EDID`, `PaMa_CRAFT_STAFF_${xelib.Name(spell)}`);
+      Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.dragonbornKeywords.DLC2StaffEnchanter);
+      Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMAENCStaffaire);
+      Extensions.addLinkedCondition(newRecipe, `HasSpell`, `1`, equalTo, spell);
+      let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
+      xelib.SetValue(newItem1, `CNTO\\Count`, '1');
+      let newItem2 = Extensions.addLinkedArrayItem(newRecipe, `Items`, locals.skyrimWeapons[emptyStaffIndex[school]], `CNTO\\Item`);
+      xelib.SetValue(newItem2, `CNTO\\Count`, '1');
       Extensions.addLinkedElementValue(newRecipe, 'CNAM', newStaff); //Created Object
       xelib.AddElementValue(newRecipe, `NAM1`, `1`); //Created Object Count
     }
@@ -154,7 +162,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         let spell = getTaughtSpell(rec);
         if (!patchedSpells.hasOwnProperty(xelib.EditorID(spell))){
           if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {
-            BgenerateStaff(spell);
+            BgenerateStaff(rec, spell);
             patchedSpells[xelib.EditorID(spell)] = true;
           }
           if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {
