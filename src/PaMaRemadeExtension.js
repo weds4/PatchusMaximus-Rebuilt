@@ -182,6 +182,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
 
     let buildEDIDMap = (handle, sig) => xelib.BuildReferenceMap(handle, sig, xelib.EditorID);
     locals.skyrimKeywords = buildEDIDMap(locals.Skyrim_Master, `KYWD`);
+    locals.dragonbornKeywords = buildEDIDMap(locals.dragonborn_Master, `KYWD`);
     locals.permaKeywords = buildEDIDMap(locals.PerkusMaximus_Master, `KYWD`);
     locals.skyrimMisc = buildEDIDMap(locals.Skyrim_Master, `MISC`);
     locals.permaMisc = buildEDIDMap(locals.PerkusMaximus_Master, `MISC`);
