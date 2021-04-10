@@ -30,27 +30,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       return !target[method](rule.text);
     });
   }
-/*
-  function checkStaff(rec, booksReference) {
-    if (inclusionAllowed(rec, `staff`)) {
-      booksReference.staff.push(rec);
-    }
-  }
-
-  function checkScroll(rec, booksReference) {
-    if (inclusionAllowed(rec, `scroll`)) {
-      booksReference.scroll.push(rec);
-    }
-  }
-
-  function checkDistribute(rec, booksReference) {
-    if (inclusionAllowed(rec, `distSpell`)) {
-      booksReference.distSpell.push(rec);
-    }
-    if (inclusionAllowed(rec, `distBook`)) {
-      booksReference.distBook.push(rec);
-    }
-  }*/
 
   function getTaughtSpell(rec){
     return xelib.GetLinksTo(rec, `DATA\\Teaches`);
@@ -75,7 +54,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     return newEnch;
   }
 
-  function BgenerateStaff(rec, spell) {//read only function
+  function generateStaff(book, spell) {//read only function
     let {school, castType, targetType, equipType} = getSpellData(spell);
     if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `BothHands [EQUP:00013F45]`)) {
       console.log(`Generating staff for ${xelib.LongName(spell)}, school is ${school}, template is ${emptyStaffIndex[school]}`);
@@ -100,7 +79,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       Extensions.addLinkedElementValue(newRecipe, 'BNAM', locals.dragonbornKeywords.DLC2StaffEnchanter);
       Extensions.addLinkedCondition(newRecipe, `HasPerk`, `1`, equalTo, locals.permaPerks.xMAENCStaffaire);
       Extensions.addLinkedCondition(newRecipe, `HasSpell`, `1`, equalTo, spell);
-      let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, rec, `CNTO\\Item`);
+      let newItem1 = Extensions.addLinkedArrayItem(newRecipe, `Items`, book, `CNTO\\Item`);
       xelib.SetValue(newItem1, `CNTO\\Count`, '1');
       let newItem2 = Extensions.addLinkedArrayItem(newRecipe, `Items`, locals.skyrimWeapons[emptyStaffIndex[school]], `CNTO\\Item`);
       xelib.SetValue(newItem2, `CNTO\\Count`, '1');
@@ -109,7 +88,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     }
   }
 
-  function BgenerateScroll(spell){//read only function
+  function generateScroll(spell){//read only function
 
   }
 
@@ -119,38 +98,6 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   but I'm not sure why I'd need one in this patcher*/
   const records_Books = {
     records: (filesToPatch, helpers, settings, locals) => {
-      /* //A-method
-      let booksReference = {staff: [], scroll: [], distBook: [], distSpell: []};
-      helpers.loadRecords('BOOK')
-      .filter(rec => 
-        xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
-      )
-      .forEach(rec => {
-        checkStaff(rec, booksReference);
-        checkStaff(getTaughtSpell(rec), booksReference);
-        checkScroll(rec, booksReference);
-        checkScroll(getTaughtSpell(rec), booksReference);
-        checkDistribute(rec, booksReference)
-        checkDistribute(getTaughtSpell(rec), booksReference)
-      });
-      
-      booksReference.staff.forEach(rec => {
-        console.log(`staff: ${xelib.Name(rec)}`);
-
-      });
-      booksReference.scroll.forEach(rec => {
-        console.log(`scroll: ${xelib.Name(rec)}`);
-
-      });
-      booksReference.distBook.forEach(rec => {
-        console.log(`distBook: ${xelib.Name(rec)}`);
-
-      });
-      booksReference.distSpell.forEach(rec => {
-        console.log(`distSpell: ${xelib.Name(rec)}`);
-
-      });*/
-      //B-method
       let books = helpers.loadRecords('BOOK')
       .filter(rec => 
         xelib.GetFlag(rec, `DATA\\Flags`, `Teaches Spell`)
@@ -162,11 +109,11 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
         let spell = getTaughtSpell(rec);
         if (!patchedSpells.hasOwnProperty(xelib.EditorID(spell))){
           if (inclusionAllowed(rec, `staff`) && inclusionAllowed(spell, `staff`)) {
-            BgenerateStaff(rec, spell);
+            generateStaff(rec, spell);
             patchedSpells[xelib.EditorID(spell)] = true;
           }
           if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {
-            BgenerateScroll(spell);
+            generateScroll(spell);
             patchedSpells[xelib.EditorID(spell)] = true;
           }
         }
