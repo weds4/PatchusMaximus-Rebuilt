@@ -195,6 +195,7 @@ module.exports = function({xelib, fh, patcherPath, patchFile, settings, helpers,
     locals.permaFLists = buildEDIDMap(locals.PerkusMaximus_Master, `FLST`);
     locals.permaObjEffects = buildEDIDMap(locals.PerkusMaximus_Master, `ENCH`);
     locals.skyrimWeapons = buildEDIDMap(locals.Skyrim_Master, `WEAP`);
+    locals.permaScrolls = buildEDIDMap(locals.PerkusMaximus_Master, `SCRL`);
 
 
     //---------------Armor Patcher stuff------------------
