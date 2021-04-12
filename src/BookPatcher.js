@@ -11,7 +11,14 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     Destruction: "StaffTemplateDestruction",
     Illusion: "StaffTemplateIIllusion",
     Restoration: "StaffTemplateRestoration"
-  }
+  };
+  let skillLevelPerks = {
+    '0': "perkEnchantingBasicScripture",
+    '25': "perkEnchantingBasicScripture",
+    '50': "perkEnchantingAdvancedScripture",
+    '75': "perkEnchantingElaborateScripture",
+    '100': "perkEnchantingSagesScripture"
+  };
   //-----------------Book Patcher Supporting Functions----------------------------------
   function loadBookRules() {
     rules = {
@@ -40,24 +47,40 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
       school: Extensions.getSchool(rec),
       castType: xelib.GetValue(rec, `SPIT\\Cast Type`),
       targetType: xelib.GetValue(rec, `SPIT\\Target Type`),
-      equipType: xelib.GetValue(rec, `ETYP`)
+      equipType: xelib.GetValue(rec, `ETYP`),
+      chargeTime: xelib.GetValue(rec, `SPIT\\Charge Time`),
+      castDur: xelib.GetValue(rec, `SPIT\\Cast Duration`),
+      type: xelib.GetValue(rec, `SPIT\\Type`)
     };
   }
 
-  function addMagicEffects(spell, newEnch) {
-    xelib.RemoveArrayItem(newEnch, `Effects`, `EFID`, `NULL - Null Reference [00000000]`);
+  function addMagicEffects(spell, newRec) {
+    xelib.RemoveArrayItem(newRec, `Effects`, `EFID`, `NULL - Null Reference [00000000]`);
     let spellEffects = xelib.GetElements(spell, `Effects`);
-    let enchEffects = xelib.GetElement(newEnch, `Effects`);
+    let enchEffects = xelib.GetElement(newRec, `Effects`);
     spellEffects.forEach(e => {
       xelib.CopyElement(e, enchEffects);
     });
-    return newEnch;
+    return newRec;
+  }
+  
+  function getScrollCraftingPerk(spell) {
+    let mgefs = xelib.GetElements(spell, `Effects`);
+    let maxLvl = null;
+    mgefs.forEach(handle => {
+      mgef = xelib.GetLinksTo(handle, `EFID`);
+      let level = parseInt(xelib.GetValue(mgef, `Magic Effect Data\\DATA\\Minimum Skill Level`));
+      if (level >= maxLvl) {
+        maxLvl = level;
+      };
+    });
+    return skillLevelPerks[maxLvl];
   }
 
   function generateStaff(book, spell) {//read only function
     let {school, castType, targetType, equipType} = getSpellData(spell);
     if ((school !== null) && (castType !== `Constant Effect`) && (targetType !== `Self`) && (equipType !== `BothHands [EQUP:00013F45]`)) {
-      console.log(`Generating staff for ${xelib.LongName(spell)}, school is ${school}, template is ${emptyStaffIndex[school]}`);
+      //console.log(`Generating staff for ${xelib.LongName(spell)}, school is ${school}, template is ${emptyStaffIndex[school]}`);
       //make new enchantment
       let newEnch = xelib.CopyElement(locals.permaObjEffects.xMAEmptyStaffEnch, patchFile, true);
       xelib.AddElementValue(newEnch, `EDID`, `PaMa_ENCH_${Extensions.namingMimic(spell)}`);
@@ -88,9 +111,30 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
     }
   }
 
-  function generateScroll(spell){//read only function
-
+  function generateScroll(rec, spell){//read only function
+    let {castType, targetType, equipType, chargeTime, castDur, type} = getSpellData(spell);
+    let craftingPerk = getScrollCraftingPerk(spell);
+    if ((castType !== `Concentration`) && craftingPerk) {//setting it up like this deviates from the original, but prevents unused records from being generated. Technically should be if (!concentration){make scroll} else if (craftingPerk){make crafting recipe}
+      let newScroll = xelib.CopyElement(locals.permaScrolls.xMAScrollEmpty, patchFile, true);
+      xelib.AddElementValue(newScroll, `EDID`, `PaMa_SCRO_${Extensions.namingMimic(spell)}`);
+      xelib.AddElementValue(newScroll, `SPIT\\Cast Duration`, castDur);//cast duration
+      xelib.AddElementValue(newScroll, `SPIT\\Cast Type`, castType);
+      xelib.AddElementValue(newScroll, `SPIT\\Charge Time`, chargeTime);//charge time
+      xelib.AddElementValue(newScroll, `SPIT\\Target Type`, targetType);
+      xelib.AddElementValue(newScroll, `ETYP`, equipType);//equip slot
+      xelib.AddElementValue(newScroll, `SPIT\\Type`, type);//spell, ability, power, etc.
+      xelib.AddElementValue(newScroll, `FULL`, `${xelib.Name(spell)} [Scroll]`);
+      newScroll = addMagicEffects(spell, newScroll);
+    }
   }
+  /*
+  function checkDistribute(rec, booksReference) {//gotta check book and spell
+    if (inclusionAllowed(rec, `distSpell`)) {
+      booksReference.distSpell.push(rec);
+    }
+    if (inclusionAllowed(rec, `distBook`)) {
+      booksReference.distBook.push(rec);
+    }*/
 
   //-----------------Book Patcher Objects----------------------------------
   /*Every object feeds a zedit `process` block. A process block is either a `load:` and 
@@ -113,7 +157,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
             patchedSpells[xelib.EditorID(spell)] = true;
           }
           if (inclusionAllowed(rec, `scroll`) && inclusionAllowed(spell, `scroll`)) {
-            generateScroll(spell);
+            generateScroll(rec ,spell);
             patchedSpells[xelib.EditorID(spell)] = true;
           }
         }
