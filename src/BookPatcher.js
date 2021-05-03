@@ -114,7 +114,7 @@ module.exports = function({xelib, Extensions, patchFile, settings, helpers, loca
   function generateScroll(rec, spell){//read only function
     let {castType, targetType, equipType, chargeTime, castDur, type} = getSpellData(spell);
     let craftingPerk = getScrollCraftingPerk(spell);
-    if ((castType !== `Concentration`) && craftingPerk) {//setting it up like this deviates from the original, but prevents unused records from being generated. Technically should be if (!concentration){make scroll} else if (craftingPerk){make crafting recipe}
+    if ((castType !== `Concentration`) && craftingPerk) {//setting it up like this deviates from the original, but prevents unused records from being generated. Technically should be: if (!concentration){make scroll} else if (craftingPerk){make crafting recipe}
       let newScroll = xelib.CopyElement(locals.permaScrolls.xMAScrollEmpty, patchFile, true);
       xelib.AddElementValue(newScroll, `EDID`, `PaMa_SCRO_${Extensions.namingMimic(spell)}`);
       xelib.AddElementValue(newScroll, `SPIT\\Cast Duration`, castDur);//cast duration
